@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://myjewl.local/schemas/manufacturing_evidence_v0_1.schema.json",
+  "title": "MyJewl manufacturing evidence record v0.1",
+  "description": "What a named person said about a manufacturing limit, when they said it, and under what scope. This is TESTIMONY INTAKE, not calibration. A declared finding may become an uncalibrated CANDIDATE floor -- the column a casting shop is asked to pick from -- and nothing more. It can never set calibrated=True, never supersede a ShopProfile, and never move a geometry gate. Only a calibrated shop profile plus human jeweler review does that.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "record_id", "record_version", "status", "recorded_by", "validity", "findings"],
+  "properties": {
+    "schema": {"const": "myjewl.manufacturing_evidence.v0_1"},
+    "record_id": {"type": "string", "minLength": 1},
+    "record_version": {"type": "string", "minLength": 1},
+    "status": {
+      "enum": ["undeclared", "declared"],
+      "description": "'declared' asserts a real human read and confirmed this record. An undeclared record refuses every one of its own findings."
+    },
+    "certifies_manufacturing": {
+      "const": false,
+      "description": "Structurally pinned. Testimony is never a manufacturing certification."
+    },
+    "recorded_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "role"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "description": "Who transcribed this record. Not who said it -- that is per-finding attribution."},
+        "role": {"type": "string", "minLength": 1}
+      }
+    },
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recorded_on"],
+      "properties": {
+        "recorded_on": {"type": "string", "format": "date"},
+        "revalidation_triggers": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "findings": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/finding"},
+      "description": "Keyed by the manufacturing floor the answer bears on, e.g. min_castable_wire_diameter_mm."
+    }
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence_class", "attributed_to", "heard_on", "process_scope", "measurement_basis"],
+      "properties": {
+        "status": {"enum": ["undeclared", "declared"]},
+        "value_mm": {
+          "type": ["number", "null"],
+          "exclusiveMinimum": 0,
+          "description": "A single figure, when one was given. Null when the answer was a range or was qualitative."
+        },
+        "range_mm": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["low", "high"],
+          "properties": {
+            "low": {"type": "number", "exclusiveMinimum": 0},
+            "high": {"type": "number", "exclusiveMinimum": 0}
+          },
+          "description": "Preferred over value_mm when the answer was a band. Both ends become candidate floors, because a band's low end is the interesting one."
+        },
+        "evidence_class": {
+          "enum": [
+            "expert_testimony",
+            "published_trade_standard",
+            "manufacturer_specification",
+            "engineers_estimate",
+            "unknown"
+          ],
+          "description": "NONE of these calibrates. A shop MEASURING its own process is a ShopProfile, not an evidence class here -- that distinction is the whole point of the file."
+        },
+        "attributed_to": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "role"],
+          "properties": {
+            "name": {"type": "string", "description": "The person who said it. Empty string means unattributed, which is refused."},
+            "role": {"type": "string", "description": "e.g. 'bench jeweler, 30 years', 'casting house owner'. Their standing is why the number is worth anything."},
+            "affiliation": {"type": "string"}
+          }
+        },
+        "heard_on": {"type": ["string", "null"], "format": "date", "description": "When it was said. Undated testimony is refused."},
+        "conversation_kind": {"enum": ["in_person", "call", "video_call", "written", "published_source", "unknown"]},
+        "alloy_scope": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Which alloys the answer covers. Empty means the speaker did not distinguish, which is recorded as-is rather than assumed universal."
+        },
+        "process_scope": {
+          "enum": ["cast", "fabricated", "either", "unknown"],
+          "description": "A fabricated-prong minimum is NOT a cast-prong minimum. Unknown is refused, because conflating them is exactly the error the brief warns about."
+        },
+        "measurement_basis": {
+          "enum": ["pre_finishing", "post_finishing", "unknown"],
+          "description": "MyJewl ships finished-nominal geometry, so a pre-finishing minimum is not directly comparable. Unknown is refused."
+        },
+        "verbatim": {"type": "string", "description": "What they actually said, as close to word-for-word as possible. Paraphrase loses the hedges, and the hedges are the information."},
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}

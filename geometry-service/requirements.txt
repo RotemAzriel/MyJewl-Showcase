@@ -1,0 +1,13 @@
+jsonschema>=4.0
+numpy==2.5.5
+Pillow==13.0.0
+trimesh>=4.0
+anthropic>=0.116
+# Geometry measurement (Goal 0018). manifold3d is the boolean engine behind the
+# assembly union; rtree backs trimesh's ray casting for wall-thickness sampling;
+# scipy provides the KD-tree used for part connectivity. Without these,
+# geometry_metrics degrades honestly (union/thickness report unavailable) rather
+# than reporting a wrong number.
+manifold3d>=2.5
+rtree>=1.0
+scipy==1.18.1

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aureon Viewer Lab</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #EDEBE7; font: 13px/1.4 -apple-system, sans-serif; }
+  #host { position: absolute; inset: 0; }
+  #label { position: fixed; left: 10px; top: 10px; z-index: 5; background: rgba(255,255,255,.85); padding: 4px 9px; border-radius: 999px; color: #6E6A60; }
+  body.clean #label { display: none; }
+</style>
+</head>
+<body>
+<!-- Dev tool: render any local GLB through the swappable viewer interface (viewers.js).
+     /static/lab.html?glb=/files/<job>/<job>.glb&viewer=ijewel|model-viewer&still&clean&view=hero|detail
+     Used for the style thumbnails and the before/after realism comparison. -->
+<div id="host"></div>
+<div id="label">loading…</div>
+<script type="module">
+import { createViewer } from "/static/viewers.js";
+const p = new URLSearchParams(location.search);
+if (p.has("clean")) document.body.classList.add("clean");
+const viewer = await createViewer(document.getElementById("host"), { prefer: p.get("viewer") || "ijewel", autoRotate: !p.has("still") });
+await viewer.show(p.get("glb"));
+if (p.get("view") && viewer.setView) viewer.setView(p.get("view"));
+document.getElementById("label").textContent = viewer.label;
+window.labViewer = viewer;
+document.body.dataset.ready = "1";
+</script>
+</body>
+</html>

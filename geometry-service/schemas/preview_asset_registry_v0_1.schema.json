@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/myjewl/preview_asset_registry_v0_1.schema.json",
+  "title": "MyJewl Preview Asset Registry v0.1",
+  "description": "Versioned, fail-closed registry for approved preview assets. Named parts of a full-ring asset are material/diagnostic groups, not modular sockets.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "registry_version", "resolver_version", "signature_schema", "renderer", "assets"],
+  "properties": {
+    "schema": { "const": "myjewl.preview_asset_registry.v0_1" },
+    "registry_version": { "type": "string", "minLength": 1 },
+    "resolver_version": { "type": "string", "minLength": 1 },
+    "signature_schema": { "const": "myjewl.preview_geometry_signature.v0_1" },
+    "renderer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "const": "threejs" },
+        "version": { "const": "r166" }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/asset" }
+    }
+  },
+  "$defs": {
+    "hex_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "signature": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "parameter_path": { "type": "string", "pattern": "^/[A-Za-z0-9_~./-]+$" },
+    "file_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "sha256", "byte_size"],
+      "properties": {
+        "url": { "type": "string", "pattern": "^/static/assets/[A-Za-z0-9_./-]+$" },
+        "sha256": { "$ref": "#/$defs/hex_sha256" },
+        "byte_size": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "config_differential": {
+      "description": "Receipt-backed proof that the backing definition emits different geometry for different configurations. A parametric master must carry status 'passed'; a master that ignores the request records status 'absent' and may only back one discrete signature.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason"],
+      "properties": {
+        "status": { "enum": ["passed", "absent"] },
+        "reason": { "type": "string", "minLength": 1 },
+        "report_path": { "type": "string", "minLength": 1 },
+        "report_sha256": { "$ref": "#/$defs/hex_sha256" },
+        "config_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "approved_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "minimum", "maximum"],
+      "properties": {
+        "path": { "$ref": "#/$defs/parameter_path" },
+        "minimum": { "type": "number" },
+        "maximum": { "type": "number" }
+      }
+    },
+    "approximation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "reason"],
+      "properties": {
+        "path": { "$ref": "#/$defs/parameter_path" },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "unsupported": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "reason_code"],
+      "properties": {
+        "path": { "$ref": "#/$defs/parameter_path" },
+        "reason_code": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id", "asset_version", "enabled", "asset_type", "classification",
+        "representation_kind", "approval", "match", "represented_parameters",
+        "approximated_parameters", "unsupported_parameters", "delivery",
+        "provenance", "geometry", "limitations", "manufacturing_authority",
+        "manufacturing_state"
+      ],
+      "properties": {
+        "asset_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]+$" },
+        "asset_version": { "type": "string", "minLength": 1 },
+        "enabled": { "type": "boolean" },
+        "asset_type": { "const": "full_ring" },
+        "classification": { "enum": ["exact", "estimated"] },
+        "representation_kind": { "enum": ["full_ring_asset", "approved_assembly"] },
+        "approval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "visual_review", "visual_review_sha256", "differential_sha256", "config_differential"],
+          "properties": {
+            "status": { "enum": ["approved", "pending", "revoked"] },
+            "visual_review": { "enum": ["approved", "pending", "rejected"] },
+            "visual_review_sha256": { "$ref": "#/$defs/hex_sha256" },
+            "differential_sha256": { "$ref": "#/$defs/hex_sha256" },
+            "config_differential": { "$ref": "#/$defs/config_differential" }
+          }
+        },
+        "match": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policy", "geometry_signature", "geometry_projection", "approved_ranges"],
+          "properties": {
+            "policy": { "enum": ["discrete_signature", "bounded_projection"] },
+            "geometry_signature": { "$ref": "#/$defs/signature" },
+            "geometry_projection": { "type": "object" },
+            "approved_ranges": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/approved_range" }
+            }
+          }
+        },
+        "represented_parameters": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/parameter_path" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "approximated_parameters": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/approximation" }
+        },
+        "unsupported_parameters": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/unsupported" },
+          "maxItems": 0
+        },
+        "delivery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["format", "renderer", "manifest", "content"],
+          "properties": {
+            "format": { "enum": ["myjewl_meshbin_v1", "glb"] },
+            "renderer": { "const": "threejs-r166" },
+            "manifest": { "$ref": "#/$defs/file_reference" },
+            "content": { "$ref": "#/$defs/file_reference" }
+          }
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["template_id", "definition_kind", "definition_path", "definition_sha256", "source_obj_sha256", "source_receipt_sha256", "authority"],
+          "properties": {
+            "template_id": { "type": "string", "minLength": 1 },
+            "definition_kind": { "enum": ["single_configuration_master", "parametric_master"] },
+            "definition_path": { "type": "string", "pattern": "^manual/rhino_compute_bridge/[A-Za-z0-9_.-]+\\.ghx$" },
+            "definition_sha256": { "$ref": "#/$defs/hex_sha256" },
+            "source_obj_sha256": { "$ref": "#/$defs/hex_sha256" },
+            "source_receipt_sha256": { "$ref": "#/$defs/hex_sha256" },
+            "authority": { "const": "receipt_backed_rhino_derived_browser_preview" }
+          }
+        },
+        "geometry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["units", "source_axes", "preview_axes", "transform", "vertex_count", "index_count", "triangle_count", "part_count", "material_roles", "named_parts_are_modules"],
+          "properties": {
+            "units": { "const": "mm" },
+            "source_axes": { "const": "Rhino_Z_up" },
+            "preview_axes": { "const": "ThreeJS_Y_up" },
+            "transform": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["rotation_x_radians", "scale"],
+              "properties": {
+                "rotation_x_radians": { "type": "number" },
+                "scale": { "type": "number", "exclusiveMinimum": 0 }
+              }
+            },
+            "vertex_count": { "type": "integer", "minimum": 1 },
+            "index_count": { "type": "integer", "minimum": 3 },
+            "triangle_count": { "type": "integer", "minimum": 1 },
+            "part_count": { "type": "integer", "minimum": 1 },
+            "material_roles": {
+              "type": "array",
+              "items": { "enum": ["metal", "stone"] },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "named_parts_are_modules": { "const": false }
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "manufacturing_authority": { "const": false },
+        "manufacturing_state": { "const": "pending_not_run_needs_calibration" }
+      }
+    }
+  }
+}

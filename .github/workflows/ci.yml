@@ -1,0 +1,22 @@
+name: Verification
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        component: [geometry-service, artisan-mvp]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements-lock.txt
+      - run: python tools/check_public_files.py
+      - run: python tools/test_offline.py ${{ matrix.component }}

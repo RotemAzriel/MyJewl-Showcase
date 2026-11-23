@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/myjewl/preview_manifest_v0_1.schema.json",
+  "title": "MyJewl PreviewManifest v0.1",
+  "description": "Deterministic, server-authoritative preview resolution. Runtime loading observations and manufacturing decisions are deliberately outside this contract.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "resolver_version",
+    "registry_version",
+    "manifest_id",
+    "canonical_spec_sha256",
+    "geometry",
+    "appearance_signature",
+    "preview_status",
+    "reason_code",
+    "representation_kind",
+    "selected_asset",
+    "represented_parameters",
+    "approximated_parameters",
+    "unsupported_parameters",
+    "approved_ranges",
+    "warnings",
+    "manufacturing_authority",
+    "manufacturing_state"
+  ],
+  "properties": {
+    "schema": { "const": "myjewl.preview_manifest.v0_1" },
+    "resolver_version": { "type": "string", "minLength": 1 },
+    "registry_version": { "type": "string", "minLength": 1 },
+    "manifest_id": { "$ref": "#/$defs/sha256" },
+    "canonical_spec_sha256": { "$ref": "#/$defs/sha256" },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signature_schema", "signature", "projection"],
+      "properties": {
+        "signature_schema": { "const": "myjewl.preview_geometry_signature.v0_1" },
+        "signature": { "$ref": "#/$defs/sha256" },
+        "projection": { "type": "object" }
+      }
+    },
+    "appearance_signature": {
+      "oneOf": [
+        { "$ref": "#/$defs/sha256" },
+        { "type": "null" }
+      ]
+    },
+    "preview_status": { "enum": ["exact", "estimated", "unavailable"] },
+    "reason_code": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "representation_kind": { "enum": ["full_ring_asset", "approved_assembly", "none"] },
+    "selected_asset": {
+      "oneOf": [
+        { "$ref": "#/$defs/selected_asset" },
+        { "type": "null" }
+      ]
+    },
+    "represented_parameters": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/parameter_path" },
+      "uniqueItems": true
+    },
+    "approximated_parameters": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/parameter_difference" }
+    },
+    "unsupported_parameters": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/unsupported_parameter" }
+    },
+    "approved_ranges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/approved_range" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "manufacturing_authority": { "const": false },
+    "manufacturing_state": { "const": "pending_not_run_needs_calibration" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "preview_status": { "const": "unavailable" } } },
+      "then": {
+        "properties": {
+          "representation_kind": { "const": "none" },
+          "selected_asset": { "type": "null" },
+          "represented_parameters": { "maxItems": 0 },
+          "approximated_parameters": { "maxItems": 0 },
+          "approved_ranges": { "maxItems": 0 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "preview_status": { "const": "exact" } } },
+      "then": {
+        "properties": {
+          "selected_asset": {
+            "allOf": [
+              { "$ref": "#/$defs/selected_asset" },
+              { "properties": { "classification": { "const": "exact" } } }
+            ]
+          },
+          "represented_parameters": { "minItems": 1 },
+          "approximated_parameters": { "maxItems": 0 },
+          "unsupported_parameters": { "maxItems": 0 },
+          "approved_ranges": { "maxItems": 0 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "preview_status": { "const": "estimated" } } },
+      "then": {
+        "properties": {
+          "selected_asset": {
+            "allOf": [
+              { "$ref": "#/$defs/selected_asset" },
+              { "properties": { "classification": { "const": "estimated" } } }
+            ]
+          },
+          "represented_parameters": { "minItems": 1 },
+          "approximated_parameters": { "minItems": 1 },
+          "unsupported_parameters": { "maxItems": 0 },
+          "approved_ranges": { "minItems": 1 }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "hex_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "parameter_path": {
+      "type": "string",
+      "pattern": "^/[A-Za-z0-9_~./-]+$"
+    },
+    "approved_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "minimum", "maximum"],
+      "properties": {
+        "path": { "$ref": "#/$defs/parameter_path" },
+        "minimum": { "type": "number" },
+        "maximum": { "type": "number" }
+      }
+    },
+    "parameter_difference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "represented_value", "requested_value", "reason"],
+      "properties": {
+        "path": { "$ref": "#/$defs/parameter_path" },
+        "represented_value": {},
+        "requested_value": {},
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "unsupported_parameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "reason_code"],
+      "properties": {
+        "path": { "$ref": "#/$defs/parameter_path" },
+        "reason_code": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "value": {}
+      }
+    },
+    "file_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "sha256", "byte_size"],
+      "properties": {
+        "url": { "type": "string", "pattern": "^/static/assets/[A-Za-z0-9_./-]+$" },
+        "sha256": { "$ref": "#/$defs/hex_sha256" },
+        "byte_size": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "selected_asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id", "asset_version", "asset_type", "classification",
+        "format", "renderer", "delivery_manifest", "content",
+        "template_id", "source_receipt_sha256", "vertex_count",
+        "index_count", "triangle_count", "part_count"
+      ],
+      "properties": {
+        "asset_id": { "type": "string", "minLength": 1 },
+        "asset_version": { "type": "string", "minLength": 1 },
+        "asset_type": { "const": "full_ring" },
+        "classification": { "enum": ["exact", "estimated"] },
+        "format": { "enum": ["myjewl_meshbin_v1", "glb"] },
+        "renderer": { "const": "threejs-r166" },
+        "delivery_manifest": { "$ref": "#/$defs/file_reference" },
+        "content": { "$ref": "#/$defs/file_reference" },
+        "template_id": { "type": "string", "minLength": 1 },
+        "source_receipt_sha256": { "$ref": "#/$defs/hex_sha256" },
+        "vertex_count": { "type": "integer", "minimum": 1 },
+        "index_count": { "type": "integer", "minimum": 3 },
+        "triangle_count": { "type": "integer", "minimum": 1 },
+        "part_count": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

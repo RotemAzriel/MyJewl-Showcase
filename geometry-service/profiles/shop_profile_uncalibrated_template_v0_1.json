@@ -1,0 +1,123 @@
+{
+  "schema": "myjewl.shop_profile.v0_1",
+  "profile_id": "uncalibrated-template",
+  "profile_version": "v0.1.0",
+  "status": "uncalibrated",
+  "shop": {
+    "name": "UNCALIBRATED TEMPLATE - NOT A REAL SHOP",
+    "anonymized": true
+  },
+  "validity": {
+    "valid_from": "2026-08-04",
+    "expires_on": "2026-08-05",
+    "revalidation_triggers": [
+      "survey 7.4: printer change",
+      "survey 7.4: investment change",
+      "survey 7.4: alloy supplier change",
+      "any equipment change the shop flags"
+    ]
+  },
+  "process": {
+    "route": "unknown",
+    "layer_height_mm": null,
+    "differs_for_production_volume": null,
+    "sprues_added_by": "unknown"
+  },
+  "measurement_basis": "unknown",
+  "minimums": {
+    "min_shank_width_mm": [
+      {
+        "value": 1.8,
+        "units": "mm",
+        "status": "uncalibrated",
+        "committed_in_writing": false,
+        "alloy_scope": ["*"],
+        "unsupported_span_mm": null,
+        "measurement_basis": "unknown",
+        "provenance": {
+          "source": "uncalibrated_placeholder",
+          "recorded_on": "2026-08-04",
+          "notes": "Survey 3.2. MyJewl's existing uncalibrated BAND-001 daily-wear baseline, reproduced here so the shape of a real answer is obvious. Not a manufacturing number."
+        }
+      }
+    ],
+    "min_shank_thickness_mm": [
+      {
+        "value": 1.5,
+        "units": "mm",
+        "status": "uncalibrated",
+        "committed_in_writing": false,
+        "alloy_scope": ["*"],
+        "unsupported_span_mm": null,
+        "measurement_basis": "unknown",
+        "provenance": {
+          "source": "uncalibrated_placeholder",
+          "recorded_on": "2026-08-04",
+          "notes": "Survey 3.2. MyJewl's existing uncalibrated BAND-002 baseline. Not a manufacturing number."
+        }
+      }
+    ],
+    "min_prong_diameter_tip_mm": [
+      {
+        "value": 0.45,
+        "units": "mm",
+        "status": "uncalibrated",
+        "committed_in_writing": false,
+        "alloy_scope": ["*"],
+        "unsupported_span_mm": null,
+        "measurement_basis": "unknown",
+        "provenance": {
+          "source": "uncalibrated_placeholder",
+          "recorded_on": "2026-08-04",
+          "notes": "Survey 3.1. Stuller's 0.45 mm figure is a PINPOINT-PRONG minimum and is not a general centre-prong rule; it is recorded here only to show the field shape. METAL-001/002 stay calibration-gapped until a shop commits a number in writing."
+        }
+      }
+    ],
+    "min_gallery_wall_thickness_mm": [],
+    "min_open_gallery_wire_diameter_mm": [],
+    "min_gap_between_features_mm": [],
+    "min_castable_wall_thickness_mm": [],
+    "min_feature_volume_mm3": []
+  },
+  "shrinkage": {
+    "compensation_applied_by": "unknown",
+    "per_alloy": []
+  },
+  "finishing": {
+    "method": "unknown",
+    "changes_ring_size": null,
+    "stock_allowance_mm": [],
+    "ring_size_shift_mm": []
+  },
+  "setting": {
+    "cast_with_stones_in_place": null,
+    "seats_cut_by": "unknown",
+    "girdle_clearance_mm": [],
+    "culet_clearance_mm": [],
+    "prong_stock_length_mm": [],
+    "pave_holes_modeled_by": "unknown"
+  },
+  "mesh": {
+    "preferred_format": "unknown",
+    "max_chord_deviation_mm": null,
+    "max_triangle_count": null,
+    "single_solid_required": null,
+    "intersecting_solids_accepted": null,
+    "outward_normals_required": null,
+    "inverted_normals_are_silently_repaired": null,
+    "watertight_required": null,
+    "units_assumed": "unknown"
+  },
+  "commercial": {
+    "weight_from_boolean_union": null,
+    "densities_g_cm3": {},
+    "quote_is_automated": null,
+    "accepts_machine_submitted_files": null,
+    "minimum_order_quantity": null,
+    "turnaround_days_single": null,
+    "will_report_failure_causes": null
+  },
+  "notes": "TEMPLATE ONLY. Every value here is an uncalibrated placeholder and no field is committed in writing, so the loader refuses all of them and MyJewl keeps its existing uncalibrated baselines. Copy this file, fill it from docs/casting_shop_survey_2026-08-04.md, and flip status to 'calibrated' ONLY for values a shop put in writing (survey 7.2). A profile alone still cannot certify manufacturing: pass/fail requires the calibrated profile AND human jeweler review.",
+  "certifies_manufacturing": false,
+  "manufacturing_authority": false
+}

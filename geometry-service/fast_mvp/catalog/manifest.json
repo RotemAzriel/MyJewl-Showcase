@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "purpose": "development_fixture_only",
+  "renderer": "fast_mvp/static/ring3d.js product-shot-v2",
+  "background": "black",
+  "entries": [
+    {
+      "reference_id": "round-prong-yellow-classic",
+      "image_path": "images/round-prong-yellow-classic.png",
+      "stone_shape": "round",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.307692,
+      "band_thickness_ratio": 0.246154
+    },
+    {
+      "reference_id": "round-prong-white-six",
+      "image_path": "images/round-prong-white-six.png",
+      "stone_shape": "round",
+      "center_setting": "prong",
+      "prong_count": 6,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.384615,
+      "band_thickness_ratio": 0.276923
+    },
+    {
+      "reference_id": "round-prong-rose-slim",
+      "image_path": "images/round-prong-rose-slim.png",
+      "stone_shape": "round",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.276923,
+      "band_thickness_ratio": 0.230769
+    },
+    {
+      "reference_id": "round-bezel-yellow",
+      "image_path": "images/round-bezel-yellow.png",
+      "stone_shape": "round",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.369231,
+      "band_thickness_ratio": 0.261538
+    },
+    {
+      "reference_id": "round-bezel-rose-wide",
+      "image_path": "images/round-bezel-rose-wide.png",
+      "stone_shape": "round",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.461538,
+      "band_thickness_ratio": 0.276923
+    },
+    {
+      "reference_id": "round-basket-white",
+      "image_path": "images/round-basket-white.png",
+      "stone_shape": "round",
+      "center_setting": "basket",
+      "prong_count": 0,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.338462,
+      "band_thickness_ratio": 0.246154
+    },
+    {
+      "reference_id": "oval-prong-yellow-classic",
+      "image_path": "images/oval-prong-yellow-classic.png",
+      "stone_shape": "oval",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.333333,
+      "band_thickness_ratio": 0.266667
+    },
+    {
+      "reference_id": "oval-prong-white-six",
+      "image_path": "images/oval-prong-white-six.png",
+      "stone_shape": "oval",
+      "center_setting": "prong",
+      "prong_count": 6,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.416667,
+      "band_thickness_ratio": 0.3
+    },
+    {
+      "reference_id": "oval-prong-rose-slim",
+      "image_path": "images/oval-prong-rose-slim.png",
+      "stone_shape": "oval",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.3,
+      "band_thickness_ratio": 0.25
+    },
+    {
+      "reference_id": "oval-bezel-yellow",
+      "image_path": "images/oval-bezel-yellow.png",
+      "stone_shape": "oval",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.4,
+      "band_thickness_ratio": 0.283333
+    },
+    {
+      "reference_id": "oval-bezel-rose-wide",
+      "image_path": "images/oval-bezel-rose-wide.png",
+      "stone_shape": "oval",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.5,
+      "band_thickness_ratio": 0.3
+    },
+    {
+      "reference_id": "oval-basket-white",
+      "image_path": "images/oval-basket-white.png",
+      "stone_shape": "oval",
+      "center_setting": "basket",
+      "prong_count": 0,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.366667,
+      "band_thickness_ratio": 0.266667
+    },
+    {
+      "reference_id": "cushion-prong-yellow-classic",
+      "image_path": "images/cushion-prong-yellow-classic.png",
+      "stone_shape": "cushion",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.307692,
+      "band_thickness_ratio": 0.246154
+    },
+    {
+      "reference_id": "cushion-prong-white-six",
+      "image_path": "images/cushion-prong-white-six.png",
+      "stone_shape": "cushion",
+      "center_setting": "prong",
+      "prong_count": 6,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.384615,
+      "band_thickness_ratio": 0.276923
+    },
+    {
+      "reference_id": "cushion-prong-rose-slim",
+      "image_path": "images/cushion-prong-rose-slim.png",
+      "stone_shape": "cushion",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.276923,
+      "band_thickness_ratio": 0.230769
+    },
+    {
+      "reference_id": "cushion-bezel-yellow",
+      "image_path": "images/cushion-bezel-yellow.png",
+      "stone_shape": "cushion",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.369231,
+      "band_thickness_ratio": 0.261538
+    },
+    {
+      "reference_id": "cushion-bezel-rose-wide",
+      "image_path": "images/cushion-bezel-rose-wide.png",
+      "stone_shape": "cushion",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.461538,
+      "band_thickness_ratio": 0.276923
+    },
+    {
+      "reference_id": "cushion-basket-white",
+      "image_path": "images/cushion-basket-white.png",
+      "stone_shape": "cushion",
+      "center_setting": "basket",
+      "prong_count": 0,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.338462,
+      "band_thickness_ratio": 0.246154
+    },
+    {
+      "reference_id": "pear-prong-yellow-classic",
+      "image_path": "images/pear-prong-yellow-classic.png",
+      "stone_shape": "pear",
+      "center_setting": "prong",
+      "prong_count": 5,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.363636,
+      "band_thickness_ratio": 0.290909
+    },
+    {
+      "reference_id": "pear-prong-white-six",
+      "image_path": "images/pear-prong-white-six.png",
+      "stone_shape": "pear",
+      "center_setting": "prong",
+      "prong_count": 5,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.454545,
+      "band_thickness_ratio": 0.327273
+    },
+    {
+      "reference_id": "pear-prong-rose-slim",
+      "image_path": "images/pear-prong-rose-slim.png",
+      "stone_shape": "pear",
+      "center_setting": "prong",
+      "prong_count": 5,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.327273,
+      "band_thickness_ratio": 0.272727
+    },
+    {
+      "reference_id": "pear-bezel-yellow",
+      "image_path": "images/pear-bezel-yellow.png",
+      "stone_shape": "pear",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.436364,
+      "band_thickness_ratio": 0.309091
+    },
+    {
+      "reference_id": "pear-bezel-rose-wide",
+      "image_path": "images/pear-bezel-rose-wide.png",
+      "stone_shape": "pear",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.545455,
+      "band_thickness_ratio": 0.327273
+    },
+    {
+      "reference_id": "pear-basket-white",
+      "image_path": "images/pear-basket-white.png",
+      "stone_shape": "pear",
+      "center_setting": "basket",
+      "prong_count": 0,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.4,
+      "band_thickness_ratio": 0.290909
+    },
+    {
+      "reference_id": "emerald-prong-yellow-classic",
+      "image_path": "images/emerald-prong-yellow-classic.png",
+      "stone_shape": "emerald",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.4,
+      "band_thickness_ratio": 0.32
+    },
+    {
+      "reference_id": "emerald-prong-white-six",
+      "image_path": "images/emerald-prong-white-six.png",
+      "stone_shape": "emerald",
+      "center_setting": "prong",
+      "prong_count": 6,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.5,
+      "band_thickness_ratio": 0.36
+    },
+    {
+      "reference_id": "emerald-prong-rose-slim",
+      "image_path": "images/emerald-prong-rose-slim.png",
+      "stone_shape": "emerald",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.36,
+      "band_thickness_ratio": 0.3
+    },
+    {
+      "reference_id": "emerald-bezel-yellow",
+      "image_path": "images/emerald-bezel-yellow.png",
+      "stone_shape": "emerald",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.48,
+      "band_thickness_ratio": 0.34
+    },
+    {
+      "reference_id": "emerald-bezel-rose-wide",
+      "image_path": "images/emerald-bezel-rose-wide.png",
+      "stone_shape": "emerald",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.6,
+      "band_thickness_ratio": 0.36
+    },
+    {
+      "reference_id": "emerald-basket-white",
+      "image_path": "images/emerald-basket-white.png",
+      "stone_shape": "emerald",
+      "center_setting": "basket",
+      "prong_count": 0,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.44,
+      "band_thickness_ratio": 0.32
+    },
+    {
+      "reference_id": "radiant-prong-yellow-classic",
+      "image_path": "images/radiant-prong-yellow-classic.png",
+      "stone_shape": "radiant",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.363636,
+      "band_thickness_ratio": 0.290909
+    },
+    {
+      "reference_id": "radiant-prong-white-six",
+      "image_path": "images/radiant-prong-white-six.png",
+      "stone_shape": "radiant",
+      "center_setting": "prong",
+      "prong_count": 6,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.454545,
+      "band_thickness_ratio": 0.327273
+    },
+    {
+      "reference_id": "radiant-prong-rose-slim",
+      "image_path": "images/radiant-prong-rose-slim.png",
+      "stone_shape": "radiant",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.327273,
+      "band_thickness_ratio": 0.272727
+    },
+    {
+      "reference_id": "radiant-bezel-yellow",
+      "image_path": "images/radiant-bezel-yellow.png",
+      "stone_shape": "radiant",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.436364,
+      "band_thickness_ratio": 0.309091
+    },
+    {
+      "reference_id": "radiant-bezel-rose-wide",
+      "image_path": "images/radiant-bezel-rose-wide.png",
+      "stone_shape": "radiant",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.545455,
+      "band_thickness_ratio": 0.327273
+    },
+    {
+      "reference_id": "radiant-basket-white",
+      "image_path": "images/radiant-basket-white.png",
+      "stone_shape": "radiant",
+      "center_setting": "basket",
+      "prong_count": 0,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.4,
+      "band_thickness_ratio": 0.290909
+    },
+    {
+      "reference_id": "princess-prong-yellow-classic",
+      "image_path": "images/princess-prong-yellow-classic.png",
+      "stone_shape": "princess",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.363636,
+      "band_thickness_ratio": 0.290909
+    },
+    {
+      "reference_id": "princess-prong-white-six",
+      "image_path": "images/princess-prong-white-six.png",
+      "stone_shape": "princess",
+      "center_setting": "prong",
+      "prong_count": 6,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.454545,
+      "band_thickness_ratio": 0.327273
+    },
+    {
+      "reference_id": "princess-prong-rose-slim",
+      "image_path": "images/princess-prong-rose-slim.png",
+      "stone_shape": "princess",
+      "center_setting": "prong",
+      "prong_count": 4,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.327273,
+      "band_thickness_ratio": 0.272727
+    },
+    {
+      "reference_id": "princess-bezel-yellow",
+      "image_path": "images/princess-bezel-yellow.png",
+      "stone_shape": "princess",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "yellow",
+      "band_width_ratio": 0.436364,
+      "band_thickness_ratio": 0.309091
+    },
+    {
+      "reference_id": "princess-bezel-rose-wide",
+      "image_path": "images/princess-bezel-rose-wide.png",
+      "stone_shape": "princess",
+      "center_setting": "bezel",
+      "prong_count": 0,
+      "metal_color_family": "rose",
+      "band_width_ratio": 0.545455,
+      "band_thickness_ratio": 0.327273
+    },
+    {
+      "reference_id": "princess-basket-white",
+      "image_path": "images/princess-basket-white.png",
+      "stone_shape": "princess",
+      "center_setting": "basket",
+      "prong_count": 0,
+      "metal_color_family": "white",
+      "band_width_ratio": 0.4,
+      "band_thickness_ratio": 0.290909
+    }
+  ]
+}

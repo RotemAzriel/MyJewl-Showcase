@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <title>MyJewl Studio — Design Workspace</title>
+  <meta name="description" content="MyJewl Studio: configure a diamond shape, head, band, and metal with a real-time 3D ring preview.">
+  <link rel="stylesheet" href="/static/studio.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/static/vendor/three-r166/three.module.min.js"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Ambient particles -->
+  <canvas id="particleBg" class="particle-bg" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <nav class="topnav" id="topnav">
+    <a class="logo" href="/" aria-label="MyJewl home">
+      <svg class="logo-mark" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5"/>
+        <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="12" y1="3" x2="12" y2="7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="12" cy="2.5" r="1.5" fill="currentColor"/>
+      </svg>
+      <span class="logo-text">MYJEWL</span>
+    </a>
+    <div class="nav-links">
+      <span class="nav-step-indicator" id="stepIndicator" role="status" aria-live="polite">Getting started</span>
+      <button class="nav-cta" id="fastTrackBtn" type="button">
+        <span class="nav-cta-full">I Have My Stone Details →</span>
+        <span class="nav-cta-short">Fast track →</span>
+      </button>
+    </div>
+  </nav>
+
+  <ol class="flow-bar" id="studioProgress" aria-label="Ring design progress">
+    <li class="flow-step" data-flow-step="1"><span aria-hidden="true">01</span><strong>Choose your diamond</strong></li>
+    <li class="flow-line" role="presentation"></li>
+    <li class="flow-step" data-flow-step="2"><span aria-hidden="true">02</span><strong>Build your setting</strong></li>
+    <li class="flow-line" role="presentation"></li>
+    <li class="flow-step" data-flow-step="3"><span aria-hidden="true">03</span><strong>Complete your ring</strong></li>
+  </ol>
+
+  <!-- ─── WIZARD CONTAINER ─── -->
+  <main class="wizard" id="wizard">
+
+    <!-- 3D Preview (persistent across steps) -->
+    <div class="wizard-3d" id="wizard3d">
+      <canvas id="wizardCanvas" class="wizard-canvas" tabindex="0"
+              aria-label="Interactive operational design aid outside the production preview contract. Drag or use the arrow keys to rotate."></canvas>
+      <div class="wizard-3d-glow" aria-hidden="true"></div>
+      <div class="viewport-badge" id="viewportBadge">
+        <span id="viewportShape">Round Solitaire</span>
+        <strong id="viewportMetal">Yellow Gold</strong>
+      </div>
+      <p class="preview-guidance">
+        <strong id="wizardPreviewTitle">Operational design aid</strong>
+        <span>Drag or use arrow keys to rotate</span>
+        <small id="wizardPreviewAuthority">Procedural · outside the production preview contract</small>
+      </p>
+    </div>
+
+    <!-- Step content area -->
+    <div class="wizard-content" id="wizardContent">
+
+      <!-- STEP 1: Choose path -->
+      <section class="step active" id="step1" data-step="1">
+        <div class="step-header">
+          <span class="step-num step-num-start">Start</span>
+          <span class="step-label">GETTING STARTED</span>
+        </div>
+        <h2>How would you like to start?</h2>
+        <div class="path-grid">
+          <button class="path-option" id="pathUpload" type="button">
+            <div class="path-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <h3>Upload Design</h3>
+            <!-- Goal 0027. Both of these are rewritten from the live perception
+                 gate before the customer can click, and the shipped copy below is
+                 the refusing state, so a page that never reaches /api/health
+                 still tells the truth this deployment ships. -->
+            <p id="pathUploadCopy">Start from a photo you like. MyJewl is not reading photographs right now, so your picture is not used to choose the mounting &mdash; the ring is built from details you type next.</p>
+            <span class="path-lane-badge" id="pathUploadBadge">Photo not read</span>
+          </button>
+          <button class="path-option" id="pathScratch" type="button">
+            <div class="path-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 20 9 12 22 4 9"/>
+                <line x1="4" y1="9" x2="20" y2="9"/>
+              </svg>
+            </div>
+            <h3>Start from Scratch</h3>
+            <p>Build your ring step by step with our interactive design brief.</p>
+          </button>
+          <button class="path-option path-option-fast" id="pathFast" type="button">
+            <div class="path-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 8 16 12 12 16"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+              </svg>
+            </div>
+            <h3>Fast Track</h3>
+            <p>Already have your stone spec and ring size? Start with those details.</p>
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 2: Stone shape -->
+      <section class="step" id="step2" data-step="2">
+        <div class="step-header">
+          <span class="step-num">01</span>
+          <span class="step-label">CHOOSE YOUR DIAMOND · SHAPE</span>
+        </div>
+        <h2>Select your diamond shape</h2>
+        <div class="shape-grid">
+          <button class="shape-option active" data-shape="round" type="button" aria-pressed="true">
+            <div class="shape-preview shape-round"></div>
+            <span>Round</span>
+          </button>
+          <button class="shape-option" data-shape="oval" type="button" aria-pressed="false">
+            <div class="shape-preview shape-oval"></div>
+            <span>Oval</span>
+          </button>
+          <button class="shape-option" data-shape="cushion" type="button" aria-pressed="false">
+            <div class="shape-preview shape-cushion"></div>
+            <span>Cushion</span>
+          </button>
+          <button class="shape-option" data-shape="pear" type="button" aria-pressed="false">
+            <div class="shape-preview shape-pear"></div>
+            <span>Pear</span>
+          </button>
+          <button class="shape-option" data-shape="emerald" type="button" aria-pressed="false">
+            <div class="shape-preview shape-emerald"></div>
+            <span>Emerald</span>
+          </button>
+          <button class="shape-option" data-shape="princess" type="button" aria-pressed="false">
+            <div class="shape-preview shape-princess"></div>
+            <span>Princess</span>
+          </button>
+          <button class="shape-option" data-shape="radiant" type="button" aria-pressed="false">
+            <div class="shape-preview shape-radiant"></div>
+            <span>Radiant</span>
+          </button>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-ghost" id="step2Back" type="button">← Back</button>
+          <button class="btn btn-primary" id="step2Next" type="button">Continue →</button>
+        </div>
+      </section>
+
+      <!-- STEP 3: Stone spec -->
+      <section class="step" id="step3" data-step="3">
+        <div class="step-header">
+          <span class="step-num">01</span>
+          <span class="step-label">CHOOSE YOUR DIAMOND · DETAILS</span>
+        </div>
+        <h2>Define your stone</h2>
+        <div class="spec-tabs">
+          <button class="spec-tab active" data-tab="manual" type="button">Manual Entry</button>
+          <button class="spec-tab" data-tab="cert" type="button">Upload GIA/IGI Cert</button>
+        </div>
+        <div class="spec-panel" id="specManual">
+          <div class="field-row">
+            <label>
+              <span>Carat Weight <small>(optional)</small></span>
+              <input id="caratInput" type="number" min="0.1" max="5" step="0.05" value="1.00">
+            </label>
+            <label>
+              <span>US Ring Size</span>
+              <input id="sizeInput" type="number" min="3" max="13" step="0.25" value="6.5">
+            </label>
+          </div>
+          <div class="field-row field-row-three">
+            <label>
+              <span>Length (mm)</span>
+              <input id="stoneLengthInput" type="number" min="0.5" max="20" step="0.01" value="6.50" required>
+            </label>
+            <label>
+              <span>Width (mm)</span>
+              <input id="stoneWidthInput" type="number" min="0.5" max="20" step="0.01" value="6.50" required>
+            </label>
+            <label>
+              <span>Depth (mm)</span>
+              <input id="stoneDepthInput" type="number" min="0.2" max="15" step="0.01" value="3.90" required>
+            </label>
+          </div>
+        </div>
+        <div class="spec-panel hidden" id="specCert">
+          <label class="cert-upload" for="certInput">
+            <input id="certInput" type="file" accept=".pdf,.jpg,.jpeg,.png">
+            <div class="cert-upload-inner">
+              <span class="cert-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="8" r="6"/>
+                  <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+                </svg>
+              </span>
+              <span class="cert-text" id="certText">Drop GIA / IGI certificate here</span>
+              <span class="cert-note">PDF, JPG, or PNG</span>
+            </div>
+          </label>
+        </div>
+        <p class="dialog-error current-step-error" id="manualStoneError" role="alert" aria-live="assertive" tabindex="-1"></p>
+        <div class="step-nav">
+          <button class="btn btn-ghost" id="step3Back" type="button">← Back</button>
+          <button class="btn btn-primary" id="step3Next" type="button">Continue →</button>
+        </div>
+      </section>
+
+      <!-- STEP 4: Metal -->
+      <section class="step" id="step4" data-step="4">
+        <div class="step-header">
+          <span class="step-num">02</span>
+          <span class="step-label">BUILD YOUR SETTING · METAL</span>
+        </div>
+        <h2>Choose your metal</h2>
+        <div class="metal-grid">
+          <button class="metal-option active" data-metal="yellow" type="button" aria-pressed="true">
+            <div class="metal-circle metal-yellow"></div>
+            <span>Yellow Gold</span>
+          </button>
+          <button class="metal-option" data-metal="white" type="button" aria-pressed="false">
+            <div class="metal-circle metal-white"></div>
+            <span>White Gold</span>
+          </button>
+          <button class="metal-option" data-metal="rose" type="button" aria-pressed="false">
+            <div class="metal-circle metal-rose"></div>
+            <span>Rose Gold</span>
+          </button>
+        </div>
+        <label class="purity-field">
+          <span>Metal purity</span>
+          <select id="metalPurityInput">
+            <option value="14k">14k gold</option>
+            <option value="18k">18k gold</option>
+            <option value="pt950">Platinum 950</option>
+          </select>
+        </label>
+        <label class="purity-field">
+          <span>Component finish</span>
+          <select id="metalFinishInput">
+            <option value="polished">Polished</option>
+            <option value="matte">Matte</option>
+            <option value="brushed">Brushed</option>
+          </select>
+        </label>
+        <p class="dialog-error current-step-error" id="headOptionsError" role="alert" aria-live="assertive" tabindex="-1"></p>
+        <div class="step-nav">
+          <button class="btn btn-ghost" id="step4Back" type="button">← Back</button>
+          <button class="btn btn-primary" id="step4Next" type="button">Continue →</button>
+        </div>
+      </section>
+
+      <!-- STEP 5: Compatible head -->
+      <section class="step" id="step5" data-step="5">
+        <div class="step-header">
+          <span class="step-num">02</span>
+          <span class="step-label">BUILD YOUR SETTING · HEAD</span>
+        </div>
+        <h2>Choose the ring architecture</h2>
+        <p class="choice-intro" id="headOptionsMessage">We’ll show only explicit solitaire and trilogy heads compatible with your stone.</p>
+        <div class="setting-grid" id="headOptions" aria-live="polite"></div>
+        <div class="step-nav">
+          <button class="btn btn-ghost" id="step5Back" type="button">← Back</button>
+          <button class="btn btn-primary" id="step5Next" type="button" disabled>Continue →</button>
+        </div>
+      </section>
+
+      <!-- STEP 6: Compatible band -->
+      <section class="step" id="step6" data-step="6">
+        <div class="step-header">
+          <span class="step-num">02</span>
+          <span class="step-label">BUILD YOUR SETTING · BAND</span>
+        </div>
+        <h2>Complete the ring</h2>
+        <p class="choice-intro" id="bandOptionsMessage">Choose a band compatible with the selected head.</p>
+        <div class="setting-grid" id="bandOptions" aria-live="polite"></div>
+        <p class="dialog-error" id="manualConfigureError" role="alert" aria-live="polite"></p>
+        <div class="step-nav">
+          <button class="btn btn-ghost" id="step6Back" type="button">← Back</button>
+          <button class="btn btn-primary btn-glow" id="step6Next" type="button" disabled>Review completed ring →</button>
+        </div>
+      </section>
+
+      <!-- STEP UPLOAD: Photo upload (alternative path) -->
+      <section class="step" id="stepUpload" data-step="upload">
+        <div class="step-header">
+          <span class="step-num">↑</span>
+          <span class="step-label">UPLOAD DESIGN</span>
+        </div>
+        <h2>Upload your reference</h2>
+        <!-- Goal 0027. Said BEFORE the customer picks a file, not after: the
+             point is to change what they expect, not to explain it afterwards. -->
+        <div class="lane-notice" id="uploadLaneNotice" data-reads-photo="false">
+          <strong id="uploadLaneHeadline">Your photo is not being read</strong>
+          <p id="uploadLaneStatement">MyJewl is not reading photographs right now. Your picture is not used to choose the setting, the prongs or the band, and it is not kept with your design. Everything you see is built from the stone size, ring size and metal you typed.</p>
+          <p class="lane-notice-why" id="uploadLaneWhy"></p>
+        </div>
+        <label class="photo-upload" for="photoInput">
+          <input id="photoInput" type="file" accept="image/*">
+          <div class="photo-upload-inner" id="photoPreview">
+            <span class="upload-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+            </span>
+            <span class="upload-text" id="uploadText">Drop your ring photo here</span>
+            <span class="upload-note">PNG, JPG, or phone snapshot</span>
+          </div>
+        </label>
+        <div class="step-nav">
+          <button class="btn btn-ghost" id="stepUploadBack" type="button">← Back</button>
+          <button class="btn btn-primary" id="stepUploadNext" type="button" disabled>Confirm Stone Details →</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ─── WORKSPACE (hidden until wizard complete) ─── -->
+  <main class="workspace" id="workspace" style="display:none;">
+    <!-- Left: Parameters -->
+    <aside class="ws-panel ws-params" id="wsParams">
+      <div class="panel-header">
+          <span class="step-label">YOUR SELECTIONS</span>
+          <h3>Design Brief</h3>
+      </div>
+      <div class="ws-field-grid">
+        <label>
+          <span>Carat</span>
+          <input id="wsCaratInput" type="text" readonly>
+        </label>
+        <label>
+          <span>US Size</span>
+          <input id="wsSizeInput" type="text" readonly>
+        </label>
+        <label>
+          <span>Shape</span>
+          <input id="wsShapeInput" type="text" readonly>
+        </label>
+        <label>
+          <span>Head</span>
+          <input id="wsHeadStyle" type="text" readonly>
+        </label>
+        <label>
+          <span>Architecture</span>
+          <input id="wsArchitecture" type="text" readonly>
+        </label>
+        <label>
+          <span>Gallery</span>
+          <input id="wsGallery" type="text" readonly>
+        </label>
+        <label>
+          <span>Length (mm)</span>
+          <input id="wsStoneLengthInput" type="text" readonly>
+        </label>
+        <label>
+          <span>Width (mm)</span>
+          <input id="wsStoneWidthInput" type="text" readonly>
+        </label>
+        <label>
+          <span>Depth (mm)</span>
+          <input id="wsStoneDepthInput" type="text" readonly>
+        </label>
+        <label class="wide-field">
+          <span>Band</span>
+          <input id="wsBandStyle" type="text" readonly>
+        </label>
+        <label>
+          <span>Shoulders</span>
+          <input id="wsShoulders" type="text" readonly>
+        </label>
+        <label>
+          <span>Pavé</span>
+          <input id="wsPave" type="text" readonly>
+        </label>
+        <label class="wide-field">
+          <span>Side stones</span>
+          <input id="wsSideStones" type="text" readonly>
+        </label>
+      </div>
+      <button class="btn btn-ghost ws-edit" id="wsEditChoices" type="button">← Edit choices</button>
+      <div class="ws-progress" id="wsProgress" aria-label="Design review status">
+        <span class="done">Design saved</span>
+        <span id="wsExtractStep">Canonical brief</span>
+        <span id="wsOutputStep">Rhino review</span>
+      </div>
+    </aside>
+
+    <!-- Center: 3D Viewport -->
+    <section class="ws-panel ws-viewport" id="wsViewport">
+      <div class="viewport-header">
+        <div>
+          <span class="step-label">COMPLETE YOUR RING</span>
+          <h3 id="workspacePreviewTitle">Production preview</h3>
+        </div>
+        <div class="viewport-tools">
+          <button class="tool-btn" id="wsResetView" type="button">Reset</button>
+          <button class="tool-btn" id="wsSpinToggle" type="button" aria-pressed="false">Auto-rotate</button>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <canvas id="wsCanvas" class="ws-canvas" tabindex="0"
+                aria-label="Production preview delivery viewport."></canvas>
+        <div class="preview-delivery-state" id="workspacePreviewState" role="status" aria-live="polite">
+          <strong id="workspacePreviewStateTitle">Resolving production preview…</strong>
+          <span id="workspacePreviewStateDetail">Only a verified registered asset can appear here.</span>
+        </div>
+        <div class="viewport-badge ws-badge" id="wsBadge">
+          <span id="wsViewShape">Round Prong</span>
+          <strong id="wsViewSpecs">1.00 ct | 2.0 mm band</strong>
+        </div>
+        <p class="preview-guidance preview-guidance-workspace">
+          <strong id="workspacePreviewGuidanceTitle">Production preview</strong>
+          <span>Drag or use arrow keys to rotate</span>
+          <small id="workspacePreviewAuthority">Waiting for server resolution</small>
+        </p>
+      </div>
+      <div class="ws-actions">
+        <button class="btn btn-glass" id="wsRetryPreview" type="button" hidden>Retry Preview</button>
+        <button class="btn btn-primary" id="wsPreviewDecision" type="button" hidden></button>
+        <button class="btn btn-primary" id="wsRequestGeometry" type="button">Request Geometry Review</button>
+        <a class="btn btn-glass" id="wsOpenReview" href="/review">Open Review Queue</a>
+      </div>
+    </section>
+
+    <!-- Right: Spec + Output -->
+    <aside class="ws-panel ws-results" id="wsResults">
+      <div class="panel-header">
+        <span class="step-label">SPEC SUMMARY</span>
+        <h3>Design Spec</h3>
+      </div>
+      <div class="confidence-ring is-validated" id="wsConfidence" style="--score: 1">
+        <span id="wsConfidenceVal">BRIEF READY</span>
+      </div>
+      <dl class="spec-list">
+        <div><dt>Shape</dt><dd id="wsSpecShape">Round</dd></div>
+        <div><dt>Architecture</dt><dd id="wsSpecArchitecture">Solitaire</dd></div>
+        <div><dt>Setting</dt><dd id="wsSpecSetting">Prong</dd></div>
+        <div><dt>Prongs</dt><dd id="wsSpecProngs">4</dd></div>
+        <div><dt>Metal</dt><dd id="wsSpecMetal">Yellow Gold</dd></div>
+        <div><dt>Finish</dt><dd id="wsSpecFinish">Polished</dd></div>
+        <div><dt>Gallery</dt><dd id="wsSpecGallery">Open rail</dd></div>
+        <div><dt>Shoulders</dt><dd id="wsSpecShoulders">Straight</dd></div>
+        <div><dt>Pavé</dt><dd id="wsSpecPave">None</dd></div>
+        <div><dt>Side stones</dt><dd id="wsSpecSideStones">None</dd></div>
+        <div><dt>Stone</dt><dd id="wsSpecStone">6.50 × 6.50 mm</dd></div>
+        <div><dt>Metal weight</dt><dd id="wsSpecWeight">Pending geometry</dd></div>
+      </dl>
+      <!-- Goal 0023: a weight with no visible basis is worse than no weight, so the
+           measured volume, its engine, and the over-counting figure it is NOT are
+           always stated next to it. Metal content only; never a manufacturing claim. -->
+      <p class="ws-note" id="wsQuoteBasis">Metal weight needs a receipt-backed ring volume. Nothing is priced from an unmeasured configuration.</p>
+      <!-- The product deliverable: one measured volume, every alloy. Metal never
+           changes the geometry, so switching alloy needs no new solve — only a
+           different density. Populated by updateAlloyWeightsUI(). -->
+      <div class="ws-alloys" id="wsAlloyWeights" hidden>
+        <h4>Metal weight by alloy</h4>
+        <table class="alloy-weights">
+          <thead><tr><th scope="col">Metal</th><th scope="col">Grams</th><th scope="col">DWT</th><th scope="col">SPG</th></tr></thead>
+          <tbody id="wsAlloyWeightsBody"></tbody>
+        </table>
+        <p class="ws-note">Same ring, same geometry — only the alloy SPG changes. Grams and pennyweight (DWT) from the measured volume; SPG figures are nominal trade values, not a shop&rsquo;s own alloy recipe, which overrides them. Indicative; not a manufacturing certification.</p>
+      </div>
+      <!-- Goal 0027. The mounting rows above (Setting, Prongs, band width) are the
+           only values on this panel a photo could ever have contributed. This says
+           which of the four providers actually chose them. -->
+      <div class="ws-lane-source" id="wsMountingSource" hidden>
+        <strong id="wsMountingSourceHeadline"></strong>
+        <p id="wsMountingSourceStatement"></p>
+      </div>
+      <div class="ws-status" id="wsStatus" role="status" aria-live="polite">Design brief validated. Rhino geometry is pending operator review.</div>
+      <div class="ws-downloads" id="wsDownloads"></div>
+    </aside>
+  </main>
+
+  <dialog class="stone-dialog" id="stoneDetailsDialog" aria-labelledby="stoneDialogTitle">
+    <form method="dialog" id="stoneDetailsForm" novalidate>
+      <div class="dialog-header">
+        <div>
+          <span class="step-label">TYPED INPUTS</span>
+          <h2 id="stoneDialogTitle">Confirm Stone Details</h2>
+        </div>
+        <button class="dialog-close" id="stoneDialogClose" type="button" aria-label="Close">×</button>
+      </div>
+      <!-- Goal 0027. This used to read "The photo is used only to match the
+           mounting", which was false in the state MyJewl ships: the lane is
+           paused, so the mounting comes from the values typed right here. Driven
+           by the live gate; the shipped text is the refusing state. -->
+      <p class="dialog-copy" id="stoneDialogLaneCopy">
+        Stone geometry and ring size come from these confirmed values. Your photo is not read &mdash; the mounting comes from what you type here too.
+      </p>
+      <div class="dialog-grid">
+        <label>
+          <span>Stone Shape</span>
+          <select id="confirmStoneShape" required>
+            <option value="round">Round</option>
+            <option value="oval">Oval</option>
+            <option value="cushion">Cushion</option>
+            <option value="pear">Pear</option>
+            <option value="emerald">Emerald</option>
+            <option value="radiant">Radiant</option>
+            <option value="princess">Princess</option>
+          </select>
+        </label>
+        <label>
+          <span>US Ring Size</span>
+          <input id="confirmRingSize" type="number" min="3" max="13" step="0.25" required>
+        </label>
+        <label>
+          <span>Length (mm)</span>
+          <input id="confirmStoneLength" type="number" min="0.5" max="20" step="0.01" required>
+        </label>
+        <label>
+          <span>Width (mm)</span>
+          <input id="confirmStoneWidth" type="number" min="0.5" max="20" step="0.01" required>
+        </label>
+        <label>
+          <span>Depth (mm)</span>
+          <input id="confirmStoneDepth" type="number" min="0.2" max="15" step="0.01" required>
+        </label>
+        <label>
+          <span>Carat <small>(optional)</small></span>
+          <input id="confirmStoneCarat" type="number" min="0.1" max="10" step="0.01">
+        </label>
+      </div>
+      <p class="dialog-error" id="stoneDialogError" role="alert" aria-live="polite"></p>
+      <div class="dialog-actions">
+        <button class="btn btn-ghost" id="stoneDialogCancel" type="button">Cancel</button>
+        <button class="btn btn-primary" id="stoneDialogConfirm" type="submit">Confirm & Build →</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="/static/studio.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "schema": "myjewl.goal0014_v5.visual_reviews.v1",
+  "note": "Human visual review is the one input to promotion that cannot be derived from files on disk. Each solved V5 configuration names the review that approved it, or records explicitly that its approval is inherited from an already-approved configuration it reproduces. Adding a solved configuration means adding a record here; it is data, not code. A configuration with no record here cannot be promoted.",
+  "reviews": {
+    "us4_round5": {
+      "path": "output/goal_0014_parametric_master_20260804/visual_review/small/visual_review.json",
+      "inherited_from": null,
+      "reason": "Operator passed all seven checks on the small extreme, 2026-08-04."
+    },
+    "us6p5_round6p5": {
+      "path": "output/goal_0011_realism_master_20260730/azure_v4/visual_review.json",
+      "inherited_from": "goal0011-v4-full-ring",
+      "reason": "Visual approval is inherited from the Goal 0011 V4 seven-point review: this configuration reproduces the approved V4 shape to 0.0016 mm on every part and was not separately re-reviewed."
+    },
+    "us9_round8": {
+      "path": "output/goal_0014_parametric_master_20260804/visual_review/large/visual_review.json",
+      "inherited_from": null,
+      "reason": "Operator passed all seven checks on the large extreme, 2026-08-04."
+    }
+  }
+}

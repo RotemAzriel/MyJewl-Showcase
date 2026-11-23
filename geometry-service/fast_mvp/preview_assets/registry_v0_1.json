@@ -1,0 +1,678 @@
+{
+  "assets": [
+    {
+      "approval": {
+        "config_differential": {
+          "config_count": 0,
+          "reason": "Goal 0014, 2026-08-04: the V4 definition parses json_string only to check template_id and builds from a frozen parameter dict, so it emits byte-identical geometry for every request it accepts. Its visual approval and receipt-backed geometry are real and unchanged, but they hold for exactly one configuration, so this asset is bound to a single discrete geometry signature and is not a parametric master. The recorded differential_sha256 is the V2-to-V4 definition-version differential, which structurally cannot detect config invariance.",
+          "status": "absent"
+        },
+        "differential_sha256": "2910769fa498533c23c6b16aec9c7082fa3725e1dfb7cf83739303efbb6ad7a8",
+        "status": "approved",
+        "visual_review": "approved",
+        "visual_review_sha256": "54162cfe7ad2ed709b711d279fb820966c9b4907947c18ff1def57902f1e4468"
+      },
+      "approximated_parameters": [],
+      "asset_id": "goal0011-v4-full-ring",
+      "asset_type": "full_ring",
+      "asset_version": "v4.0.0",
+      "classification": "exact",
+      "delivery": {
+        "content": {
+          "byte_size": 3667528,
+          "sha256": "2ce64abee441f5649c5a655011bf221060d1bf9f643b19d64aa6e5999be6314c",
+          "url": "/static/assets/goal0011_v4/solitaire_realism_master_v4.meshbin"
+        },
+        "format": "myjewl_meshbin_v1",
+        "manifest": {
+          "byte_size": 4352,
+          "sha256": "7928348f4d4e979623b62cf3498be116a9f5667a2ab918bdd08c8e593140e85d",
+          "url": "/static/assets/goal0011_v4/solitaire_realism_master_v4.browser_mesh.json"
+        },
+        "renderer": "threejs-r166"
+      },
+      "enabled": true,
+      "geometry": {
+        "index_count": 447192,
+        "material_roles": [
+          "metal",
+          "stone"
+        ],
+        "named_parts_are_modules": false,
+        "part_count": 20,
+        "preview_axes": "ThreeJS_Y_up",
+        "source_axes": "Rhino_Z_up",
+        "transform": {
+          "rotation_x_radians": -1.5707963267948966,
+          "scale": 0.1
+        },
+        "triangle_count": 149064,
+        "units": "mm",
+        "vertex_count": 78281
+      },
+      "limitations": [
+        "Receipt-backed presentation derivative only; Rhino/Grasshopper remains geometry authority.",
+        "Visual approval and preview approval do not certify manufacturing pass/fail.",
+        "The twenty named parts are material and diagnostic groups, not interchangeable modules."
+      ],
+      "manufacturing_authority": false,
+      "manufacturing_state": "pending_not_run_needs_calibration",
+      "match": {
+        "approved_ranges": [],
+        "geometry_projection": {
+          "architecture": "solitaire",
+          "catalog_styles": {
+            "band_style_id": "band_v4_split_solitaire",
+            "head_style_id": "head_v4_mid_petal_4_prong"
+          },
+          "ring": {
+            "band_profile": "comfort_fit",
+            "band_thickness_mm": 1.65,
+            "band_width_mm": 2.05,
+            "pave": {
+              "accent_stone_ids": [],
+              "coverage": "none",
+              "setting_style": "none"
+            },
+            "profile": "split-ring solitaire",
+            "shoulder_style": "tapered_cathedral",
+            "size": 6.5,
+            "size_standard": "US"
+          },
+          "setting": {
+            "center_setting": "prong",
+            "gallery_structure": "petal_open",
+            "halo_style": "none",
+            "head_family": "petal",
+            "head_geometry": "petal_prong",
+            "prong_count": 4,
+            "side_setting": "none",
+            "side_stone_layout": "none"
+          },
+          "stones": [
+            {
+              "dimensions_mm": {
+                "depth": 3.9,
+                "length": 6.5,
+                "width": 6.5
+              },
+              "placement": {
+                "orientation": "upright",
+                "pattern": "single",
+                "region": "center"
+              },
+              "proportions": {
+                "crown_angle_deg": null,
+                "girdle": null,
+                "pavilion_angle_deg": null
+              },
+              "quantity": 1,
+              "role": "center",
+              "shape": "round",
+              "stone_id": "center"
+            }
+          ]
+        },
+        "geometry_signature": "sha256:e4b84e9fb4797d7b0910d9a9ed810ba6dffe410961f255c43c434e3c58d2042c",
+        "policy": "discrete_signature"
+      },
+      "provenance": {
+        "authority": "receipt_backed_rhino_derived_browser_preview",
+        "definition_kind": "single_configuration_master",
+        "definition_path": "manual/rhino_compute_bridge/goal0011_realism_master_v4.ghx",
+        "definition_sha256": "e9bd467bd86f7a2f323c9ca5fd4599bb4328a8348e601460cb8cfba58d79259d",
+        "source_obj_sha256": "7ca79804c96985999fa783c4ee97cdb9f833f375ad29acb3538c92ac57fbc5e2",
+        "source_receipt_sha256": "1cb1c04a8994f7710ca17d567f32e7fc14f5169352a4ffa06bedac3031ea43a5",
+        "template_id": "goal0011-realism-first-round-solitaire-master-v4"
+      },
+      "representation_kind": "full_ring_asset",
+      "represented_parameters": [
+        "/architecture",
+        "/catalog_styles/band_style_id",
+        "/catalog_styles/head_style_id",
+        "/ring/band_profile",
+        "/ring/band_thickness_mm",
+        "/ring/band_width_mm",
+        "/ring/pave/accent_stone_ids",
+        "/ring/pave/coverage",
+        "/ring/pave/setting_style",
+        "/ring/profile",
+        "/ring/shoulder_style",
+        "/ring/size",
+        "/ring/size_standard",
+        "/setting/center_setting",
+        "/setting/gallery_structure",
+        "/setting/halo_style",
+        "/setting/head_family",
+        "/setting/head_geometry",
+        "/setting/prong_count",
+        "/setting/side_setting",
+        "/setting/side_stone_layout",
+        "/stones/0/dimensions_mm/depth",
+        "/stones/0/dimensions_mm/length",
+        "/stones/0/dimensions_mm/width",
+        "/stones/0/placement/orientation",
+        "/stones/0/placement/pattern",
+        "/stones/0/placement/region",
+        "/stones/0/proportions/crown_angle_deg",
+        "/stones/0/proportions/girdle",
+        "/stones/0/proportions/pavilion_angle_deg",
+        "/stones/0/quantity",
+        "/stones/0/role",
+        "/stones/0/shape",
+        "/stones/0/stone_id"
+      ],
+      "unsupported_parameters": []
+    },
+    {
+      "approval": {
+        "config_differential": {
+          "config_count": 3,
+          "reason": "scripts/geometry_differential.py over 3 receipt-backed configurations (goal0014-parametric-master-small, goal0014-parametric-master-control, goal0014-parametric-master-large): status pass, 3 pairs, every pair differs on every exported part.",
+          "report_path": "output/goal_0014_parametric_master_20260804/config_differential.json",
+          "report_sha256": "89354779e31f287f3f059951ed4f04429a96922aa18efaa9826cf7177a84602e",
+          "status": "passed"
+        },
+        "differential_sha256": "89354779e31f287f3f059951ed4f04429a96922aa18efaa9826cf7177a84602e",
+        "status": "approved",
+        "visual_review": "approved",
+        "visual_review_sha256": "b63ddfd6ae5d59b88143fc31b24914cc951b9be5ab9dad16db69e0f0029b2347"
+      },
+      "approximated_parameters": [],
+      "asset_id": "goal0014-v5-us4_round5",
+      "asset_type": "full_ring",
+      "asset_version": "v5.0.0",
+      "classification": "exact",
+      "delivery": {
+        "content": {
+          "byte_size": 3649216,
+          "sha256": "ddc6aed28d73d91b6fa17334d46a550b8a2a51dc575d3176870f9896617d09a8",
+          "url": "/static/assets/goal0014_v5/solitaire_parametric_master_v5_us4_round5.meshbin"
+        },
+        "format": "myjewl_meshbin_v1",
+        "manifest": {
+          "byte_size": 4741,
+          "sha256": "bfdfd0b2d652b8d1506bd396778645bbeb1af1454c2d2b8e8bfacb40225c3381",
+          "url": "/static/assets/goal0014_v5/solitaire_parametric_master_v5_us4_round5.browser_mesh.json"
+        },
+        "renderer": "threejs-r166"
+      },
+      "enabled": true,
+      "geometry": {
+        "index_count": 444906,
+        "material_roles": [
+          "metal",
+          "stone"
+        ],
+        "named_parts_are_modules": false,
+        "part_count": 20,
+        "preview_axes": "ThreeJS_Y_up",
+        "source_axes": "Rhino_Z_up",
+        "transform": {
+          "rotation_x_radians": -1.5707963267948966,
+          "scale": 0.1
+        },
+        "triangle_count": 148302,
+        "units": "mm",
+        "vertex_count": 77899
+      },
+      "limitations": [
+        "Receipt-backed presentation derivative only; Rhino/Grasshopper remains geometry authority.",
+        "Visual approval and preview approval do not certify manufacturing pass/fail.",
+        "The twenty named parts are material and diagnostic groups, not interchangeable modules.",
+        "The V5 master is parametric, but only the 3 solved configurations carry receipt-backed geometry. Ring sizes and stone sizes between them are deliberately unavailable rather than approximated from a neighbouring solve."
+      ],
+      "manufacturing_authority": false,
+      "manufacturing_state": "pending_not_run_needs_calibration",
+      "match": {
+        "approved_ranges": [],
+        "geometry_projection": {
+          "architecture": "solitaire",
+          "catalog_styles": {
+            "band_style_id": "band_v5_parametric_split_solitaire",
+            "head_style_id": "head_v5_parametric_petal_4_prong"
+          },
+          "ring": {
+            "band_profile": "comfort_fit",
+            "band_thickness_mm": 1.65,
+            "band_width_mm": 2.05,
+            "pave": {
+              "accent_stone_ids": [],
+              "coverage": "none",
+              "setting_style": "none"
+            },
+            "profile": "split-ring solitaire",
+            "shoulder_style": "tapered_cathedral",
+            "size": 4,
+            "size_standard": "US"
+          },
+          "setting": {
+            "center_setting": "prong",
+            "gallery_structure": "petal_open",
+            "halo_style": "none",
+            "head_family": "petal",
+            "head_geometry": "petal_prong",
+            "prong_count": 4,
+            "side_setting": "none",
+            "side_stone_layout": "none"
+          },
+          "stones": [
+            {
+              "dimensions_mm": {
+                "depth": 3,
+                "length": 5,
+                "width": 5
+              },
+              "placement": {
+                "orientation": "upright",
+                "pattern": "single",
+                "region": "center"
+              },
+              "proportions": {
+                "crown_angle_deg": null,
+                "girdle": null,
+                "pavilion_angle_deg": null
+              },
+              "quantity": 1,
+              "role": "center",
+              "shape": "round",
+              "stone_id": "center"
+            }
+          ]
+        },
+        "geometry_signature": "sha256:4595686dff3751b56823731c80251e40708b3c5a2b53c02be0383ed563a84cd4",
+        "policy": "discrete_signature"
+      },
+      "provenance": {
+        "authority": "receipt_backed_rhino_derived_browser_preview",
+        "definition_kind": "parametric_master",
+        "definition_path": "manual/rhino_compute_bridge/goal0014_parametric_master_v5.ghx",
+        "definition_sha256": "41f674d283ac099a016c7d95ff66c368ff551c6aded22652d2c69d32d661ef30",
+        "source_obj_sha256": "8e5551fbc75ec38e352ae442ab9721c741f7e622f00828e02cb5aed56e835760",
+        "source_receipt_sha256": "fda6502faa89bb5d5d635e750fd1895bb6fe0bfa038e07f211ab703099e9a9c9",
+        "template_id": "goal0014-parametric-round-solitaire-master-v5"
+      },
+      "representation_kind": "full_ring_asset",
+      "represented_parameters": [
+        "/architecture",
+        "/catalog_styles/band_style_id",
+        "/catalog_styles/head_style_id",
+        "/ring/band_profile",
+        "/ring/band_thickness_mm",
+        "/ring/band_width_mm",
+        "/ring/pave/accent_stone_ids",
+        "/ring/pave/coverage",
+        "/ring/pave/setting_style",
+        "/ring/profile",
+        "/ring/shoulder_style",
+        "/ring/size",
+        "/ring/size_standard",
+        "/setting/center_setting",
+        "/setting/gallery_structure",
+        "/setting/halo_style",
+        "/setting/head_family",
+        "/setting/head_geometry",
+        "/setting/prong_count",
+        "/setting/side_setting",
+        "/setting/side_stone_layout",
+        "/stones/0/dimensions_mm/depth",
+        "/stones/0/dimensions_mm/length",
+        "/stones/0/dimensions_mm/width",
+        "/stones/0/placement/orientation",
+        "/stones/0/placement/pattern",
+        "/stones/0/placement/region",
+        "/stones/0/proportions/crown_angle_deg",
+        "/stones/0/proportions/girdle",
+        "/stones/0/proportions/pavilion_angle_deg",
+        "/stones/0/quantity",
+        "/stones/0/role",
+        "/stones/0/shape",
+        "/stones/0/stone_id"
+      ],
+      "unsupported_parameters": []
+    },
+    {
+      "approval": {
+        "config_differential": {
+          "config_count": 3,
+          "reason": "scripts/geometry_differential.py over 3 receipt-backed configurations (goal0014-parametric-master-small, goal0014-parametric-master-control, goal0014-parametric-master-large): status pass, 3 pairs, every pair differs on every exported part.",
+          "report_path": "output/goal_0014_parametric_master_20260804/config_differential.json",
+          "report_sha256": "89354779e31f287f3f059951ed4f04429a96922aa18efaa9826cf7177a84602e",
+          "status": "passed"
+        },
+        "differential_sha256": "89354779e31f287f3f059951ed4f04429a96922aa18efaa9826cf7177a84602e",
+        "status": "approved",
+        "visual_review": "approved",
+        "visual_review_sha256": "54162cfe7ad2ed709b711d279fb820966c9b4907947c18ff1def57902f1e4468"
+      },
+      "approximated_parameters": [],
+      "asset_id": "goal0014-v5-us6p5_round6p5",
+      "asset_type": "full_ring",
+      "asset_version": "v5.0.0",
+      "classification": "exact",
+      "delivery": {
+        "content": {
+          "byte_size": 3703312,
+          "sha256": "ee07e1f74107a7b25af3ea1674f9efdfd61a0608af5929ef0d9cf0878b26ecf4",
+          "url": "/static/assets/goal0014_v5/solitaire_parametric_master_v5_us6p5_round6p5.meshbin"
+        },
+        "format": "myjewl_meshbin_v1",
+        "manifest": {
+          "byte_size": 4758,
+          "sha256": "b1c685b8fa68fa79f83569fc2c7c7a5705eaab912d769f2d07ac0c1f27bc4ad9",
+          "url": "/static/assets/goal0014_v5/solitaire_parametric_master_v5_us6p5_round6p5.browser_mesh.json"
+        },
+        "renderer": "threejs-r166"
+      },
+      "enabled": true,
+      "geometry": {
+        "index_count": 451650,
+        "material_roles": [
+          "metal",
+          "stone"
+        ],
+        "named_parts_are_modules": false,
+        "part_count": 20,
+        "preview_axes": "ThreeJS_Y_up",
+        "source_axes": "Rhino_Z_up",
+        "transform": {
+          "rotation_x_radians": -1.5707963267948966,
+          "scale": 0.1
+        },
+        "triangle_count": 150550,
+        "units": "mm",
+        "vertex_count": 79029
+      },
+      "limitations": [
+        "Receipt-backed presentation derivative only; Rhino/Grasshopper remains geometry authority.",
+        "Visual approval and preview approval do not certify manufacturing pass/fail.",
+        "The twenty named parts are material and diagnostic groups, not interchangeable modules.",
+        "The V5 master is parametric, but only the 3 solved configurations carry receipt-backed geometry. Ring sizes and stone sizes between them are deliberately unavailable rather than approximated from a neighbouring solve.",
+        "Visual approval is inherited from the Goal 0011 V4 seven-point review: this configuration reproduces the approved V4 shape to 0.0016 mm on every part and was not separately re-reviewed."
+      ],
+      "manufacturing_authority": false,
+      "manufacturing_state": "pending_not_run_needs_calibration",
+      "match": {
+        "approved_ranges": [],
+        "geometry_projection": {
+          "architecture": "solitaire",
+          "catalog_styles": {
+            "band_style_id": "band_v5_parametric_split_solitaire",
+            "head_style_id": "head_v5_parametric_petal_4_prong"
+          },
+          "ring": {
+            "band_profile": "comfort_fit",
+            "band_thickness_mm": 1.65,
+            "band_width_mm": 2.05,
+            "pave": {
+              "accent_stone_ids": [],
+              "coverage": "none",
+              "setting_style": "none"
+            },
+            "profile": "split-ring solitaire",
+            "shoulder_style": "tapered_cathedral",
+            "size": 6.5,
+            "size_standard": "US"
+          },
+          "setting": {
+            "center_setting": "prong",
+            "gallery_structure": "petal_open",
+            "halo_style": "none",
+            "head_family": "petal",
+            "head_geometry": "petal_prong",
+            "prong_count": 4,
+            "side_setting": "none",
+            "side_stone_layout": "none"
+          },
+          "stones": [
+            {
+              "dimensions_mm": {
+                "depth": 3.9,
+                "length": 6.5,
+                "width": 6.5
+              },
+              "placement": {
+                "orientation": "upright",
+                "pattern": "single",
+                "region": "center"
+              },
+              "proportions": {
+                "crown_angle_deg": null,
+                "girdle": null,
+                "pavilion_angle_deg": null
+              },
+              "quantity": 1,
+              "role": "center",
+              "shape": "round",
+              "stone_id": "center"
+            }
+          ]
+        },
+        "geometry_signature": "sha256:0bfd1268294d7fa3e60c9722ac664194f03e59847eec082ed4d3f3345142a915",
+        "policy": "discrete_signature"
+      },
+      "provenance": {
+        "authority": "receipt_backed_rhino_derived_browser_preview",
+        "definition_kind": "parametric_master",
+        "definition_path": "manual/rhino_compute_bridge/goal0014_parametric_master_v5.ghx",
+        "definition_sha256": "41f674d283ac099a016c7d95ff66c368ff551c6aded22652d2c69d32d661ef30",
+        "source_obj_sha256": "c6e16c375084dc545966baf17f5a7a3350874827166ac15cd502d5bd24b482c8",
+        "source_receipt_sha256": "8ac882804ae6106280186b9f6f0e3cf56938d0725e1416b443a78acd9514c7f2",
+        "template_id": "goal0014-parametric-round-solitaire-master-v5"
+      },
+      "representation_kind": "full_ring_asset",
+      "represented_parameters": [
+        "/architecture",
+        "/catalog_styles/band_style_id",
+        "/catalog_styles/head_style_id",
+        "/ring/band_profile",
+        "/ring/band_thickness_mm",
+        "/ring/band_width_mm",
+        "/ring/pave/accent_stone_ids",
+        "/ring/pave/coverage",
+        "/ring/pave/setting_style",
+        "/ring/profile",
+        "/ring/shoulder_style",
+        "/ring/size",
+        "/ring/size_standard",
+        "/setting/center_setting",
+        "/setting/gallery_structure",
+        "/setting/halo_style",
+        "/setting/head_family",
+        "/setting/head_geometry",
+        "/setting/prong_count",
+        "/setting/side_setting",
+        "/setting/side_stone_layout",
+        "/stones/0/dimensions_mm/depth",
+        "/stones/0/dimensions_mm/length",
+        "/stones/0/dimensions_mm/width",
+        "/stones/0/placement/orientation",
+        "/stones/0/placement/pattern",
+        "/stones/0/placement/region",
+        "/stones/0/proportions/crown_angle_deg",
+        "/stones/0/proportions/girdle",
+        "/stones/0/proportions/pavilion_angle_deg",
+        "/stones/0/quantity",
+        "/stones/0/role",
+        "/stones/0/shape",
+        "/stones/0/stone_id"
+      ],
+      "unsupported_parameters": []
+    },
+    {
+      "approval": {
+        "config_differential": {
+          "config_count": 3,
+          "reason": "scripts/geometry_differential.py over 3 receipt-backed configurations (goal0014-parametric-master-small, goal0014-parametric-master-control, goal0014-parametric-master-large): status pass, 3 pairs, every pair differs on every exported part.",
+          "report_path": "output/goal_0014_parametric_master_20260804/config_differential.json",
+          "report_sha256": "89354779e31f287f3f059951ed4f04429a96922aa18efaa9826cf7177a84602e",
+          "status": "passed"
+        },
+        "differential_sha256": "89354779e31f287f3f059951ed4f04429a96922aa18efaa9826cf7177a84602e",
+        "status": "approved",
+        "visual_review": "approved",
+        "visual_review_sha256": "359190a62ae3a7b7dd0ad6f4b23e8ae0e763280fd4564e310d82281c74ea9eb1"
+      },
+      "approximated_parameters": [],
+      "asset_id": "goal0014-v5-us9_round8",
+      "asset_type": "full_ring",
+      "asset_version": "v5.0.0",
+      "classification": "exact",
+      "delivery": {
+        "content": {
+          "byte_size": 3774328,
+          "sha256": "dd0878908779efaae06bac5259e4052bad98c94215b22c3750e32b08379d5dc0",
+          "url": "/static/assets/goal0014_v5/solitaire_parametric_master_v5_us9_round8.meshbin"
+        },
+        "format": "myjewl_meshbin_v1",
+        "manifest": {
+          "byte_size": 4748,
+          "sha256": "607a6d8ac76c398d116a983523c4bfa0e5969ae2d9a1a5ce6965e9a166e1e541",
+          "url": "/static/assets/goal0014_v5/solitaire_parametric_master_v5_us9_round8.browser_mesh.json"
+        },
+        "renderer": "threejs-r166"
+      },
+      "enabled": true,
+      "geometry": {
+        "index_count": 460488,
+        "material_roles": [
+          "metal",
+          "stone"
+        ],
+        "named_parts_are_modules": false,
+        "part_count": 20,
+        "preview_axes": "ThreeJS_Y_up",
+        "source_axes": "Rhino_Z_up",
+        "transform": {
+          "rotation_x_radians": -1.5707963267948966,
+          "scale": 0.1
+        },
+        "triangle_count": 153496,
+        "units": "mm",
+        "vertex_count": 80515
+      },
+      "limitations": [
+        "Receipt-backed presentation derivative only; Rhino/Grasshopper remains geometry authority.",
+        "Visual approval and preview approval do not certify manufacturing pass/fail.",
+        "The twenty named parts are material and diagnostic groups, not interchangeable modules.",
+        "The V5 master is parametric, but only the 3 solved configurations carry receipt-backed geometry. Ring sizes and stone sizes between them are deliberately unavailable rather than approximated from a neighbouring solve."
+      ],
+      "manufacturing_authority": false,
+      "manufacturing_state": "pending_not_run_needs_calibration",
+      "match": {
+        "approved_ranges": [],
+        "geometry_projection": {
+          "architecture": "solitaire",
+          "catalog_styles": {
+            "band_style_id": "band_v5_parametric_split_solitaire",
+            "head_style_id": "head_v5_parametric_petal_4_prong"
+          },
+          "ring": {
+            "band_profile": "comfort_fit",
+            "band_thickness_mm": 1.65,
+            "band_width_mm": 2.05,
+            "pave": {
+              "accent_stone_ids": [],
+              "coverage": "none",
+              "setting_style": "none"
+            },
+            "profile": "split-ring solitaire",
+            "shoulder_style": "tapered_cathedral",
+            "size": 9,
+            "size_standard": "US"
+          },
+          "setting": {
+            "center_setting": "prong",
+            "gallery_structure": "petal_open",
+            "halo_style": "none",
+            "head_family": "petal",
+            "head_geometry": "petal_prong",
+            "prong_count": 4,
+            "side_setting": "none",
+            "side_stone_layout": "none"
+          },
+          "stones": [
+            {
+              "dimensions_mm": {
+                "depth": 4.8,
+                "length": 8,
+                "width": 8
+              },
+              "placement": {
+                "orientation": "upright",
+                "pattern": "single",
+                "region": "center"
+              },
+              "proportions": {
+                "crown_angle_deg": null,
+                "girdle": null,
+                "pavilion_angle_deg": null
+              },
+              "quantity": 1,
+              "role": "center",
+              "shape": "round",
+              "stone_id": "center"
+            }
+          ]
+        },
+        "geometry_signature": "sha256:f2eca5eac864307e578f4e8878c3af94f5d33002755fc91d086404450ef1b46f",
+        "policy": "discrete_signature"
+      },
+      "provenance": {
+        "authority": "receipt_backed_rhino_derived_browser_preview",
+        "definition_kind": "parametric_master",
+        "definition_path": "manual/rhino_compute_bridge/goal0014_parametric_master_v5.ghx",
+        "definition_sha256": "41f674d283ac099a016c7d95ff66c368ff551c6aded22652d2c69d32d661ef30",
+        "source_obj_sha256": "aa88024adf5177e6237eb5bba4345384e3c17805eeadd5e31f4fe268b0d85429",
+        "source_receipt_sha256": "8dbb001facc1726505493b2a1b96cfd3f2adb2ba6fab9d9891f26f1adce89a22",
+        "template_id": "goal0014-parametric-round-solitaire-master-v5"
+      },
+      "representation_kind": "full_ring_asset",
+      "represented_parameters": [
+        "/architecture",
+        "/catalog_styles/band_style_id",
+        "/catalog_styles/head_style_id",
+        "/ring/band_profile",
+        "/ring/band_thickness_mm",
+        "/ring/band_width_mm",
+        "/ring/pave/accent_stone_ids",
+        "/ring/pave/coverage",
+        "/ring/pave/setting_style",
+        "/ring/profile",
+        "/ring/shoulder_style",
+        "/ring/size",
+        "/ring/size_standard",
+        "/setting/center_setting",
+        "/setting/gallery_structure",
+        "/setting/halo_style",
+        "/setting/head_family",
+        "/setting/head_geometry",
+        "/setting/prong_count",
+        "/setting/side_setting",
+        "/setting/side_stone_layout",
+        "/stones/0/dimensions_mm/depth",
+        "/stones/0/dimensions_mm/length",
+        "/stones/0/dimensions_mm/width",
+        "/stones/0/placement/orientation",
+        "/stones/0/placement/pattern",
+        "/stones/0/placement/region",
+        "/stones/0/proportions/crown_angle_deg",
+        "/stones/0/proportions/girdle",
+        "/stones/0/proportions/pavilion_angle_deg",
+        "/stones/0/quantity",
+        "/stones/0/role",
+        "/stones/0/shape",
+        "/stones/0/stone_id"
+      ],
+      "unsupported_parameters": []
+    }
+  ],
+  "registry_version": "myjewl-preview-assets-production-v0.2",
+  "renderer": {
+    "name": "threejs",
+    "version": "r166"
+  },
+  "resolver_version": "myjewl-preview-resolver-v0.1",
+  "schema": "myjewl.preview_asset_registry.v0_1",
+  "signature_schema": "myjewl.preview_geometry_signature.v0_1"
+}

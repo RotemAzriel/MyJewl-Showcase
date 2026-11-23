@@ -1,0 +1,51 @@
+{
+  "spec_version": "0.1",
+  "job": {
+    "job_id": "job_solitaire_marquise_001",
+    "created_at": "2026-11-22T10:00:00Z",
+    "archetype": "solitaire",
+    "output_targets": ["GLB", "STL"]
+  },
+  "ring": {
+    "size_standard": "US",
+    "size": 6.5,
+    "band_width_mm": 2.0,
+    "band_thickness_mm": 1.6,
+    "shank_style": "cathedral"
+  },
+  "metal": {
+    "type": "gold",
+    "alloy": "18k rose gold",
+    "finish": "polished"
+  },
+  "stones": [
+    {
+      "stone_id": "center_001",
+      "role": "center",
+      "shape": "marquise",
+      "dimensions_mm": {
+        "length": 10.0,
+        "width": 5.0,
+        "depth": 3.1
+      },
+      "cert": {
+        "lab": "GIA",
+        "report_number": "UNVERIFIED_SAMPLE"
+      }
+    }
+  ],
+  "setting": {
+    "center_setting": "prong",
+    "prong_count": 6,
+    "halo_style": "none",
+    "side_stone_layout": "none"
+  },
+  "manufacturing_profile": {
+    "process": "casting",
+    "compensation_policy": "calibrated_shop_profile"
+  },
+  "metadata": {
+    "source": "guided_funnel",
+    "notes": "Sample marquise input for the V-tip prong path; dimensions are illustrative and unverified."
+  }
+}

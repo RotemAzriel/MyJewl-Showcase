@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyJewl — Design &amp; Review</title>
+<style>
+  :root {
+    --obsidian: #050506; --panel: #111417; --panel-soft: #171b1e;
+    --line: rgba(255, 244, 218, 0.13); --line-strong: rgba(255, 244, 218, 0.24);
+    --ink: #f8f3e6; --muted: #a7a094; --muted-strong: #d3c7ad;
+    --gold: #d7b56d; --gold-bright: #f1d991; --gold-dark: #8b6b32;
+    --teal: #35b8ad; --ruby: #e26f7f;
+    --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--obsidian); color: var(--ink);
+    font-family: var(--sans); line-height: 1.5;
+  }
+  header {
+    padding: 28px 32px 10px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  header h1 { margin: 0; font-size: 22px; letter-spacing: 0.06em; }
+  header h1 span { color: var(--gold); }
+  header p { margin: 0; color: var(--muted); font-size: 13px; }
+  main { max-width: 1080px; margin: 0 auto; padding: 24px 32px 80px; }
+  .notice {
+    border: 1px solid var(--line-strong); border-left: 3px solid var(--gold);
+    background: var(--panel); border-radius: 8px; padding: 12px 16px;
+    color: var(--muted-strong); font-size: 13px; margin: 18px 0;
+  }
+  h2 { font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase;
+       color: var(--gold); margin: 34px 0 12px; }
+  form.propose {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 18px;
+  }
+  form.propose label { font-size: 11px; color: var(--muted); display: block;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  form.propose input, form.propose select, form.propose textarea {
+    width: 100%; background: var(--panel-soft); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+    font-family: var(--sans); font-size: 14px;
+  }
+  form.propose .intent { grid-column: 1 / -1; }
+  form.propose textarea { resize: vertical; min-height: 56px; }
+  .actions { grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; }
+  button {
+    background: linear-gradient(160deg, var(--gold-bright), var(--gold));
+    color: #1a1408; border: 0; border-radius: 6px; padding: 10px 22px;
+    font-weight: 600; font-size: 14px; cursor: pointer;
+  }
+  button.secondary { background: var(--panel-soft); color: var(--gold);
+    border: 1px solid var(--line-strong); }
+  button:disabled { opacity: 0.5; cursor: wait; }
+  #propose-result { grid-column: 1 / -1; font-size: 13px; white-space: pre-wrap; }
+  .ok { color: var(--teal); } .bad { color: var(--ruby); } .dim { color: var(--muted); }
+  .run {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 16px 18px; margin-bottom: 16px;
+  }
+  .run h3 { margin: 0 0 6px; font-size: 14px; word-break: break-all; }
+  .run .meta { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+  .badge {
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 999px; padding: 3px 10px; border: 1px solid var(--line-strong);
+    color: var(--muted-strong);
+  }
+  .badge.accepted { color: var(--teal); border-color: rgba(53,184,173,.5); }
+  .badge.rejected { color: var(--ruby); border-color: rgba(226,111,127,.5); }
+  .badge.pending { color: var(--gold); border-color: rgba(215,181,109,.45); }
+  .badge.exact { color: var(--teal); border-color: rgba(53,184,173,.5); }
+  .badge.estimated { color: var(--gold-bright); border-color: rgba(241,217,145,.5); }
+  .badge.unavailable, .badge.legacy { color: var(--ruby); border-color: rgba(226,111,127,.5); }
+  .preview-contract { margin: 14px 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.015); }
+  .preview-contract h4 { margin: 0 0 8px; color: var(--gold); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .approval-history { margin: 8px 0 0; padding-left: 20px; color: var(--muted); font-size: 12px; }
+  table.summary { border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  table.summary td { padding: 2px 14px 2px 0; color: var(--muted-strong); }
+  table.summary td:first-child { color: var(--muted); }
+  .evidence-imgs { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+  .evidence-imgs figure { margin: 0; }
+  .evidence-imgs img { width: 180px; border-radius: 6px; border: 1px solid var(--line-strong);
+    image-rendering: pixelated; background: #000; }
+  .evidence-imgs figcaption { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  code { font-size: 11px; color: var(--muted); word-break: break-all; }
+</style>
+</head>
+<body>
+<header>
+  <h1>My<span>Jewl</span> · Design &amp; Review</h1>
+  <p>Typed stone spec + intent → validated config → operator-approved Rhino geometry → Blender evidence</p>
+  <p><a href="/configure" style="color:var(--gold)">Manual configurator →</a></p>
+</header>
+<main>
+  <div class="notice" id="global-note">
+    Geometry gates stay <strong>pending / not_run</strong> until a calibrated shop
+    profile and human jeweler review exist — nothing on this page certifies
+    manufacturing pass/fail.
+  </div>
+
+  <h2>Propose a design</h2>
+  <form class="propose" id="propose-form">
+    <div><label>Stone shape</label>
+      <select name="stone_shape">
+        <option>round</option><option>oval</option><option>cushion</option>
+        <option>pear</option><option>emerald</option><option>radiant</option>
+        <option>princess</option>
+      </select></div>
+    <div><label>Length mm</label><input name="stone_length_mm" type="number" step="0.01" value="6.5" required></div>
+    <div><label>Width mm</label><input name="stone_width_mm" type="number" step="0.01" value="6.5" required></div>
+    <div><label>Depth mm</label><input name="stone_depth_mm" type="number" step="0.01" value="3.9" required></div>
+    <div><label>Carat (opt)</label><input name="stone_carat_eq" type="number" step="0.01" value="1.0"></div>
+    <div><label>US ring size</label><input name="ring_size_us" type="number" step="0.25" value="6.5" required></div>
+    <div class="intent"><label>Intent</label>
+      <textarea name="intent" placeholder="e.g. a delicate rose-gold solitaire with six prongs" required></textarea></div>
+    <div class="actions">
+      <button type="submit" id="propose-btn">Propose config</button>
+      <span class="dim">Stone spec and ring size are typed inputs — the model proposes mounting only.</span>
+    </div>
+    <div id="propose-result"></div>
+  </form>
+
+  <h2>Runs</h2>
+  <div id="runs"></div>
+</main>
+<script>
+const $ = (sel) => document.querySelector(sel);
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function safeValue(value, fallback = "—") {
+  if (value === null || value === undefined || value === "") return escapeHtml(fallback);
+  return escapeHtml(value);
+}
+
+function badge(text, cls) {
+  return `<span class="badge ${cls || ""}">${text}</span>`;
+}
+
+function gateBadges(gates) {
+  if (!gates) return "";
+  return Object.entries(gates)
+    .map(([name, state]) => badge(`${name.replaceAll("_", " ")}: ${state}`, "pending"))
+    .join("");
+}
+
+function approvalRecordText(record) {
+  const delivery = record?.delivery_observation || record?.delivery || {};
+  const resolved = record?.resolved_preview_status || record?.resolved_status || record?.preview_status ||
+    record?.preview_manifest?.preview_status || record?.manifest?.preview_status;
+  const displayed = record?.displayed_preview_status || record?.displayed_status || delivery.displayed_status;
+  const renderer = record?.renderer || delivery.renderer;
+  const reason = record?.delivery_reason || record?.reason_code || delivery.reason_code;
+  const assetVersion = record?.asset_version || delivery.asset_version;
+  const content = record?.content_sha256 || delivery.content_sha256;
+  const timestamp = record?.recorded_at_utc || record?.created_at || record?.timestamp;
+  return [
+    record?.decision,
+    timestamp,
+    resolved ? `resolved ${resolved}` : null,
+    displayed ? `displayed ${displayed}` : null,
+    renderer ? `renderer ${renderer}` : null,
+    assetVersion ? `asset ${assetVersion}` : null,
+    content ? `content ${content}` : null,
+    reason ? `reason ${reason}` : null,
+  ].filter(Boolean).map((value) => safeValue(value)).join(" · ");
+}
+
+function renderPreviewContract(run) {
+  const manifest = run.preview_manifest;
+  const resolutionState = run.preview_resolution_state || (manifest ? "resolved" : "legacy_unresolved");
+  const approval = run.preview_approval || { status: "not_recorded", history: [], count: 0 };
+  if (!manifest) {
+    let legacy = `<div class="preview-contract"><h4>Production preview</h4><div class="badges">` +
+      badge("legacy unresolved", "legacy") + badge(`approval: ${safeValue(approval.status || "not recorded")}`, "pending") +
+      `</div><div class="meta">No server-authoritative PreviewManifest is stored for this legacy run. No preview availability is inferred.</div>`;
+    if (approval.status === "corrupt") {
+      legacy += `<div class="bad">Approval history is corrupt: ${safeValue(approval.corruption)}</div>`;
+    }
+    return legacy + `</div>`;
+  }
+
+  const authorityResolved = resolutionState === "resolved";
+  const status = authorityResolved && ["exact", "estimated", "unavailable"].includes(manifest.preview_status)
+    ? manifest.preview_status : "unavailable";
+  const asset = authorityResolved ? (manifest.selected_asset || {}) : {};
+  const warnings = authorityResolved && Array.isArray(manifest.warnings) ? manifest.warnings : [];
+  let html = `<div class="preview-contract"><h4>Production preview</h4><div class="badges">` +
+    badge(authorityResolved ? `resolved: ${safeValue(status)}` : "resolution: corrupt", status) +
+    badge(`representation: ${safeValue(authorityResolved ? (manifest.representation_kind || "none") : "quarantined")}`, status) +
+    badge(`approval log: ${safeValue(approval.status || "not_recorded")}`, approval.status === "corrupt" ? "rejected" : "pending") +
+    `</div><table class="summary">` +
+    `<tr><td>Resolution state</td><td>${safeValue(resolutionState)}</td></tr>` +
+    `<tr><td>Reason</td><td>${safeValue(authorityResolved ? manifest.reason_code : "preview_authority_corrupt")}</td></tr>` +
+    `<tr><td>Manifest</td><td><code>${safeValue(manifest.manifest_id)}</code></td></tr>` +
+    `<tr><td>Geometry signature</td><td><code>${safeValue(manifest.geometry?.signature)}</code></td></tr>` +
+    (asset.asset_id ? `<tr><td>Registered asset</td><td>${safeValue(asset.asset_id)} · ${safeValue(asset.asset_version)} · ${safeValue(asset.classification)}</td></tr>` : "") +
+    (asset.content?.sha256 ? `<tr><td>Content SHA-256</td><td><code>${safeValue(asset.content.sha256)}</code></td></tr>` : "") +
+    `<tr><td>Manufacturing</td><td>${manifest.manufacturing_authority === false ? "No authority" : "Invalid authority claim"} · ${safeValue(manifest.manufacturing_state)}</td></tr>` +
+    `</table>`;
+  if (warnings.length) {
+    html += `<div class="meta">Warnings: ${warnings.map((warning) => safeValue(warning)).join(" · ")}</div>`;
+  }
+  if (approval.status === "corrupt") {
+    html += `<div class="bad">Approval history is corrupt: ${safeValue(approval.corruption)}</div>`;
+  }
+  const history = Array.isArray(approval.history) ? approval.history : [];
+  if (history.length) {
+    html += `<div class="meta">Append-only preview decisions (${safeValue(approval.count ?? history.length)}):</div><ol class="approval-history">` +
+      history.slice().reverse().map((record) => `<li>${approvalRecordText(record)}</li>`).join("") + `</ol>`;
+  } else {
+    html += `<div class="meta">No preview decision has been recorded.</div>`;
+  }
+  return html + `</div>`;
+}
+
+// Image-lane evidence: the query photo, what it matched, how confidently each
+// attribute was decided and from where, and — when nothing was emitted — why
+// the lane abstained rather than forcing a nearest match.
+function renderImageLane(run) {
+  const lane = run.image_lane;
+  const shots = run.query_images || [];
+  if (!lane && !shots.length) return "";
+  let html = `<div class="image-lane"><h4>Image lane</h4>`;
+  if (shots.length) {
+    html += `<div class="evidence-imgs">` + shots
+      .map((url, i) => `<figure><img src="${url}" alt="query photo ${i + 1}"><figcaption>query photo ${i + 1}</figcaption></figure>`)
+      .join("") + `</div>`;
+  }
+  if (lane) {
+    if (lane.abstention_reason) {
+      html += `<div class="badges">${badge("abstained: " + lane.abstention_reason, "pending")}</div>`;
+    }
+    if (lane.inferred_axes) {
+      html += `<div class="meta">inferred from the photo: ${lane.inferred_axes.join(", ")}` +
+        ` · typed by the customer: ${(lane.typed_only_axes || []).join(", ")}` +
+        ` · catalog: ${lane.catalog_scope || "?"}</div>`;
+    }
+    const attrs = lane.attributes || {};
+    const sources = lane.attribute_sources || {};
+    const rows = Object.keys(attrs)
+      .map((name) => `<tr><td>${name}</td><td>${JSON.stringify(attrs[name].value)} · confidence ${attrs[name].agreement} · ${sources[name] || "?"}</td></tr>`)
+      .join("");
+    if (rows) html += `<table class="summary">${rows}</table>`;
+    const sig = lane.signals || {};
+    html += `<div class="meta">top-1 similarity ${sig.top1_similarity ?? "?"} · margin ${sig.top1_margin ?? "?"}` +
+      ` · views ${sig.views ?? "?"} · embedding ${(lane.embedding || {}).backend || "?"}</div>`;
+    const top = (lane.top_k || []).slice(0, 5)
+      .map((n) => `<tr><td><code>${n.config_id}</code></td><td>${n.similarity}</td></tr>`)
+      .join("");
+    if (top) html += `<table class="summary"><tr><td><strong>top-K catalog match</strong></td><td><strong>similarity</strong></td></tr>${top}</table>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+// Metal weight/cost need a ring volume, and volume comes from Rhino geometry —
+// so before an operator-approved run the quote is pending, never estimated.
+function quoteText(quote) {
+  if (quote.status !== "indicative") {
+    return `pending geometry — ${quote.reason || "no ring volume yet"}`;
+  }
+  const cost = quote.metal_content_cost;
+  const money = quote.currency ? `${quote.currency} ${cost}` : `${cost} (currency not stated)`;
+  return `${quote.metal_weight_g} g metal` +
+    (cost === null || cost === undefined
+      ? ` · unpriced (${(quote.price_refusal || {}).reason || "no alloy price"})`
+      : ` · ${money} metal content`) +
+    ` (indicative, excludes ${(quote.excludes || []).join("/")})`;
+}
+
+// The deliverable an operator actually forwards to a caster: how much metal this
+// ring takes in each alloy, from one measured volume. Absent on runs written
+// before the table existed, so it is rendered only when present.
+function alloyWeightRows(quote) {
+  const rows = quote && quote.metal_weight_by_alloy;
+  if (!rows || !rows.length) return "";
+  // Metal / Grams / DWT / SPG, the columns a bench expects (cf. Matrix).
+  const body = rows
+    .map((r) => `<tr><td>${r.display_name}${r.selected ? " <strong>(selected)</strong>" : ""}</td>` +
+      `<td>${Number(r.metal_weight_g).toFixed(2)}</td>` +
+      `<td>${Number(r.metal_weight_dwt).toFixed(2)}</td>` +
+      `<td>${Number(r.spg).toFixed(2)}</td></tr>`)
+    .join("");
+  return `<tr><td>Metal weight by alloy</td><td>` +
+    `<table class="summary"><tr><td><strong>Metal</strong></td><td><strong>Grams</strong></td>` +
+    `<td><strong>DWT</strong></td><td><strong>SPG</strong></td></tr>${body}</table>` +
+    `<em>Same geometry throughout — only the alloy SPG changes. Nominal trade ` +
+    `figures; a shop's own alloy recipe overrides them.</em></td></tr>`;
+}
+
+// Goal 0024: an operator must be able to see WHICH price produced a cost, or
+// which condition refused it. A price sheet is dated and expires, so the sheet's
+// identity, as-of date and expiry are all shown; an undeclared sheet — the state
+// this repository ships in — is shown just as explicitly as a declared one.
+function priceBasisRows(quote) {
+  const ref = quote && quote.price_refusal;
+  if (ref) {
+    return `<tr><td>Price basis</td><td>unpriced — <code>${ref.reason}</code> · ` +
+      `${ref.detail}${ref.sheet_id ? ` · sheet <code>${ref.sheet_id}@${ref.sheet_version}</code>` : ""}` +
+      `</td></tr>`;
+  }
+  const pe = quote && quote.price_evidence;
+  if (!pe) return "";
+  if (!pe.sheet_id) {
+    return `<tr><td>Price basis</td><td>caller-supplied spot rate ` +
+      `${pe.price_per_gram}/g — no citation, no as-of date, no currency, no expiry` +
+      `</td></tr>`;
+  }
+  return `<tr><td>Price basis</td><td><code>${pe.sheet_id}@${pe.sheet_version}</code> · ` +
+    `${pe.currency} ${pe.price_per_gram}/g ${pe.alloy} (${pe.price_basis}) · ` +
+    `as of ${pe.as_of} · expires ${pe.expires_on} · source ${pe.source}</td></tr>` +
+    `<tr><td>Cost scope</td><td>${pe.scope_note} Excludes ` +
+    `${(pe.excludes || []).join("/")}.</td></tr>`;
+}
+
+// Goal 0023: a reviewer has to be able to see WHICH volume the weight came from.
+// The measured union is the basis; the naive parts sum is shown beside it with its
+// over-count, because a summed quote is out of the agreed ±3% volume tolerance and
+// wrong in the customer's disfavour.
+function quoteBasisRows(quote) {
+  // /review renders whatever is on disk, including runs written before this block
+  // existed, so treat every evidence field as possibly absent.
+  const ev = quote && quote.volume_evidence;
+  if (!ev || ev.union_mm3 === undefined || ev.union_mm3 === null) {
+    return quote && quote.volume_basis
+      ? `<tr><td>Quote basis</td><td>${quote.volume_basis} — no measured provenance</td></tr>`
+      : "";
+  }
+  const over = ev.parts_sum_overcount_fraction;
+  const rhino = ev.rhino_nurbs_union_mm3;
+  return `<tr><td>Quote basis</td><td><code>${ev.basis}</code> · ` +
+    `${ev.union_mm3} mm³ union of ${ev.metal_part_count} metal parts ` +
+    `[${ev.union_engine}] · measured ${ev.measured_on}</td></tr>` +
+    `<tr><td>Not the basis</td><td>naive parts sum ${ev.parts_sum_mm3} mm³ — ` +
+    `over-counts by ${(over * 100).toFixed(2)}% (outside the agreed ±3% volume ` +
+    `tolerance, in the customer's disfavour)` +
+    (rhino === null || rhino === undefined
+      ? "; Rhino emits no NURBS union for this definition (finding F2)"
+      : `; Rhino NURBS union ${rhino} mm³`) +
+    `</td></tr>` +
+    `<tr><td>Measured from</td><td><code>${ev.bundle}</code> · ` +
+    `${ev.part_bytes_verified} parts byte-verified against receipt ` +
+    `<code>${String(ev.source_receipt_sha256 || "?").slice(0, 16)}…</code> · ` +
+    `asset <code>${ev.asset_id}</code> · ` +
+    `${String(ev.authority || "measurement only").replaceAll("_", " ")}</td></tr>`;
+}
+
+// Goal 0025: whether this run's geometry could actually be handed to a casting
+// shop, and — the state this repository ships in — exactly what stops it. The
+// findings travel with the answer either way, because a shop that accepts this
+// geometry is entitled to know what it accepted.
+function deliveryRows(delivery) {
+  if (!delivery) return "";
+  const verdict = delivery.deliverable
+    ? `<span class="ok">deliverable</span>`
+    : `<span class="bad">refused</span> — <code>${delivery.reason}</code>`;
+  let html = `<tr><td>Geometry delivery</td><td>${verdict} · ${delivery.detail || ""}` +
+    (delivery.byte_verification === "deferred_to_download"
+      ? ` <em>(bytes are re-verified against the receipt at download)</em>`
+      : "") +
+    `</td></tr>`;
+  const notes = [
+    ...(delivery.findings || []).map(finding => `<code>${finding.code}</code> ${finding.summary}`),
+    ...(delivery.warnings || []),
+  ];
+  if (notes.length) {
+    html += `<tr><td>Delivery findings</td><td>${notes.join("<br>")}</td></tr>`;
+  }
+  return html;
+}
+
+function perceptionRows(perception) {
+  if (!perception) return "";
+  const verdict = perception.available
+    ? `<span class="pending">diagnostic only</span> — <code>${perception.reason}</code>`
+    : `<span class="bad">refused</span> — <code>${perception.reason}</code>`;
+  let html = `<tr><td>Perception lane</td><td>${verdict} · ${perception.detail || ""}</td></tr>`;
+  const conditions = (perception.conditions || []).map(item => `<code>${item.condition}</code>`);
+  if (conditions.length) {
+    html += `<tr><td>Accepted conditions</td><td>${conditions.join(" · ")}</td></tr>`;
+  }
+  const gates = (perception.goal_0005_gates || [])
+    .map(gate => `${gate.gate}: ${gate.verdict}`)
+    .join(" · ");
+  if (gates) {
+    html += `<tr><td>Goal 0005 gates</td><td>${gates} — an acknowledgement moves none of them</td></tr>`;
+  }
+  return html;
+}
+
+function stoneScheduleText(schedule) {
+  const dims = schedule.dimensions_mm || {};
+  const placement = schedule.placement || {};
+  return `${schedule.quantity || 1} × ${schedule.shape} ${schedule.role}` +
+    ` · ${dims.length} × ${dims.width} × ${dims.depth} mm` +
+    ` · ${placement.region}/${placement.pattern}/${placement.orientation}`;
+}
+
+function renderRun(run) {
+  const v = run.validation || {};
+  const cfg = run.config_summary || {};
+  const req = run.geometry_request;
+  const ev = run.evidence;
+  const imgs = run.evidence_artifacts || {};
+  let html = `<div class="run"><h3>${run.job_id}</h3>`;
+  html += `<div class="meta">${run.created_at || ""} · proposer: ${run.provider || "?"}` +
+    (run.rationale ? ` · <em>${run.rationale}</em>` : "") + `</div>`;
+  html += `<div class="badges">` +
+    badge(v.schema_accepted ? "schema ok" : "schema fail", v.schema_accepted ? "accepted" : "rejected") +
+    badge(v.constraint_accepted ? "constraints ok" : "constraints fail", v.constraint_accepted ? "accepted" : "rejected") +
+    (req ? badge(`geometry: ${req.status}`, req.status === "fulfilled" ? "accepted" : "pending")
+         : badge("geometry: not requested", "")) +
+    `</div>`;
+  const typedMetal = (run.typed_inputs || {}).metal || {};
+  const selection = run.selection || {};
+  const modular = run.modular_contract || {};
+  const schedules = modular.stone_schedules || cfg.stone_schedules || [];
+  html += `<table class="summary"><tr><td>Stone</td><td>${cfg.stone_shape} ${cfg.stone_carat_eq ?? "?"}ct</td></tr>` +
+    (cfg.archetype ? `<tr><td>Architecture</td><td>${cfg.archetype}</td></tr>` : "") +
+    `<tr><td>Mounting</td><td>${cfg.center_setting} · ${cfg.prong_count} prongs</td></tr>` +
+    (modular.head_geometry ? `<tr><td>Head contract</td><td>${modular.head_family} / ${modular.head_geometry} / ${modular.gallery_structure}</td></tr>` : "") +
+    `<tr><td>Band</td><td>${cfg.band_width_mm} × ${cfg.band_thickness_mm} mm · ${modular.band_profile || cfg.band_profile_code || cfg.band_profile || "?"} · US ${cfg.ring_size_us}</td></tr>` +
+    (modular.shoulder_style ? `<tr><td>Shoulders</td><td>${modular.shoulder_style}</td></tr>` : "") +
+    (modular.pave ? `<tr><td>Pavé</td><td>${modular.pave.coverage} / ${modular.pave.setting_style}</td></tr>` : "") +
+    (selection.head_style_id ? `<tr><td>Internal styles</td><td>${selection.head_style_id} · ${selection.band_style_id}</td></tr>` : "") +
+    (selection.reference_configuration_id ? `<tr><td>Internal reference</td><td>${selection.reference_configuration_id}</td></tr>` : "") +
+    (run.geometry_identity ? `<tr><td>Geometry identity</td><td><code>${run.geometry_identity}</code></td></tr>` : "") +
+    `<tr><td>Metal (typed)</td><td>${typedMetal.display_name || cfg.metal_alloy}` +
+    (typedMetal.finish ? ` · ${typedMetal.finish}` : "") +
+    (typedMetal.source ? ` · ${typedMetal.source}` : "") + `</td></tr>` +
+    (schedules.length ? `<tr><td>Stone schedules</td><td>${schedules.map(stoneScheduleText).join("<br>")}</td></tr>` : "") +
+    (run.quote ? `<tr><td>Quote</td><td>${quoteText(run.quote)}</td></tr>` : "") +
+    (run.quote ? alloyWeightRows(run.quote) : "") +
+    (run.quote ? quoteBasisRows(run.quote) : "") +
+    (run.quote ? priceBasisRows(run.quote) : "") +
+    deliveryRows(run.geometry_delivery) +
+    perceptionRows(run.perception) +
+    `</table>`;
+  html += `<div class="badges">${gateBadges(run.geometry_gates)}</div>`;
+  html += renderPreviewContract(run);
+  html += renderImageLane(run);
+  if (ev) {
+    html += `<table class="summary">` +
+      `<tr><td>Bundle validation</td><td class="${ev.bundle_smoke === "pass" ? "ok" : "bad"}">${ev.bundle_smoke ?? "n/a"}</td></tr>` +
+      `<tr><td>Gate 1 closedness</td><td class="${ev.gate1 === "pass" ? "ok" : "bad"}">${ev.gate1 ?? "n/a"}</td></tr>` +
+      `<tr><td>Mask values</td><td>${JSON.stringify(ev.mask_values ?? null)} · visible ${JSON.stringify(ev.visible_classes ?? null)}</td></tr>` +
+      `<tr><td>Definition SHA-256</td><td><code>${ev.definition_sha256 ?? ""}</code></td></tr>` +
+      `<tr><td>Export</td><td><code>${ev.export_id ?? ""}</code></td></tr></table>`;
+    const figs = Object.entries(imgs)
+      .map(([label, url]) => `<figure><img src="${url}" alt="${label}"><figcaption>${label}</figcaption></figure>`)
+      .join("");
+    if (figs) html += `<div class="evidence-imgs">${figs}</div>`;
+  }
+  if (!req) {
+    html += `<div class="actions" style="margin-top:10px">` +
+      `<button class="secondary" onclick="requestGeometry('${run.job_id}')">Request geometry (operator-approved)</button></div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+async function loadRuns() {
+  const res = await fetch("/api/review");
+  const data = await res.json();
+  $("#runs").innerHTML = (data.runs || []).map(renderRun).join("") ||
+    `<p class="dim">No runs yet — propose a design above.</p>`;
+}
+
+async function requestGeometry(jobId) {
+  await fetch("/api/request-geometry", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ job_id: jobId }),
+  });
+  loadRuns();
+}
+
+document.getElementById("propose-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const btn = $("#propose-btn");
+  const out = $("#propose-result");
+  btn.disabled = true;
+  out.textContent = "Proposing…";
+  const form = new FormData(event.target);
+  const payload = Object.fromEntries(form.entries());
+  for (const key of ["stone_length_mm", "stone_width_mm", "stone_depth_mm", "ring_size_us", "stone_carat_eq"]) {
+    if (payload[key] !== "") payload[key] = Number(payload[key]);
+    else delete payload[key];
+  }
+  try {
+    const res = await fetch("/api/propose", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const report = await res.json();
+    if (report.status === "accepted") {
+      out.innerHTML = `<span class="ok">Accepted</span> as <code>${report.flat_parameters.config_id}</code>` +
+        ` via ${report.provider}${report.fallback_reason ? ` (fallback: ${report.fallback_reason})` : ""}.` +
+        (report.rationale ? `<br><span class="dim">${report.rationale}</span>` : "");
+      loadRuns();
+    } else if (report.error) {
+      out.innerHTML = `<span class="bad">Error:</span> ${report.error}`;
+    } else {
+      const rules = (report.rejected_candidates || [])
+        .flatMap((c) => c.hard_violations).join(", ");
+      out.innerHTML = `<span class="bad">Rejected by the constraint engine.</span>` +
+        (rules ? ` Violated rules: ${rules}` : "");
+    }
+  } catch (err) {
+    out.innerHTML = `<span class="bad">Request failed:</span> ${err}`;
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+loadRuns();
+</script>
+</body>
+</html>

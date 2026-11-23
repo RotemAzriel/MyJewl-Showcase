@@ -1,0 +1,29 @@
+{
+  "config_id": "config_solitaire_princess_0.75ct_basket_18kw_2.0mm_us60",
+  "archetype": "solitaire",
+  "stone_shape": "princess",
+  "stone_length_mm": 5.5,
+  "stone_width_mm": 5.5,
+  "stone_depth_mm": 3.5,
+  "stone_carat_eq": 0.75,
+  "stone_color": "diamond_colorless",
+  "center_setting": "basket",
+  "prong_count": 0,
+  "metal_type": "gold",
+  "metal_alloy": "18k_white",
+  "metal_density_gcm3": 12.9,
+  "band_width_mm": 2.0,
+  "band_thickness_mm": 1.6,
+  "ring_size_us": 6.0,
+  "ring_inner_diameter_mm": 16.51,
+  "geometry_gates": {
+    "minimum_structural_floors": "pending",
+    "stone_metal_collision": "pending",
+    "stone_stone_collision": "pending",
+    "mountability_and_setting_access": "pending",
+    "mesh_closedness_and_manifold_suitability": "pending"
+  },
+  "generation_timestamp": "2026-05-21T00:05:40Z",
+  "blender_sample_count": 128,
+  "rhino_compute_version": "8.0.0.0"
+}

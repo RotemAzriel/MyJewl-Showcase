@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://myjewl.local/schemas/perception_acknowledgement_v0_1.schema.json",
+  "title": "MyJewl perception-lane acknowledgement v0.1",
+  "description": "An operator's dated, named, expiring acknowledgement that MyJewl's perception lane (Track C, paused 2026-08-11) may serve DIAGNOSTIC output on this deployment despite every Goal 0005 gate reading not_measurable. It is a PERMISSION and nothing else. It grants no accuracy, moves no gate, makes no gate measurable, and never certifies manufacturing. Conditions are accepted individually by slug -- there is deliberately no wildcard, so a condition discovered after this file was signed is refused rather than covered by it. The committed template acknowledges nothing and refuses the lane, exactly as the shop-profile and alloy-price-sheet templates refuse their own values.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "acknowledgement_id",
+    "acknowledgement_version",
+    "status",
+    "declared_by",
+    "validity",
+    "accepted_conditions",
+    "understands",
+    "authority",
+    "certifies_manufacturing",
+    "affects_geometry"
+  ],
+  "properties": {
+    "schema": {
+      "const": "myjewl.perception_acknowledgement.v0_1"
+    },
+    "acknowledgement_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "acknowledgement_version": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "description": "Only 'declared' can enable the lane. 'undeclared' is the shipped state and refuses.",
+      "enum": ["declared", "undeclared"]
+    },
+    "declared_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "role"],
+      "description": "A named human. An unattributed acknowledgement is not an acknowledgement.",
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "role": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "contact": { "type": "string", "maxLength": 200 }
+      }
+    },
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid_from", "expires_on"],
+      "description": "An acknowledgement MUST expire. A permission that never lapses becomes invisible, which is the same failure mode as a stale price that still looks live (Goal 0024).",
+      "properties": {
+        "valid_from": { "type": "string", "format": "date" },
+        "expires_on": { "type": "string", "format": "date" },
+        "revalidation_triggers": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "accepted_conditions": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "The refusal slugs this operator has read and accepted, individually. A live condition absent from this list refuses with condition_not_acknowledged. No wildcard is permitted, for the same reason Goal 0024 refuses a wildcard alloy: a blanket accept silently covers whatever is discovered next.",
+      "items": {
+        "enum": [
+          "gates_not_measurable",
+          "embedding_backend_not_ratified",
+          "catalog_below_pilot_scale",
+          "no_real_holdout",
+          "no_distractors_ood_unmeasured"
+        ]
+      }
+    },
+    "understands": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "output_is_diagnostic_not_validated",
+        "acknowledgement_moves_no_gate",
+        "typed_inputs_are_never_inferred"
+      ],
+      "description": "Each must be literally true. They are const-true rather than free text so the file cannot be signed while disagreeing with what MyJewl will actually do.",
+      "properties": {
+        "output_is_diagnostic_not_validated": { "const": true },
+        "acknowledgement_moves_no_gate": { "const": true },
+        "typed_inputs_are_never_inferred": { "const": true }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "authority": {
+      "const": "operator_permission_not_validation"
+    },
+    "certifies_manufacturing": {
+      "const": false
+    },
+    "affects_geometry": {
+      "const": false
+    }
+  }
+}

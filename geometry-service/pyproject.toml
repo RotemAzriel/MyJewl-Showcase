@@ -1,0 +1,17 @@
+[project]
+name = "jewelry-gaas-foundation"
+version = "0.1.0"
+description = "Foundation schema, contracts, and validation scaffolding for Jewelry Geometry-as-a-Service."
+requires-python = ">=3.10"
+dependencies = [
+    "jsonschema>=4.0",
+    "numpy>=1.24",
+    "Pillow>=10.0",
+    "trimesh>=4.0",
+    "manifold3d>=2.5",
+    "rtree>=1.0",
+    "scipy>=1.10",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

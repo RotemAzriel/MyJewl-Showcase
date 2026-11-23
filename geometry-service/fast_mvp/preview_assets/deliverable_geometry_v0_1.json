@@ -1,0 +1,1104 @@
+{
+  "authority": "measurement_only_not_manufacturing_certification",
+  "delivery_source": "receipt_backed_rhino_export_bytes",
+  "generated_by": "scripts/goal0025_measure_deliverables.py",
+  "manufacturing_gates": "pending_not_run_needs_calibration",
+  "measured_on": "2026-08-17",
+  "metrics_version": "myjewl-geometry-metrics-v1",
+  "records": [
+    {
+      "asset_id": "goal0014-v5-us6p5_round6p5",
+      "asset_version": "v5.0.0",
+      "bundle": "output/goal_0014_parametric_master_20260804/azure_v5/received/goal0014-parametric-master-control",
+      "castable_solid_file": null,
+      "coordinate_system": "Rhino_Z_up",
+      "definition_kind": "parametric_master",
+      "definition_path": "manual/rhino_compute_bridge/goal0014_parametric_master_v5.ghx",
+      "definition_sha256": "41f674d283ac099a016c7d95ff66c368ff551c6aded22652d2c69d32d661ef30",
+      "files": [
+        {
+          "byte_size": 409684,
+          "file": "basket_lower_rail.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "6335fed48647d117ce24b75731763c7728489dbe34e2e0e14ed725834b577069",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_01.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "b9a4d5cdd4ce864853c78c3cad570da28a2118d31256df7f0228782abf5734ba",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_02.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "bec6c251265fcfafd084875ef29a610ec6225a71e093613ae2f41ad6f81d5d0b",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_03.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "9ea39cfda87ffce925cf2822a836b7f756dbb7aacdf497796bb5136875b6a522",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 232684,
+          "file": "basket_petal_04.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "9fd699f48c2a05d7a1e1bfbd4a2196c389c778140b7661c55fa3ff93c9ff0287",
+          "triangles": 4652,
+          "vertices": 2328,
+          "watertight": true
+        },
+        {
+          "byte_size": 9684,
+          "file": "center_stone_round_brilliant.stl",
+          "oriented_outward": true,
+          "role": "stone",
+          "sha256": "0430769d85abc82b6515e268b48e3efa8c1f2d5a93029eb51a3c07a6d13f33d1",
+          "triangles": 192,
+          "vertices": 98,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_01.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "5e79bc32a38a2fce3fdf78ef6dcd43276c3d096f7a8c28dd181c0f9c8467091a",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_02.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "feaca22d35889f1b8d78effaf8b0c38a5cd7195ebf16a9258b4ac3ec22163a7e",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_03.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "edea88e00708186704bc5befc42c7a513976265812586fcda309e522974021da",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_04.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "92c9210464ad7abef4cdd1e7d2bfdcf8c3f8783c376612ae0c4ef3f8e1c3236e",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_01.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "790b6e8901e544dc74d96d6a916846d1b4d9528a1850e23441b0442b5456f59b",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_02.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "a8282fe3b14192a874f63697759caf3965b1768cc3fcb341e9b1965c39c12675",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_03.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "01a6a0930afa9d90cd191d654788bb9705f0bd5248d9229ae39203956b7f1fb1",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_04.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "4ef36a5ca15fcf10f5fcd985c97f669b70e8bdbb0cd423f8a7749f68962157cf",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 409684,
+          "file": "shank.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "30feb52edd6814a84603eaa65e78cff0bd4be69555a2cf820de35c650f1dc536",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        },
+        {
+          "byte_size": 270084,
+          "file": "shoulder_front_L.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "67261b4ccc3c4b5a292a3070d46b75f7a32f389ddd75acd06b847179c29f814c",
+          "triangles": 5400,
+          "vertices": 2702,
+          "watertight": true
+        },
+        {
+          "byte_size": 270884,
+          "file": "shoulder_front_R.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "8e0cfff18c87dcd45bcea14c98b37f8541439baeedf6512ef844e0da811a4fd0",
+          "triangles": 5416,
+          "vertices": 2710,
+          "watertight": true
+        },
+        {
+          "byte_size": 270884,
+          "file": "shoulder_rear_L.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "cbe6742e82fb46bdcd360e892b6b9b602723696bcb04e44a8eb79f70aee7acc0",
+          "triangles": 5416,
+          "vertices": 2710,
+          "watertight": true
+        },
+        {
+          "byte_size": 270084,
+          "file": "shoulder_rear_R.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "7a498b49c9d967cf26b412d663a6dd2a90a0275886a757b30ef12106fa939d84",
+          "triangles": 5400,
+          "vertices": 2702,
+          "watertight": true
+        },
+        {
+          "byte_size": 409684,
+          "file": "stone_seat_rail.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "f4056a7a4bd57dfbfb9924cf2c666c217e89c618e2ae8ebc16638d8cf22b0f99",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        }
+      ],
+      "findings": [
+        {
+          "code": "INVERTED_NORMALS",
+          "measured": {
+            "inverted_part_count": 12,
+            "metal_part_count": 19,
+            "parts": [
+              "basket_petal_01",
+              "basket_petal_02",
+              "basket_petal_03",
+              "basket_petal_04",
+              "prong_01",
+              "prong_02",
+              "prong_03",
+              "prong_04",
+              "shoulder_front_L",
+              "shoulder_front_R",
+              "shoulder_rear_L",
+              "shoulder_rear_R"
+            ]
+          },
+          "part": null,
+          "severity": "critical",
+          "summary": "F1: 12 of 19 metal parts are wound inward. A slicer or boolean engine reads them as voids rather than metal, and a watertightness check passes them."
+        },
+        {
+          "code": "PARTS_NOT_UNIONED",
+          "measured": {
+            "metal_part_count": 19
+          },
+          "part": null,
+          "severity": "critical",
+          "summary": "F2: the bundle ships no boolean union of the metal parts, so it is a set of interpenetrating solids. Whoever casts it must fuse them, and the naive per-part volume sum over-states metal."
+        }
+      ],
+      "geometry_signature": "sha256:0bfd1268294d7fa3e60c9722ac664194f03e59847eec082ed4d3f3345142a915",
+      "inverted_part_count": 12,
+      "inverted_parts": [
+        "basket_petal_01",
+        "basket_petal_02",
+        "basket_petal_03",
+        "basket_petal_04",
+        "prong_01",
+        "prong_02",
+        "prong_03",
+        "prong_04",
+        "shoulder_front_L",
+        "shoulder_front_R",
+        "shoulder_rear_L",
+        "shoulder_rear_R"
+      ],
+      "metal_part_count": 19,
+      "not_watertight_part_count": 0,
+      "receipt_file": "solitaire_parametric_master_v5_receipt.json",
+      "reference_part_count": 1,
+      "ships_castable_solid": false,
+      "source_receipt_sha256": "8ac882804ae6106280186b9f6f0e3cf56938d0725e1416b443a78acd9514c7f2",
+      "template_id": "goal0014-parametric-round-solitaire-master-v5",
+      "triangle_count": 150550,
+      "units": "mm",
+      "vertex_count": 75309
+    },
+    {
+      "asset_id": "goal0014-v5-us4_round5",
+      "asset_version": "v5.0.0",
+      "bundle": "output/goal_0014_parametric_master_20260804/azure_v5/received/goal0014-parametric-master-small",
+      "castable_solid_file": null,
+      "coordinate_system": "Rhino_Z_up",
+      "definition_kind": "parametric_master",
+      "definition_path": "manual/rhino_compute_bridge/goal0014_parametric_master_v5.ghx",
+      "definition_sha256": "41f674d283ac099a016c7d95ff66c368ff551c6aded22652d2c69d32d661ef30",
+      "files": [
+        {
+          "byte_size": 409684,
+          "file": "basket_lower_rail.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "20f536122e02479ad8a98b7813dec2b1e0110335d884ecf14f0ef2d8d4a9ad37",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_01.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "64437541b34f552c1cdd0160e2a37a22aa452ad99d79456dad3c174a3103602b",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_02.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "6615f505b485774f25ee02b23896e57bb8027aa853dfd5ccfa7f2d89c694c63e",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_03.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "6885f1b73427c0aa1e1fa795f66b8df77c9424eaab4b81ed96c255b6903dac61",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_04.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "c60b1fe28b15832abc0bc7b2fa08321a51a5225807d469908c4e1f5f3262322a",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 9684,
+          "file": "center_stone_round_brilliant.stl",
+          "oriented_outward": true,
+          "role": "stone",
+          "sha256": "eff2c6b265438e88cac7ca82836ad33336a3fd8340c13b3c016e2b944d2d4484",
+          "triangles": 192,
+          "vertices": 98,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_01.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "78c3fb04a2f90ef5db57da7970c338f5d8139d1744d83c6113f2c4bfd6fb336d",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_02.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "f03e18a1375e147e381ea8713962d72348dabb6655acb7fe2c6f6fa5c383b0db",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_03.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "451df37b0a4076ba48a9c0854661b7e9396185a0a8af5f451cddd3864f698142",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_04.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "8cfccdabe4b66efc3dbaa0eb1ebc4ba1930dfead6c9c3bc8276f8f111edbfe30",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_01.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "84852ff73ba8ee4acb88743ce46e0c6281818dfad41779d29e13311946ee7d49",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_02.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "f1e3edf4d112682d6bcc76bb804c2373ef0f338ff4556b4ac203ca7721f6c19d",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_03.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "f5b64bd663b61473d776ad896baa02da77222dc8d1604cd92d52eb901ff1cf57",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_04.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "1249b9d12ecea15931032e58618188ff3c36e677f41170f41943ed5827885c0b",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 409684,
+          "file": "shank.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "db52aedf6838bdd86a9f3c7749ae7c2184877c0a2aaeb2176c50a670cdf123b1",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        },
+        {
+          "byte_size": 260984,
+          "file": "shoulder_front_L.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "c620246baac325912ae43af9fc370b5e2d27c5cc66d823adea8150c2cb90ac92",
+          "triangles": 5218,
+          "vertices": 2611,
+          "watertight": true
+        },
+        {
+          "byte_size": 261684,
+          "file": "shoulder_front_R.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "b7055b236a37f54fe8d3293f6c6139b404df31790945513a6cc1da13dd35288b",
+          "triangles": 5232,
+          "vertices": 2618,
+          "watertight": true
+        },
+        {
+          "byte_size": 261684,
+          "file": "shoulder_rear_L.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "c49308fbabf8ec6c1db69a72590ef07a96b7123d727e119792fb6dbb16c8feca",
+          "triangles": 5232,
+          "vertices": 2618,
+          "watertight": true
+        },
+        {
+          "byte_size": 259484,
+          "file": "shoulder_rear_R.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "781b87f5b1a3700d391da4535d4c90661aa997e6caab15222176006f1063fd0f",
+          "triangles": 5188,
+          "vertices": 2596,
+          "watertight": true
+        },
+        {
+          "byte_size": 409684,
+          "file": "stone_seat_rail.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "d6d94fe9f1bb006c2f21da8ea13bec5f62cf8f2a7f32eae8a41222a8c4a49536",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        }
+      ],
+      "findings": [
+        {
+          "code": "INVERTED_NORMALS",
+          "measured": {
+            "inverted_part_count": 12,
+            "metal_part_count": 19,
+            "parts": [
+              "basket_petal_01",
+              "basket_petal_02",
+              "basket_petal_03",
+              "basket_petal_04",
+              "prong_01",
+              "prong_02",
+              "prong_03",
+              "prong_04",
+              "shoulder_front_L",
+              "shoulder_front_R",
+              "shoulder_rear_L",
+              "shoulder_rear_R"
+            ]
+          },
+          "part": null,
+          "severity": "critical",
+          "summary": "F1: 12 of 19 metal parts are wound inward. A slicer or boolean engine reads them as voids rather than metal, and a watertightness check passes them."
+        },
+        {
+          "code": "PARTS_NOT_UNIONED",
+          "measured": {
+            "metal_part_count": 19
+          },
+          "part": null,
+          "severity": "critical",
+          "summary": "F2: the bundle ships no boolean union of the metal parts, so it is a set of interpenetrating solids. Whoever casts it must fuse them, and the naive per-part volume sum over-states metal."
+        }
+      ],
+      "geometry_signature": "sha256:4595686dff3751b56823731c80251e40708b3c5a2b53c02be0383ed563a84cd4",
+      "inverted_part_count": 12,
+      "inverted_parts": [
+        "basket_petal_01",
+        "basket_petal_02",
+        "basket_petal_03",
+        "basket_petal_04",
+        "prong_01",
+        "prong_02",
+        "prong_03",
+        "prong_04",
+        "shoulder_front_L",
+        "shoulder_front_R",
+        "shoulder_rear_L",
+        "shoulder_rear_R"
+      ],
+      "metal_part_count": 19,
+      "not_watertight_part_count": 0,
+      "receipt_file": "solitaire_parametric_master_v5_receipt.json",
+      "reference_part_count": 1,
+      "ships_castable_solid": false,
+      "source_receipt_sha256": "fda6502faa89bb5d5d635e750fd1895bb6fe0bfa038e07f211ab703099e9a9c9",
+      "template_id": "goal0014-parametric-round-solitaire-master-v5",
+      "triangle_count": 148302,
+      "units": "mm",
+      "vertex_count": 74185
+    },
+    {
+      "asset_id": "goal0011-v4-full-ring",
+      "asset_version": "v4.0.0",
+      "bundle": "output/goal_0011_realism_master_20260730/azure_v4/received",
+      "castable_solid_file": null,
+      "coordinate_system": "Rhino_Z_up",
+      "definition_kind": "single_configuration_master",
+      "definition_path": "manual/rhino_compute_bridge/goal0011_realism_master_v4.ghx",
+      "definition_sha256": "e9bd467bd86f7a2f323c9ca5fd4599bb4328a8348e601460cb8cfba58d79259d",
+      "files": [
+        {
+          "byte_size": 409684,
+          "file": "basket_lower_rail.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "f2b1b9c3440b652bcd7a56953e54d6f7149009176c8b74ee17eedb4fe18eff89",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_01.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "bfdd28421b186e9c1db7733b76f3fb8d9ead10b459ffd8c198d6fe73886c2689",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_02.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "079eb1639fcd052742011c675482e31787438e999ec90741f49cc7719376d920",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_03.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "e68a5a28311f7c178af44ba2e58b6828a61d10c59af7bd41b4dd078a27c0bd74",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_04.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "8d5cb93dcc76d5e0bdd2e188c0998187887a92e8283c53c548863f41b5449d0b",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 9684,
+          "file": "center_stone_round_brilliant.stl",
+          "oriented_outward": true,
+          "role": "stone",
+          "sha256": "32178068ebe2070483ec0e2c05eed26ffb94ae5565d92a4d35a939bab0b209c3",
+          "triangles": 192,
+          "vertices": 98,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_01.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "96d0bf5a9b87cb4fd9c1c0bca39df38812ed70a870a634c4b2ea3e299874f177",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_02.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "8aa98a6c26f8086d4a15781a61fc11a956134f4b8b3349c04f9cc090c6107b15",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_03.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "e37f0c54cedb74331d2062f56cef5e5650e9e2c30faa645e1d0f2832f1a49755",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_04.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "ae37bd1557105da98e129e5619a57c2f8df4ea013789c9d75ea777212cb18b5c",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_01.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "281416f2b7e54af2fa043037084cd7dc1ef03b0d21058552629cb2710445784a",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_02.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "a61748825ddef9f00c769cd018d11b0c4fbfeb785e01842efaed7b640c93f9dc",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_03.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "b879f06b2ea71410579d33721a72a60bbc677c90e1922d7546c0bb97e1040cb3",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_04.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "f3a56525b03bfb7b1a30468423761f3ef9840ee3fe9d65c95a3b00384aecfa28",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 409684,
+          "file": "shank.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "690240e1ee52128d52536853014161d944453794b120f21224a4f1587e7902a5",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        },
+        {
+          "byte_size": 270084,
+          "file": "shoulder_front_L.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "9a6059fb76b096a64ca7bb93b3e71f3ca8e0499768be78ae7d081c52eee058ea",
+          "triangles": 5400,
+          "vertices": 2702,
+          "watertight": true
+        },
+        {
+          "byte_size": 270884,
+          "file": "shoulder_front_R.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "e675999853c22d3d8af38975459b5e0ecaef9bec46089906f79795635dbdaa4c",
+          "triangles": 5416,
+          "vertices": 2710,
+          "watertight": true
+        },
+        {
+          "byte_size": 270884,
+          "file": "shoulder_rear_L.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "6fcbdfadc0766182e61e8e3d4acb87f468068a4aa9567d6ff624e90d5a697b5e",
+          "triangles": 5416,
+          "vertices": 2710,
+          "watertight": true
+        },
+        {
+          "byte_size": 270084,
+          "file": "shoulder_rear_R.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "2546a96e3fd4106de0789283edece7d631e40ddeb61db808ad4038e22f055fe7",
+          "triangles": 5400,
+          "vertices": 2702,
+          "watertight": true
+        },
+        {
+          "byte_size": 409684,
+          "file": "stone_seat_rail.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "76a76d862d41b7d1dbb563af1a828c6f9d91d4c86da6413de1009492e1a5d32c",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        }
+      ],
+      "findings": [
+        {
+          "code": "INVERTED_NORMALS",
+          "measured": {
+            "inverted_part_count": 12,
+            "metal_part_count": 19,
+            "parts": [
+              "basket_petal_01",
+              "basket_petal_02",
+              "basket_petal_03",
+              "basket_petal_04",
+              "prong_01",
+              "prong_02",
+              "prong_03",
+              "prong_04",
+              "shoulder_front_L",
+              "shoulder_front_R",
+              "shoulder_rear_L",
+              "shoulder_rear_R"
+            ]
+          },
+          "part": null,
+          "severity": "critical",
+          "summary": "F1: 12 of 19 metal parts are wound inward. A slicer or boolean engine reads them as voids rather than metal, and a watertightness check passes them."
+        },
+        {
+          "code": "PARTS_NOT_UNIONED",
+          "measured": {
+            "metal_part_count": 19
+          },
+          "part": null,
+          "severity": "critical",
+          "summary": "F2: the bundle ships no boolean union of the metal parts, so it is a set of interpenetrating solids. Whoever casts it must fuse them, and the naive per-part volume sum over-states metal."
+        }
+      ],
+      "geometry_signature": "sha256:e4b84e9fb4797d7b0910d9a9ed810ba6dffe410961f255c43c434e3c58d2042c",
+      "inverted_part_count": 12,
+      "inverted_parts": [
+        "basket_petal_01",
+        "basket_petal_02",
+        "basket_petal_03",
+        "basket_petal_04",
+        "prong_01",
+        "prong_02",
+        "prong_03",
+        "prong_04",
+        "shoulder_front_L",
+        "shoulder_front_R",
+        "shoulder_rear_L",
+        "shoulder_rear_R"
+      ],
+      "metal_part_count": 19,
+      "not_watertight_part_count": 0,
+      "receipt_file": "solitaire_realism_master_v4_receipt.json",
+      "reference_part_count": 1,
+      "ships_castable_solid": false,
+      "source_receipt_sha256": "1cb1c04a8994f7710ca17d567f32e7fc14f5169352a4ffa06bedac3031ea43a5",
+      "template_id": "goal0011-realism-first-round-solitaire-master-v4",
+      "triangle_count": 149064,
+      "units": "mm",
+      "vertex_count": 74566
+    },
+    {
+      "asset_id": "goal0014-v5-us9_round8",
+      "asset_version": "v5.0.0",
+      "bundle": "output/goal_0014_parametric_master_20260804/azure_v5/received/goal0014-parametric-master-large",
+      "castable_solid_file": null,
+      "coordinate_system": "Rhino_Z_up",
+      "definition_kind": "parametric_master",
+      "definition_path": "manual/rhino_compute_bridge/goal0014_parametric_master_v5.ghx",
+      "definition_sha256": "41f674d283ac099a016c7d95ff66c368ff551c6aded22652d2c69d32d661ef30",
+      "files": [
+        {
+          "byte_size": 614484,
+          "file": "basket_lower_rail.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "70cc5800db5b61d3cb5b2a80a8a932279083049ed32d1e96362c5025265f2d64",
+          "triangles": 12288,
+          "vertices": 6144,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_01.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "d56c732f786ff0c15899d685d1c1d32f678a485c82ebf1885d5916096c4bfad6",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_02.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "71a2fe879fa3a33004ca962a13e0b7f811d1fe0cc23890e42d9199379a8f1cec",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_03.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "d4b48a5f0bec1ea1e8a450cc0a8ce2f044970a486aca1e19f067adf3318bd47a",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 158384,
+          "file": "basket_petal_04.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "c5b395751e4013448e0a1b30c565824245ed8e29f47f7ab350a8c5c3463675e1",
+          "triangles": 3166,
+          "vertices": 1585,
+          "watertight": true
+        },
+        {
+          "byte_size": 9684,
+          "file": "center_stone_round_brilliant.stl",
+          "oriented_outward": true,
+          "role": "stone",
+          "sha256": "bba4fbcfe872bc58eeea9defa171ad753adaaee95006731f70197f61326aa046",
+          "triangles": 192,
+          "vertices": 98,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_01.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "036b710e757c0ca67e6823029bed03eb5f2373c7d2d5e3ef6ec3e88ef08bc46c",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_02.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "87c06b4208d3187580315c18afefca326034315e422c92f5bfae4e970d71e446",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_03.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "9a1b4542faa82a3ad5fe48dda26863048b7f05f01a44fb5a5321df9b2b90c8b6",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 318684,
+          "file": "prong_04.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "2b62b39adb7008cacdab80b47cdf6030d1f6ef3f1137bb03e2a4772ef8da0b89",
+          "triangles": 6372,
+          "vertices": 3188,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_01.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "9b586d665c5a551e5887d27e1c5914c3466d8348e5aee3d123f64307b54d25e7",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_02.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "d1d002587e195ea7c714f5bf501880ea9bd7747a0b18aa1ea0b1cb410f0b8c41",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_03.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "6fe67d526b909da7de2e4807d8d01f6e900db655fe0f60160b136408c52fb9cc",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 806484,
+          "file": "prong_tip_04.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "278c82536247d904f173ceae4cbab483b971415923a89b38b081fc8e78caf02d",
+          "triangles": 16128,
+          "vertices": 8066,
+          "watertight": true
+        },
+        {
+          "byte_size": 409684,
+          "file": "shank.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "478d667c6d6d0653f6f5fdebbe637afd0df0fed2b46dc929a6a61d86dc01a474",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        },
+        {
+          "byte_size": 277084,
+          "file": "shoulder_front_L.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "2e1273483f32a41a4421a15b653bb60bf5806f22d696b52e5a6704ca0213b100",
+          "triangles": 5540,
+          "vertices": 2772,
+          "watertight": true
+        },
+        {
+          "byte_size": 272284,
+          "file": "shoulder_front_R.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "ffd470897039f48762bbecc359cb5ae40049e34be7a33a4f9a2305c579e6e2cd",
+          "triangles": 5444,
+          "vertices": 2724,
+          "watertight": true
+        },
+        {
+          "byte_size": 272284,
+          "file": "shoulder_rear_L.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "7889779d821e775b8dbbb61e653b124a467fc457bd6824d8fed966546617b785",
+          "triangles": 5444,
+          "vertices": 2724,
+          "watertight": true
+        },
+        {
+          "byte_size": 277084,
+          "file": "shoulder_rear_R.stl",
+          "oriented_outward": false,
+          "role": "metal",
+          "sha256": "419cee335959d916aa9de5b42e1b7b9922805b65347400ef269d3786786a14a6",
+          "triangles": 5540,
+          "vertices": 2772,
+          "watertight": true
+        },
+        {
+          "byte_size": 409684,
+          "file": "stone_seat_rail.stl",
+          "oriented_outward": true,
+          "role": "metal",
+          "sha256": "e22a40efc19281b709db4895a9621cc351ffe320c9efae7082a208759acd090d",
+          "triangles": 8192,
+          "vertices": 4096,
+          "watertight": true
+        }
+      ],
+      "findings": [
+        {
+          "code": "INVERTED_NORMALS",
+          "measured": {
+            "inverted_part_count": 12,
+            "metal_part_count": 19,
+            "parts": [
+              "basket_petal_01",
+              "basket_petal_02",
+              "basket_petal_03",
+              "basket_petal_04",
+              "prong_01",
+              "prong_02",
+              "prong_03",
+              "prong_04",
+              "shoulder_front_L",
+              "shoulder_front_R",
+              "shoulder_rear_L",
+              "shoulder_rear_R"
+            ]
+          },
+          "part": null,
+          "severity": "critical",
+          "summary": "F1: 12 of 19 metal parts are wound inward. A slicer or boolean engine reads them as voids rather than metal, and a watertightness check passes them."
+        },
+        {
+          "code": "PARTS_NOT_UNIONED",
+          "measured": {
+            "metal_part_count": 19
+          },
+          "part": null,
+          "severity": "critical",
+          "summary": "F2: the bundle ships no boolean union of the metal parts, so it is a set of interpenetrating solids. Whoever casts it must fuse them, and the naive per-part volume sum over-states metal."
+        }
+      ],
+      "geometry_signature": "sha256:f2eca5eac864307e578f4e8878c3af94f5d33002755fc91d086404450ef1b46f",
+      "inverted_part_count": 12,
+      "inverted_parts": [
+        "basket_petal_01",
+        "basket_petal_02",
+        "basket_petal_03",
+        "basket_petal_04",
+        "prong_01",
+        "prong_02",
+        "prong_03",
+        "prong_04",
+        "shoulder_front_L",
+        "shoulder_front_R",
+        "shoulder_rear_L",
+        "shoulder_rear_R"
+      ],
+      "metal_part_count": 19,
+      "not_watertight_part_count": 0,
+      "receipt_file": "solitaire_parametric_master_v5_receipt.json",
+      "reference_part_count": 1,
+      "ships_castable_solid": false,
+      "source_receipt_sha256": "8dbb001facc1726505493b2a1b96cfd3f2adb2ba6fab9d9891f26f1adce89a22",
+      "template_id": "goal0014-parametric-round-solitaire-master-v5",
+      "triangle_count": 153496,
+      "units": "mm",
+      "vertex_count": 76782
+    }
+  ],
+  "schema": "myjewl.deliverable_geometry_table.v0_1",
+  "source_rationale": "The exact export bytes a Rhino receipt vouches for, delivered verbatim. Rhino/Grasshopper is the sole geometry authority and the model never hand-authors geometry, so this repository's own manifold3d union -- watertight, single-bodied, and the basis of the quote -- is measured but never delivered: it is not Rhino's output, and it is computed from meshes whose winding was repaired in memory, which would ship a silent fix for a defect that is still open at the source. See docs/geometry_delivery_2026-08-17.md."
+}

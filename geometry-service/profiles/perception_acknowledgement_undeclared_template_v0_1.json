@@ -1,0 +1,35 @@
+{
+  "schema": "myjewl.perception_acknowledgement.v0_1",
+  "acknowledgement_id": "undeclared-template",
+  "acknowledgement_version": "v0.1.0",
+  "status": "undeclared",
+  "declared_by": {
+    "name": "UNDECLARED TEMPLATE - NOT A REAL ACKNOWLEDGEMENT",
+    "role": "undeclared_placeholder"
+  },
+  "validity": {
+    "valid_from": "2026-08-17",
+    "expires_on": "2026-08-18",
+    "revalidation_triggers": [
+      "any change to the embedding backend actually loaded",
+      "any rebuild of the catalog index",
+      "a new Goal 0005 gate blocker that is not already listed below",
+      "the operator resuming Track C, at which point this file should be deleted rather than renewed"
+    ]
+  },
+  "accepted_conditions": [],
+  "understands": {
+    "output_is_diagnostic_not_validated": true,
+    "acknowledgement_moves_no_gate": true,
+    "typed_inputs_are_never_inferred": true
+  },
+  "notes": [
+    "This template acknowledges NOTHING and therefore refuses the perception lane. It is the state MyJewl ships in, on purpose.",
+    "To enable the lane on a deployment: copy this file somewhere outside the repository, set status to 'declared', name a real person in declared_by, set a real expiry, and list EVERY condition MyJewl currently reports under accepted_conditions. Then point MYJEWL_PERCEPTION_ACK at it.",
+    "Listing a condition does not fix it. It records that a named human read that specific sentence and chose to serve diagnostic output anyway.",
+    "There is no wildcard. If MyJewl reports a condition that is not in your list, the lane refuses -- including a condition that did not exist when you signed this."
+  ],
+  "authority": "operator_permission_not_validation",
+  "certifies_manufacturing": false,
+  "affects_geometry": false
+}

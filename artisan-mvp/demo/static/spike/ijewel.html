@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iJewel spike</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #F8F4ED; font: 13px/1.4 -apple-system, sans-serif; }
+  #root { position: absolute; inset: 0; }
+  #log { position: fixed; left: 8px; bottom: 8px; max-width: 60%; background: rgba(255,255,255,.9);
+    padding: 6px 8px; border-radius: 6px; white-space: pre-wrap; z-index: 10; font: 11px monospace; }
+</style>
+<!-- Spike (2026-11-22): iJewel mini-viewer + WebGi v0 bundle, rendering our own local GLB.
+     Nothing is uploaded: modelUrl points at this demo server. -->
+<script>
+  // Spike instrumentation: record every outbound request the SDK makes (URL + body).
+  window.__outbound = [];
+  const _fetch = window.fetch;
+  window.fetch = function (input, init) {
+    const url = typeof input === "string" ? input : (input && input.url);
+    window.__outbound.push({ via: "fetch", url, method: (init && init.method) || "GET",
+      body: init && typeof init.body === "string" ? init.body.slice(0, 2000) : (init && init.body ? String(init.body) : null) });
+    return _fetch.apply(this, arguments);
+  };
+  const _open = XMLHttpRequest.prototype.open, _send = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.open = function (m, u) { this.__req = { via: "xhr", method: m, url: u }; return _open.apply(this, arguments); };
+  XMLHttpRequest.prototype.send = function (b) { if (this.__req) { this.__req.body = typeof b === "string" ? b.slice(0, 2000) : (b ? String(b) : null); window.__outbound.push(this.__req); } return _send.apply(this, arguments); };
+  if (navigator.sendBeacon) { const _b = navigator.sendBeacon.bind(navigator); navigator.sendBeacon = (u, d) => { window.__outbound.push({ via: "beacon", url: u, body: typeof d === "string" ? d : String(d) }); return _b(u, d); }; }
+</script>
+<script src="https://releases.ijewel3d.com/libs/webgi-v0/bundle-0.22.0.js"></script>
+<script src="https://releases.ijewel3d.com/libs/mini-viewer/0.6.27/bundle.nowebgi.iife.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<div id="log"></div>
+<script>
+const log = (m) => { document.getElementById("log").textContent += m + "\n"; console.log("[spike]", m); };
+const params = new URLSearchParams(location.search);
+const modelUrl = new URL(params.get("glb"), location.href).href;
+log("webgi global: " + (typeof window.webgi) + " · ijewelViewer: " + (typeof window.ijewelViewer));
+window.addEventListener("ijewel-viewer-ready", (ev) => { window.spikeViewer = ev.detail.viewer; log("viewer ready"); });
+window.addEventListener("ijewel-scene-ready", () => {
+  log("scene ready");
+  const v = window.spikeViewer, gems = [];
+  v.scene.traverse((o) => { if (o.isMesh && /^gem/i.test(o.name)) gems.push(o); });
+  for (const g of gems) v.plugins.Diamond.makeDiamond(g.material, { cacheKey: "aureon_" + g.name, normalMapRes: 512 }, { isDiamond: true, refractiveIndex: 2.42 });
+  log("diamond material on " + gems.length + " gem mesh(es)");
+});
+try {
+  new ijewelViewer.Viewer(document.getElementById("root"), { modelUrl, name: "Aureon spike" },
+    { showLogo: true, showCard: false, showShareButton: false, showConfigurator: false,
+      hideTryOn: true, runRotateCamera: params.has("rotate"), trackingDisabled: !params.has("tracking"),
+      hideQuality: true, hideCameraViews: true, hideFitScene: true, showSwitchNode: false });
+  log("constructed with " + modelUrl);
+} catch (e) { log("ERROR " + e); }
+</script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+{
+  "authority": "measurement_only_not_manufacturing_certification",
+  "bundles": [
+    {
+      "bundle": "goal0018-castable-master-small",
+      "parts": [
+        {
+          "min_wall_thickness_mm": 0.30586533306303565,
+          "name": "basket_lower_rail",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3058942392197317
+        },
+        {
+          "min_wall_thickness_mm": 0.2770388727155292,
+          "name": "basket_petal_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.28276897329401157
+        },
+        {
+          "min_wall_thickness_mm": 0.2770388727155292,
+          "name": "basket_petal_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.28275555303111594
+        },
+        {
+          "min_wall_thickness_mm": 0.2770388727155292,
+          "name": "basket_petal_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.2827510642249712
+        },
+        {
+          "min_wall_thickness_mm": 0.2770388727155292,
+          "name": "basket_petal_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.2827559471246841
+        },
+        {
+          "min_wall_thickness_mm": 0.24887330918748296,
+          "name": "castable_solid",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.4351814602113975
+        },
+        {
+          "min_wall_thickness_mm": 1.358469256080969,
+          "name": "center_stone_round_brilliant",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 1.5612974390437142
+        },
+        {
+          "min_wall_thickness_mm": 0.2476268175580723,
+          "name": "prong_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.2836513858550052
+        },
+        {
+          "min_wall_thickness_mm": 0.2476268175580723,
+          "name": "prong_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.2836574645035883
+        },
+        {
+          "min_wall_thickness_mm": 0.2476268175580723,
+          "name": "prong_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.28362820235660696
+        },
+        {
+          "min_wall_thickness_mm": 0.2476268175580723,
+          "name": "prong_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.2836061843848975
+        },
+        {
+          "min_wall_thickness_mm": 0.23943207330843336,
+          "name": "prong_tip_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.23943259031126266
+        },
+        {
+          "min_wall_thickness_mm": 0.23943217434126035,
+          "name": "prong_tip_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.23943258714043925
+        },
+        {
+          "min_wall_thickness_mm": 0.2394320461831749,
+          "name": "prong_tip_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.23943258528055675
+        },
+        {
+          "min_wall_thickness_mm": 0.2394320461831749,
+          "name": "prong_tip_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.23943258895569344
+        },
+        {
+          "min_wall_thickness_mm": 1.63283981076955,
+          "name": "shank",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 1.6396663870290098
+        },
+        {
+          "min_wall_thickness_mm": 0.4324039314317896,
+          "name": "shoulder_front_L",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.48170300405095523
+        },
+        {
+          "min_wall_thickness_mm": 0.4322461361032117,
+          "name": "shoulder_front_R",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.4829350379249115
+        },
+        {
+          "min_wall_thickness_mm": 0.43224618504217666,
+          "name": "shoulder_rear_L",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.48294394998147433
+        },
+        {
+          "min_wall_thickness_mm": 0.4323213843036458,
+          "name": "shoulder_rear_R",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.4812582094242488
+        },
+        {
+          "min_wall_thickness_mm": 0.2569192051952482,
+          "name": "stone_seat_rail",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.2569348566453257
+        }
+      ],
+      "request": {
+        "canonical_spec": {
+          "ring": {
+            "band_thickness_mm": 1.65,
+            "band_width_mm": 2.05,
+            "size": 4.0,
+            "size_standard": "US"
+          },
+          "stones": [
+            {
+              "dimensions_mm": {
+                "depth": 3.0,
+                "length": 5.0,
+                "width": 5.0
+              },
+              "quantity": 1,
+              "role": "center",
+              "shape": "round",
+              "stone_id": "center"
+            }
+          ]
+        },
+        "template_id": "goal0018-castable-round-solitaire-master-v6"
+      }
+    },
+    {
+      "bundle": "goal0018-castable-master-control",
+      "parts": [
+        {
+          "min_wall_thickness_mm": 0.3976551351655677,
+          "name": "basket_lower_rail",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.39769240174211595
+        },
+        {
+          "min_wall_thickness_mm": 0.36018064883390893,
+          "name": "basket_petal_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.36759321682965596
+        },
+        {
+          "min_wall_thickness_mm": 0.36018064883390893,
+          "name": "basket_petal_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.36761332835019567
+        },
+        {
+          "min_wall_thickness_mm": 0.36018064883390893,
+          "name": "basket_petal_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3675749340109155
+        },
+        {
+          "min_wall_thickness_mm": 0.3601085741663154,
+          "name": "basket_petal_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3679040439201861
+        },
+        {
+          "min_wall_thickness_mm": 0.32527593027783214,
+          "name": "castable_solid",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.39787827391674513
+        },
+        {
+          "min_wall_thickness_mm": 1.7660408692234646,
+          "name": "center_stone_round_brilliant",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 2.0297171584454428
+        },
+        {
+          "min_wall_thickness_mm": 0.3219449240865098,
+          "name": "prong_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3687878146292148
+        },
+        {
+          "min_wall_thickness_mm": 0.3219449240865098,
+          "name": "prong_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.36878560572762464
+        },
+        {
+          "min_wall_thickness_mm": 0.3219449240865098,
+          "name": "prong_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.36878595384079244
+        },
+        {
+          "min_wall_thickness_mm": 0.3219449240865098,
+          "name": "prong_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.36878517058616483
+        },
+        {
+          "min_wall_thickness_mm": 0.3112916982540175,
+          "name": "prong_tip_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3112923001645219
+        },
+        {
+          "min_wall_thickness_mm": 0.3112916982540178,
+          "name": "prong_tip_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3112923031428117
+        },
+        {
+          "min_wall_thickness_mm": 0.3112916982540178,
+          "name": "prong_tip_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3112922987833261
+        },
+        {
+          "min_wall_thickness_mm": 0.3112916982540175,
+          "name": "prong_tip_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3112922985664148
+        },
+        {
+          "min_wall_thickness_mm": 1.632839203045518,
+          "name": "shank",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 1.6396231727051833
+        },
+        {
+          "min_wall_thickness_mm": 0.5607482977933516,
+          "name": "shoulder_front_L",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.5955801985750679
+        },
+        {
+          "min_wall_thickness_mm": 0.5607280674252338,
+          "name": "shoulder_front_R",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.5946032569104946
+        },
+        {
+          "min_wall_thickness_mm": 0.5607280686616691,
+          "name": "shoulder_rear_L",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.5945885418959659
+        },
+        {
+          "min_wall_thickness_mm": 0.5608605322195405,
+          "name": "shoulder_rear_R",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.5955574102613262
+        },
+        {
+          "min_wall_thickness_mm": 0.33402663283848044,
+          "name": "stone_seat_rail",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3340455189217067
+        }
+      ],
+      "request": {
+        "canonical_spec": {
+          "ring": {
+            "band_thickness_mm": 1.65,
+            "band_width_mm": 2.05,
+            "size": 6.5,
+            "size_standard": "US"
+          },
+          "stones": [
+            {
+              "dimensions_mm": {
+                "depth": 3.9,
+                "length": 6.5,
+                "width": 6.5
+              },
+              "quantity": 1,
+              "role": "center",
+              "shape": "round",
+              "stone_id": "center"
+            }
+          ]
+        },
+        "template_id": "goal0018-castable-round-solitaire-master-v6"
+      }
+    },
+    {
+      "bundle": "goal0018-castable-master-large",
+      "parts": [
+        {
+          "min_wall_thickness_mm": 0.48971075233046985,
+          "name": "basket_lower_rail",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.4897438582533896
+        },
+        {
+          "min_wall_thickness_mm": 0.44332237224178184,
+          "name": "basket_petal_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.4524629528974921
+        },
+        {
+          "min_wall_thickness_mm": 0.44332237224178184,
+          "name": "basket_petal_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.4524710435990023
+        },
+        {
+          "min_wall_thickness_mm": 0.44332237224178184,
+          "name": "basket_petal_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.45241022293548094
+        },
+        {
+          "min_wall_thickness_mm": 0.44332237224178184,
+          "name": "basket_petal_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.45244847695848656
+        },
+        {
+          "min_wall_thickness_mm": 0.39925151343916676,
+          "name": "castable_solid",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.44623844451620265
+        },
+        {
+          "min_wall_thickness_mm": 2.1736117545921503,
+          "name": "center_stone_round_brilliant",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 2.4981364283339365
+        },
+        {
+          "min_wall_thickness_mm": 0.3962645227011326,
+          "name": "prong_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.4538986142633654
+        },
+        {
+          "min_wall_thickness_mm": 0.3962645227011326,
+          "name": "prong_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.4539017481737876
+        },
+        {
+          "min_wall_thickness_mm": 0.3962645227011326,
+          "name": "prong_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.45383740516139476
+        },
+        {
+          "min_wall_thickness_mm": 0.3962645227011326,
+          "name": "prong_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.45390018121857645
+        },
+        {
+          "min_wall_thickness_mm": 0.3831513845870796,
+          "name": "prong_tip_01",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3831520968439507
+        },
+        {
+          "min_wall_thickness_mm": 0.38315135636745473,
+          "name": "prong_tip_02",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3831520945270983
+        },
+        {
+          "min_wall_thickness_mm": 0.38315118644845764,
+          "name": "prong_tip_03",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3831520975667809
+        },
+        {
+          "min_wall_thickness_mm": 0.38315111852137357,
+          "name": "prong_tip_04",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.3831520993486387
+        },
+        {
+          "min_wall_thickness_mm": 1.632839841896652,
+          "name": "shank",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 1.6396255913995559
+        },
+        {
+          "min_wall_thickness_mm": 0.6891726063838615,
+          "name": "shoulder_front_L",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.712905170256186
+        },
+        {
+          "min_wall_thickness_mm": 0.6891328150520898,
+          "name": "shoulder_front_R",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.7120012600011135
+        },
+        {
+          "min_wall_thickness_mm": 0.6891332292457601,
+          "name": "shoulder_rear_L",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.7119995072640826
+        },
+        {
+          "min_wall_thickness_mm": 0.689172994561338,
+          "name": "shoulder_rear_R",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.7128060081921951
+        },
+        {
+          "min_wall_thickness_mm": 0.41113210890397855,
+          "name": "stone_seat_rail",
+          "wall_thickness_method": "inward_ray_cast_20000_samples_grazing_rejected",
+          "wall_thickness_p05_mm": 0.41115603260443606
+        }
+      ],
+      "request": {
+        "canonical_spec": {
+          "ring": {
+            "band_thickness_mm": 1.65,
+            "band_width_mm": 2.05,
+            "size": 9.0,
+            "size_standard": "US"
+          },
+          "stones": [
+            {
+              "dimensions_mm": {
+                "depth": 4.8,
+                "length": 8.0,
+                "width": 8.0
+              },
+              "quantity": 1,
+              "role": "center",
+              "shape": "round",
+              "stone_id": "center"
+            }
+          ]
+        },
+        "template_id": "goal0018-castable-round-solitaire-master-v6"
+      }
+    }
+  ],
+  "provenance": "Extracted from a full geometry_metrics measurement of the three receipt-backed Goal 0018 V6 bundles solved on Azure 2026-08-12, run locally 2026-08-17 with 20,000 inward-ray samples per part and grazing rejection. Committed because output/ is gitignored, so without it the Goal 0021 validation could not be asserted on a fresh checkout. Regenerate with scripts/measure_geometry.py against the same bundles.",
+  "schema": "myjewl.goal0021.measured_sections_fixture.v1",
+  "thickness_samples": 20000
+}

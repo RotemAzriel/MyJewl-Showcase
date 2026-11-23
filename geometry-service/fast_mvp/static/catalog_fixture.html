@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <title>MyJewl Fixture Renderer</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/static/vendor/three-r166/three.module.min.js"
+      }
+    }
+  </script>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 38%, #211a11 0, #090806 44%, #000 78%);
+    }
+    canvas { display: block; width: 512px; height: 512px; margin: 0; }
+  </style>
+</head>
+<body>
+  <canvas id="fixtureCanvas" width="512" height="512"></canvas>
+  <pre id="fixtureData" hidden></pre>
+  <script type="module" src="/static/catalog_fixture.js?v=3"></script>
+</body>
+</html>

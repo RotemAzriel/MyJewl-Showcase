@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://myjewl.local/schemas/deliverable_geometry_table_v0_1.schema.json",
+  "title": "MyJewl deliverable geometry table v0.1",
+  "description": "What each promoted preview asset's receipt-backed export bundle actually IS, geometrically, for the purpose of handing it to a casting shop. Every value is a measurement of the exact bytes a Rhino receipt vouches for. The table records facts; it grants nothing -- whether these facts are acceptable is a property of the receiving shop, declared in a calibrated shop profile's mesh block. Nothing here certifies manufacturability. See docs/geometry_delivery_2026-08-17.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "delivery_source",
+    "source_rationale",
+    "metrics_version",
+    "measured_on",
+    "generated_by",
+    "authority",
+    "manufacturing_gates",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "myjewl.deliverable_geometry_table.v0_1"
+    },
+    "delivery_source": {
+      "description": "The single declared source of delivered bytes, pinned by const. A derived mesh -- including this repository's own manifold3d union, which the quote is measured from -- is not Rhino's output and can never become a deliverable by editing a table.",
+      "const": "receipt_backed_rhino_export_bytes"
+    },
+    "source_rationale": {
+      "type": "string",
+      "minLength": 40
+    },
+    "metrics_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "measured_on": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "generated_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority": {
+      "const": "measurement_only_not_manufacturing_certification"
+    },
+    "manufacturing_gates": {
+      "const": "pending_not_run_needs_calibration"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "asset_id",
+          "asset_version",
+          "geometry_signature",
+          "source_receipt_sha256",
+          "receipt_file",
+          "definition_path",
+          "definition_sha256",
+          "definition_kind",
+          "template_id",
+          "bundle",
+          "units",
+          "coordinate_system",
+          "metal_part_count",
+          "reference_part_count",
+          "inverted_part_count",
+          "inverted_parts",
+          "not_watertight_part_count",
+          "ships_castable_solid",
+          "castable_solid_file",
+          "triangle_count",
+          "vertex_count",
+          "files",
+          "findings"
+        ],
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "asset_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "geometry_signature": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "source_receipt_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "receipt_file": {
+            "description": "The receipt's own filename inside the bundle. It is delivered with the geometry so the recipient can re-verify every hash without trusting us.",
+            "type": "string",
+            "minLength": 1
+          },
+          "definition_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definition_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "definition_kind": {
+            "type": "string",
+            "enum": [
+              "parametric_master",
+              "single_configuration_master"
+            ]
+          },
+          "template_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bundle": {
+            "description": "Repository-relative export directory. It lives under gitignored output/, so its presence is re-checked at request time and never assumed from this table.",
+            "type": "string",
+            "minLength": 1
+          },
+          "units": {
+            "description": "Rhino exported millimetres. A shop assuming inches would read this ring as 25x oversized, so the assumption is recorded rather than left implicit.",
+            "const": "mm"
+          },
+          "coordinate_system": {
+            "type": "string",
+            "minLength": 1
+          },
+          "metal_part_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "reference_part_count": {
+            "description": "Non-metal parts (the centre stone). Delivered labelled reference_only_not_for_casting; contributes to no weight.",
+            "type": "integer",
+            "minimum": 0
+          },
+          "inverted_part_count": {
+            "description": "Finding F1. Metal parts wound inward. A slicer reads these as voids; is_watertight passes them. Derived from the per-file oriented_outward flags, and cross-checked against them on load.",
+            "type": "integer",
+            "minimum": 0
+          },
+          "inverted_parts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "not_watertight_part_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "ships_castable_solid": {
+            "description": "Finding F2. Whether the bundle carries a VALID boolean union of the metal parts from Rhino -- closed and outward-oriented. False means either that nothing fuses the parts (V4/V5, which is F2 itself) or that what ships is not a usable solid; an invalid union is not a union, and must not satisfy a shop requiring one.",
+            "type": "boolean"
+          },
+          "castable_solid_file": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "triangle_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "vertex_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "files": {
+            "description": "Exactly the files that may be delivered: the ones the receipt hashes. model.stl, .3dm and .obj are absent by design -- the receipt does not vouch for them.",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "file",
+                "role",
+                "sha256",
+                "byte_size",
+                "triangles",
+                "vertices",
+                "watertight",
+                "oriented_outward"
+              ],
+              "properties": {
+                "file": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9._-]+$"
+                },
+                "role": {
+                  "description": "The receipt's own role. 'metal' is cast; 'stone' is reference_only_not_for_casting; 'castable' is Rhino's boolean union of the metal parts, a derivative excluded from metal_part_count so the ring is not counted twice.",
+                  "type": "string",
+                  "enum": [
+                    "metal",
+                    "stone",
+                    "castable"
+                  ]
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "byte_size": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "triangles": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "vertices": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                "watertight": {
+                  "type": "boolean"
+                },
+                "oriented_outward": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "findings": {
+            "description": "Delivery-relevant observations, never verdicts. They travel with the bytes and are named in the refusal when a shop's declared policy rejects them.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "code",
+                "severity",
+                "summary"
+              ],
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "critical",
+                    "structural",
+                    "note"
+                  ]
+                },
+                "part": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "summary": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "measured": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

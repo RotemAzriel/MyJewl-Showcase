@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/myjewl/review_record_v0_1.schema.json",
+  "title": "MyJewl Human Review Record v0.1",
+  "description": "One human review of one geometry configuration (or of an envelope). Human visual review is the one promotion input that cannot be derived from files on disk. This schema makes that input STRUCTURED DATA rather than a boolean, so that (a) a correction is a parameter delta the pipeline can consume, not knowledge that leaves with the reviewer, and (b) the correction rate is computable, which is what turns 'are we ready to automate?' into a number. Extends the fast_mvp/preview_assets/goal0014_v5_visual_reviews.json pattern; it does not replace it. A review record NEVER certifies manufacturing: see certifies_manufacturing. Protocol: docs/review_protocol.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "record_id", "stage", "scope", "subject", "reviewer", "reviewed_at",
+    "checklist", "decision", "corrections", "calibration",
+    "certifies_manufacturing", "manufacturing_authority"
+  ],
+  "properties": {
+    "schema": { "const": "myjewl.review_record.v0_1" },
+    "record_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_.-]+$",
+      "description": "Stable identifier for this review. Append-only: a revised opinion is a NEW record referencing the old one via supersedes, never an edit in place."
+    },
+    "supersedes": {
+      "type": ["string", "null"],
+      "description": "record_id this review replaces, if the reviewer revised an earlier decision. Both records are retained."
+    },
+    "stage": {
+      "description": "Which stage of the scaling ladder in docs/review_protocol.md this review belongs to. Recorded because the correction rate of a stage-1 per-configuration review and a stage-2 envelope review are not comparable numbers.",
+      "enum": [
+        "stage_1_per_configuration",
+        "stage_2_envelope",
+        "stage_3_exceptions_only",
+        "stage_4_automated_in_envelope"
+      ]
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable statement of exactly what was looked at, e.g. 'V6 castable master, US 4.0 / 5.00 mm round'. For stage_2 this names the envelope and the sampled extremes."
+    },
+    "subject": { "$ref": "#/$defs/subject" },
+    "reviewer": { "$ref": "#/$defs/reviewer" },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO date. The reviewer's own date, not the file's mtime."
+    },
+    "evidence": { "$ref": "#/$defs/evidence" },
+    "checklist": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/checklist_item" },
+      "description": "Every item the reviewer was asked to judge, each carrying the MEASURED number beside it. An item the reviewer could not judge is recorded as 'not_assessable' with a reason -- never silently dropped, and never defaulted to pass."
+    },
+    "decision": {
+      "description": "'approved_with_corrections' is the load-bearing value: it is how a reviewer improves a ring without touching geometry. It requires at least one entry in corrections. 'rejected' requires at least one rejection reason.",
+      "enum": ["approved", "approved_with_corrections", "rejected", "abstained"]
+    },
+    "decision_note": {
+      "type": "string",
+      "description": "Free text. Context a reader would want in six months. Never the only record of a correction -- corrections must be structured."
+    },
+    "corrections": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/correction" },
+      "description": "Structured parameter deltas. THE REVIEWER NEVER TOUCHES GEOMETRY: a correction expressed as 'seat depth should be 0.4, not 0.3' is data the pipeline can consume and measure; a nudged surface in Rhino is knowledge that leaves with the person. Empty array is valid and expected for a clean approval."
+    },
+    "rejection": { "$ref": "#/$defs/rejection" },
+    "calibration": { "$ref": "#/$defs/calibration" },
+    "certifies_manufacturing": {
+      "const": false,
+      "description": "Always false. A human visual review is an aesthetic and constructional judgement about form. It is NOT a manufacturing verdict, and no number of approvals makes it one."
+    },
+    "manufacturing_authority": {
+      "const": "pending_not_run_needs_calibration",
+      "description": "Manufacturing pass/fail requires a calibrated shop profile AND human jeweler review. This record supplies at most one half of the second condition."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decision": { "const": "approved_with_corrections" } }, "required": ["decision"] },
+      "then": { "properties": { "corrections": { "minItems": 1 } } }
+    },
+    {
+      "if": { "properties": { "decision": { "const": "rejected" } }, "required": ["decision"] },
+      "then": { "required": ["rejection"] }
+    }
+  ],
+  "$defs": {
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["template_id", "configuration_id", "inherited_from"],
+      "description": "What was reviewed, tied to reproducible artifacts. A record whose receipt hash does not match the asset being promoted is not a review OF that asset.",
+      "properties": {
+        "template_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "e.g. 'goal0018-castable-master-v6'."
+        },
+        "configuration_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "e.g. 'us4_round5'. For stage_2 envelope reviews, the envelope identifier."
+        },
+        "definition_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "SHA-256 of the GHX definition that produced the reviewed geometry."
+        },
+        "receipt_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "SHA-256 of the Azure receipt. This is what binds the review to specific geometry."
+        },
+        "derived_parameters": {
+          "type": ["object", "null"],
+          "description": "The master_parameters.derive_parameters output the reviewer was judging. Recording it means a later parameter change is detectable as invalidating this review."
+        },
+        "inherited_from": {
+          "type": ["string", "null"],
+          "description": "configuration_id whose approval this record inherits, with the reason stated in decision_note. Inheritance is the operator's call to make and record explicitly -- never a session's to assume."
+        }
+      }
+    },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewer_id", "role"],
+      "properties": {
+        "reviewer_id": { "type": "string", "minLength": 1 },
+        "role": {
+          "description": "Recorded because correction rates are only comparable within a role, and because 'qualified modelist confirmed this' is a materially different claim from 'the operator liked it'.",
+          "enum": ["operator", "modelist", "bench_jeweler", "casting_shop", "other"]
+        },
+        "qualification_note": {
+          "type": "string",
+          "description": "For non-operator roles: what makes this person qualified. MyJewl currently has ZERO reviews by a qualified modelist; do not let that gap go unrecorded."
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What the reviewer actually looked at. A checklist answered without evidence on screen is not a review.",
+      "properties": {
+        "rendered_views": { "type": "array", "items": { "type": "string" } },
+        "render_evidence_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+        "measurement_report_path": {
+          "type": ["string", "null"],
+          "description": "scripts/measure_geometry.py report shown alongside the renders, so the reviewer judges form with the numbers visible."
+        },
+        "paths": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "checklist_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["item_id", "verdict"],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "e.g. 'stone_visibly_seated_and_retained'. The seven Goal 0011/0014 checks are the current baseline; the modelist conversation is expected to replace them with a craft checklist."
+        },
+        "prompt": { "type": "string", "description": "The question as it was put to the reviewer." },
+        "verdict": { "enum": ["pass", "fail", "borderline", "not_assessable"] },
+        "measured": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "description": "The instrument's number beside the item, so judgement is informed rather than impressionistic. Present whenever geometry_metrics can supply one.",
+          "properties": {
+            "metric": { "type": "string" },
+            "value": { "type": ["number", "string", "null"] },
+            "unit": { "type": ["string", "null"] },
+            "source": {
+              "type": ["string", "null"],
+              "description": "e.g. 'geometry_metrics.wall_thickness_mm'. Measurement, not verdict."
+            }
+          }
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "correction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parameter", "proposed_value", "reason"],
+      "description": "A parameter-level change request. This is the unit that makes the human step instrumented: WHAT reviewers change, aggregated, is the prioritised fix list for the generator.",
+      "properties": {
+        "parameter": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The parameter name as master_parameters.derive_parameters knows it. A correction naming something outside that namespace is a request to add a parameter -- record it as such rather than inventing a field."
+        },
+        "current_value": { "type": ["number", "string", "boolean", "null"] },
+        "proposed_value": { "type": ["number", "string", "boolean", "null"] },
+        "unit": { "type": ["string", "null"] },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Why, in the reviewer's own words. The reason is what generalises to other configurations; the number alone does not."
+        },
+        "applies_to": {
+          "description": "Whether this correction is specific to the reviewed configuration or should propagate across the envelope. Getting this wrong is how a fix for the small extreme breaks the large one.",
+          "enum": ["this_configuration", "whole_envelope", "unknown"]
+        },
+        "severity": { "enum": ["blocking", "should_fix", "nice_to_have"] },
+        "requires_new_parameter": {
+          "type": "boolean",
+          "description": "True when the correction cannot be expressed with today's parameters. These are the highest-value entries in the whole dataset: they are the generator's missing degrees of freedom."
+        }
+      }
+    },
+    "rejection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["categories", "reason"],
+      "description": "A rejection must be actionable. 'It looks wrong' costs a paid re-solve and teaches nothing.",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "proportion", "silhouette", "stone_seating", "prong_form",
+              "gallery_construction", "shoulder_transition", "surface_quality",
+              "manufacturability_concern", "does_not_match_specification", "other"
+            ]
+          }
+        },
+        "reason": { "type": "string", "minLength": 1 },
+        "would_accept_if": {
+          "type": "string",
+          "description": "The condition that would flip this to approved. Turns a rejection into a specification."
+        }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["is_seeded_probe"],
+      "description": "Design against the rubber stamp. A 100% approval rate means either a perfect generator or a reviewer who has stopped looking, and the record cannot distinguish them unless known-bad configurations are seeded and their outcomes tracked. An uncalibrated reviewer is worse than none, because it manufactures false confidence.",
+      "properties": {
+        "is_seeded_probe": {
+          "type": "boolean",
+          "description": "True when this configuration was deliberately seeded with a known defect to test the reviewer."
+        },
+        "seeded_defect": {
+          "type": ["string", "null"],
+          "description": "What was wrong with it, e.g. 'prong wire narrowed to 0.24 mm'. Populated only for probes."
+        },
+        "expected_decision": {
+          "type": ["string", "null"],
+          "enum": ["approved", "approved_with_corrections", "rejected", "abstained", null],
+          "description": "What a calibrated reviewer should have concluded. Compared against decision to score the reviewer, not the ring."
+        },
+        "probe_caught": {
+          "type": ["boolean", "null"],
+          "description": "Whether the reviewer caught the seeded defect. Scored after the fact; null until scored. A reviewer who misses probes has their approvals discounted, not deleted."
+        },
+        "blinded": {
+          "type": ["boolean", "null"],
+          "description": "Whether the reviewer knew probes were in the batch. Unblinded probe rates are not evidence of calibration."
+        }
+      }
+    }
+  }
+}

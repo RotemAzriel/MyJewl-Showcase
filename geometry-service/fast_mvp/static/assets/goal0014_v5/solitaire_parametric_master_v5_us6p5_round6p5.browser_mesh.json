@@ -1,0 +1,199 @@
+{
+  "authority": "receipt_backed_rhino_derived_browser_preview",
+  "binary": {
+    "byte_size": 3703312,
+    "file": "solitaire_parametric_master_v5_us6p5_round6p5.meshbin",
+    "header_bytes": 16,
+    "index_component_type": "uint32",
+    "normal_component_type": "float32",
+    "position_component_type": "float32",
+    "sha256": "ee07e1f74107a7b25af3ea1674f9efdfd61a0608af5929ef0d9cf0878b26ecf4"
+  },
+  "bounds_mm": {
+    "max": [
+      10.106599807739258,
+      3.25,
+      13.061599731445312
+    ],
+    "min": [
+      -10.106599807739258,
+      -3.25,
+      -10.106599807739258
+    ]
+  },
+  "configuration": {
+    "center_stone": {
+      "depth_mm": 3.9,
+      "length_mm": 6.5,
+      "shape": "round",
+      "width_mm": 6.5
+    },
+    "ring": {
+      "band_thickness_mm": 1.65,
+      "band_width_mm": 2.05,
+      "size": 6.5,
+      "size_standard": "US"
+    }
+  },
+  "configuration_id": "us6p5_round6p5",
+  "derivation_version": "myjewl-master-parameter-derivation-v1",
+  "index_count": 451650,
+  "manufacturing_authority": false,
+  "manufacturing_gates": "pending_not_run_needs_calibration",
+  "parts": [
+    {
+      "index_count": 24576,
+      "index_start": 0,
+      "name": "shank",
+      "role": "metal",
+      "triangles": 8192
+    },
+    {
+      "index_count": 16200,
+      "index_start": 24576,
+      "name": "shoulder_front_L",
+      "role": "metal",
+      "triangles": 5400
+    },
+    {
+      "index_count": 16248,
+      "index_start": 40776,
+      "name": "shoulder_rear_L",
+      "role": "metal",
+      "triangles": 5416
+    },
+    {
+      "index_count": 16248,
+      "index_start": 57024,
+      "name": "shoulder_front_R",
+      "role": "metal",
+      "triangles": 5416
+    },
+    {
+      "index_count": 16200,
+      "index_start": 73272,
+      "name": "shoulder_rear_R",
+      "role": "metal",
+      "triangles": 5400
+    },
+    {
+      "index_count": 24576,
+      "index_start": 89472,
+      "name": "basket_lower_rail",
+      "role": "metal",
+      "triangles": 8192
+    },
+    {
+      "index_count": 24576,
+      "index_start": 114048,
+      "name": "stone_seat_rail",
+      "role": "metal",
+      "triangles": 8192
+    },
+    {
+      "index_count": 9498,
+      "index_start": 138624,
+      "name": "basket_petal_01",
+      "role": "metal",
+      "triangles": 3166
+    },
+    {
+      "index_count": 19116,
+      "index_start": 148122,
+      "name": "prong_01",
+      "role": "metal",
+      "triangles": 6372
+    },
+    {
+      "index_count": 48384,
+      "index_start": 167238,
+      "name": "prong_tip_01",
+      "role": "metal",
+      "triangles": 16128
+    },
+    {
+      "index_count": 9498,
+      "index_start": 215622,
+      "name": "basket_petal_02",
+      "role": "metal",
+      "triangles": 3166
+    },
+    {
+      "index_count": 19116,
+      "index_start": 225120,
+      "name": "prong_02",
+      "role": "metal",
+      "triangles": 6372
+    },
+    {
+      "index_count": 48384,
+      "index_start": 244236,
+      "name": "prong_tip_02",
+      "role": "metal",
+      "triangles": 16128
+    },
+    {
+      "index_count": 9498,
+      "index_start": 292620,
+      "name": "basket_petal_03",
+      "role": "metal",
+      "triangles": 3166
+    },
+    {
+      "index_count": 19116,
+      "index_start": 302118,
+      "name": "prong_03",
+      "role": "metal",
+      "triangles": 6372
+    },
+    {
+      "index_count": 48384,
+      "index_start": 321234,
+      "name": "prong_tip_03",
+      "role": "metal",
+      "triangles": 16128
+    },
+    {
+      "index_count": 13956,
+      "index_start": 369618,
+      "name": "basket_petal_04",
+      "role": "metal",
+      "triangles": 4652
+    },
+    {
+      "index_count": 19116,
+      "index_start": 383574,
+      "name": "prong_04",
+      "role": "metal",
+      "triangles": 6372
+    },
+    {
+      "index_count": 48384,
+      "index_start": 402690,
+      "name": "prong_tip_04",
+      "role": "metal",
+      "triangles": 16128
+    },
+    {
+      "index_count": 576,
+      "index_start": 451074,
+      "name": "center_stone_round_brilliant",
+      "role": "stone",
+      "triangles": 192
+    }
+  ],
+  "schema": "myjewl.goal0011.receipt_backed_browser_mesh.v1",
+  "source": "Azure Rhino.Compute named-part OBJ",
+  "source_obj": "solitaire_parametric_master_v5.obj",
+  "source_obj_sha256": "c6e16c375084dc545966baf17f5a7a3350874827166ac15cd502d5bd24b482c8",
+  "source_receipt": "solitaire_parametric_master_v5_receipt.json",
+  "source_receipt_sha256": "8ac882804ae6106280186b9f6f0e3cf56938d0725e1416b443a78acd9514c7f2",
+  "source_to_preview_transform": {
+    "basis": "Rhino Z-up to Three.js Y-up",
+    "rotation_x_radians": -1.5707963267948966,
+    "scale": 0.1
+  },
+  "template_id": "goal0014-parametric-round-solitaire-master-v5",
+  "triangle_count": 150550,
+  "vertex_count": 79029
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "myjewl.manufacturing_evidence.v0_1",
+  "record_id": "undeclared-template",
+  "record_version": "v0.1.0",
+  "status": "undeclared",
+  "certifies_manufacturing": false,
+  "recorded_by": {
+    "name": "UNDECLARED TEMPLATE - NOBODY HAS SAID ANY OF THIS",
+    "role": "undeclared_placeholder"
+  },
+  "validity": {
+    "recorded_on": "2026-08-18",
+    "revalidation_triggers": [
+      "a different expert gives a materially different number",
+      "a casting shop measures its own process (which supersedes this entirely -- use a ShopProfile)",
+      "the master's construction changes such that the section being asked about is no longer the one built",
+      "any answer that contradicts docs/geometry_research_brief_2026-08-12.md section 1.1"
+    ]
+  },
+  "findings": {
+    "min_castable_wire_diameter_mm": {
+      "status": "undeclared",
+      "value_mm": null,
+      "range_mm": null,
+      "evidence_class": "unknown",
+      "attributed_to": {"name": "", "role": ""},
+      "heard_on": null,
+      "conversation_kind": "unknown",
+      "alloy_scope": [],
+      "process_scope": "unknown",
+      "measurement_basis": "unknown",
+      "verbatim": "",
+      "notes": "THE HIGHEST-VALUE NUMBER IN THE REPOSITORY. Goal 0021 measured the whole envelope: thinnest exposed section runs 0.157 mm at a 3 mm stone to 0.575 mm at the 11 mm maximum, so ask 'which of these can you cast?' rather than 'is 0.6 mm ok?'. Refused five times over as shipped: record undeclared, finding undeclared, evidence_class unknown, unattributed, undated."
+    },
+    "min_prong_base_diameter_mm": {
+      "status": "undeclared",
+      "value_mm": null,
+      "range_mm": null,
+      "evidence_class": "unknown",
+      "attributed_to": {"name": "", "role": ""},
+      "heard_on": null,
+      "conversation_kind": "unknown",
+      "alloy_scope": [],
+      "process_scope": "unknown",
+      "measurement_basis": "unknown",
+      "verbatim": "",
+      "notes": "F3. MyJewl's approved reference is 0.600 mm at the ~1 ct stone; a single unverified source says the trade standard is 1.0-1.3 mm. If that holds, the production reference holds a one-carat diamond in roughly melee-gauge wire. Do NOT lead with our number -- ask theirs first, then show ours."
+    },
+    "min_feature_separation_mm": {
+      "status": "undeclared",
+      "value_mm": null,
+      "range_mm": null,
+      "evidence_class": "unknown",
+      "attributed_to": {"name": "", "role": ""},
+      "heard_on": null,
+      "conversation_kind": "unknown",
+      "alloy_scope": [],
+      "process_scope": "unknown",
+      "measurement_basis": "unknown",
+      "verbatim": "",
+      "notes": "Governs petal and prong spacing before adjacent features fuse in casting. Nothing in MyJewl checks it today."
+    }
+  }
+}

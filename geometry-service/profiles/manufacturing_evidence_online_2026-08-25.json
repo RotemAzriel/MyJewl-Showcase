@@ -1,0 +1,227 @@
+{
+  "schema": "myjewl.manufacturing_evidence.v0_1",
+  "record_id": "desk-research-evidence-20260825",
+  "record_version": "0.2.0",
+  "status": "declared",
+  "certifies_manufacturing": false,
+  "recorded_by": {
+    "name": "Codex web research / ChatGPT deep research",
+    "role": "repository operator research transcription"
+  },
+  "validity": {
+    "recorded_on": "2026-08-26",
+    "revalidation_triggers": [
+      "a casting shop supplies process-specific values",
+      "a source page or manufacturer guideline changes",
+      "the alloy or finishing scope becomes explicit",
+      "the master geometry or its section definitions change",
+      "a later deep-research pass reports a different value for the same finding key"
+    ]
+  },
+  "findings": {
+    "min_castable_wire_diameter_mm": {
+      "status": "declared",
+      "value_mm": null,
+      "range_mm": {
+        "low": 0.4,
+        "high": 1.0
+      },
+      "evidence_class": "published_trade_standard",
+      "attributed_to": {
+        "name": "Morris & Watson / Hoover & Strong",
+        "role": "jewelry casting-house design guidance",
+        "affiliation": "published CAD and casting guidelines"
+      },
+      "heard_on": "2026-08-25",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "Published guidance brackets minimum design thickness at 0.40 mm for general components and 1.0 mm throughout for a general casting recommendation; thinner sections may work depending on geometry and metal flow.",
+      "notes": "Cross-source bracket, not a consensus and not one shop's accepted band. Morris & Watson states at least 0.40 mm for minimum design thickness and 0.50 mm for broad or flat areas, while Hoover & Strong recommends 1.0 mm throughout but says smaller widths can sometimes cast depending on how far the metal travels. Morris & Watson also warns that finishing can remove 0.10-0.20 mm. Recorded as an uncalibrated research floor only. Sources: https://morrisandwatson.com/casting/cad-design-guidelines and https://cms.hooverandstrong.com/uploads/Casting_Brochure5_2_24_ccfac814e1.pdf. Pass 2 (2026-08-26) independently cites a 0.5 mm general casting-thickness example from Stuller's New Production Standards PDF, sitting inside this bracket -- corroboration, not a new floor. Pass 2's own conclusion is that no authoritative source gives a universal alloy-independent minimum; every published number here, including this bracket, is one supplier's or casting house's own guidance, not a receiving shop's measured process."
+    },
+    "min_prong_base_diameter_mm": {
+      "status": "declared",
+      "value_mm": null,
+      "range_mm": {
+        "low": 0.5,
+        "high": 1.0
+      },
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Formlabs",
+        "role": "jewelry pattern and casting design guidance",
+        "affiliation": "Formlabs Castable Wax technical guide"
+      },
+      "heard_on": "2026-08-25",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "Formlabs gives 0.5 mm as a minimum for prongs in a structural application; its example uses 0.7 mm for a 2.5 mm side stone and 1.0 mm for an 8 mm center stone.",
+      "notes": "A design example for printed pattern plus casting, not a universal center-prong rule and not a post-finishing measurement. It supports asking how the minimum changes with stone size; it does not calibrate MyJewl's prong floor. Source: https://formlabs-media.formlabs.com/filer_public/17/a1/17a190d9-9a76-4cf5-af12-3d0dda4121dc/formlabs-design-guide.pdf"
+    },
+    "min_feature_separation_mm": {
+      "status": "declared",
+      "value_mm": 0.2,
+      "range_mm": null,
+      "evidence_class": "published_trade_standard",
+      "attributed_to": {
+        "name": "Morris & Watson",
+        "role": "jewelry casting-house design guidance",
+        "affiliation": "published CAD and casting guidelines"
+      },
+      "heard_on": "2026-08-25",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "Maintain at least 0.20 mm between components such as claws, setting posts and walls.",
+      "notes": "Published CAD gap guidance. Actual investment, feature length, alloy, orientation and finishing may require more clearance. It is not a shop-specific acceptance policy. Source: https://morrisandwatson.com/casting/cad-design-guidelines"
+    },
+    "min_pinpoint_prong_diameter_mm": {
+      "status": "declared",
+      "value_mm": 0.45,
+      "range_mm": null,
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Stuller",
+        "role": "trade supplier CAD/CAM production standards",
+        "affiliation": "Stuller Production Standards"
+      },
+      "heard_on": "2026-08-26",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "0.45 mm minimum prong diameter for pinpoint (melee) prong settings.",
+      "notes": "This is a MELEE/pinpoint-prong minimum, not a centre-stone prong minimum -- do not compare it against min_prong_base_diameter_mm or MyJewl's 0.600 mm centre-stone reference. Kept as a distinct key for exactly this reason, per the deep-research brief's own warning against generalizing a melee number to a centre prong. From ChatGPT deep-research Pass 1 (modeling pipeline / prongs, seats, and setting), 2026-08-26. Source: https://stuller.scene7.com/is/content/Stuller/DAS/27075240-5d0c-4b5d-88a5-a6bf00ee2785.pdf. Pass 2 (casting/manufacturing, 2026-08-26) independently cites the same 0.45 mm prong figure from a second, different Stuller document (https://stuller.scene7.com/is/content/Stuller/DAS/09b4e2e2-e12e-45f8-a2ed-a4f80104aa9f.pdf) -- two separate Stuller publications agreeing, still one supplier's own CAD guidance and still not alloy- or centre-stone-specific."
+    },
+    "min_culet_to_finger_rail_clearance_mm": {
+      "status": "declared",
+      "value_mm": 0.5,
+      "range_mm": null,
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Stuller",
+        "role": "trade supplier CAD/CAM production standards",
+        "affiliation": "Stuller Production Standards"
+      },
+      "heard_on": "2026-08-26",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "0.5 mm candidate clearance between the stone's culet and the finger/comfort rail.",
+      "notes": "CAD/CAM design guidance, not a shop's measured or accepted policy for MyJewl's geometry. Nothing today checks a culet-to-rail distance. From ChatGPT deep-research Pass 1, 2026-08-26. Source: https://stuller.scene7.com/is/content/Stuller/DAS/27075240-5d0c-4b5d-88a5-a6bf00ee2785.pdf. Pass 2 independently cites the same 0.5 mm figure from a second, different Stuller document (https://stuller.scene7.com/is/content/Stuller/DAS/09b4e2e2-e12e-45f8-a2ed-a4f80104aa9f.pdf), describing it as a general setting/structure clearance example rather than a wear rule."
+    },
+    "min_gallery_rail_spacing_mm": {
+      "status": "declared",
+      "value_mm": 0.4,
+      "range_mm": null,
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Stuller",
+        "role": "trade supplier CAD/CAM production standards",
+        "affiliation": "Stuller Production Standards"
+      },
+      "heard_on": "2026-08-26",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "0.4 mm candidate minimum spacing for gallery rail / bearing-adjacent features.",
+      "notes": "CAD/CAM design guidance, distinct from min_feature_separation_mm (Morris & Watson's general inter-component gap) -- this one is gallery/bearing-specific. From ChatGPT deep-research Pass 1, 2026-08-26. Source: https://stuller.scene7.com/is/content/Stuller/DAS/27075240-5d0c-4b5d-88a5-a6bf00ee2785.pdf"
+    },
+    "min_structural_wall_mm": {
+      "status": "declared",
+      "value_mm": 0.8,
+      "range_mm": null,
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Stuller",
+        "role": "trade supplier CAD/CAM production standards",
+        "affiliation": "Stuller New Production Standards"
+      },
+      "heard_on": "2026-08-26",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "0.8 mm structural/external wall example.",
+      "notes": "General structural wall, not prong-specific -- the closest MyJewl analogue is basket petal / gallery rail wire, not the prong taper. Not alloy-specific; Pass 2's own conclusion is no universal wall minimum exists by alloy. From ChatGPT deep-research Pass 2 (casting/manufacturing), 2026-08-26. Source: https://stuller.scene7.com/is/content/Stuller/DAS/09b4e2e2-e12e-45f8-a2ed-a4f80104aa9f.pdf"
+    },
+    "min_internal_wall_mm": {
+      "status": "declared",
+      "value_mm": 0.6,
+      "range_mm": null,
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Stuller",
+        "role": "trade supplier CAD/CAM production standards",
+        "affiliation": "Stuller New Production Standards"
+      },
+      "heard_on": "2026-08-26",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "0.6 mm internal floor/wall example.",
+      "notes": "Distinct locus from min_structural_wall_mm (external/structural) -- an internal floor or interior wall, e.g. inside a hollowed section. MyJewl does not currently hollow any part, so this has no direct analogue yet. From ChatGPT deep-research Pass 2, 2026-08-26. Source: https://stuller.scene7.com/is/content/Stuller/DAS/09b4e2e2-e12e-45f8-a2ed-a4f80104aa9f.pdf"
+    },
+    "min_bridge_width_mm": {
+      "status": "declared",
+      "value_mm": 1.5,
+      "range_mm": null,
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Stuller",
+        "role": "trade supplier CAD/CAM production standards",
+        "affiliation": "Stuller New Production Standards"
+      },
+      "heard_on": "2026-08-26",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "1.5 mm width x 1.2 mm height bridge/rail example.",
+      "notes": "Split into two keys (width, height) because a bridge cross-section needs both axes and the schema's finding is one scalar/range per key -- see min_bridge_height_mm for the paired figure. From ChatGPT deep-research Pass 2, 2026-08-26. Source: https://stuller.scene7.com/is/content/Stuller/DAS/09b4e2e2-e12e-45f8-a2ed-a4f80104aa9f.pdf"
+    },
+    "min_bridge_height_mm": {
+      "status": "declared",
+      "value_mm": 1.2,
+      "range_mm": null,
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Stuller",
+        "role": "trade supplier CAD/CAM production standards",
+        "affiliation": "Stuller New Production Standards"
+      },
+      "heard_on": "2026-08-26",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "1.5 mm width x 1.2 mm height bridge/rail example.",
+      "notes": "Paired with min_bridge_width_mm -- the same one Stuller example, split across two keys because the finding schema is one scalar/range per key. From ChatGPT deep-research Pass 2, 2026-08-26. Source: https://stuller.scene7.com/is/content/Stuller/DAS/09b4e2e2-e12e-45f8-a2ed-a4f80104aa9f.pdf"
+    },
+    "min_stone_to_stone_spacing_mm": {
+      "status": "declared",
+      "value_mm": 0.15,
+      "range_mm": null,
+      "evidence_class": "manufacturer_specification",
+      "attributed_to": {
+        "name": "Stuller",
+        "role": "trade supplier CAD/CAM production standards",
+        "affiliation": "Stuller New Production Standards"
+      },
+      "heard_on": "2026-08-26",
+      "conversation_kind": "published_source",
+      "alloy_scope": [],
+      "process_scope": "cast",
+      "measurement_basis": "pre_finishing",
+      "verbatim": "0.15 mm girdle-to-girdle stone-to-stone spacing example.",
+      "notes": "Relevant to pave/side-stone schedules (trilogy, pave accents), not the solitaire centre stone. MyJewl's live catalog includes a pave/trilogy reference combination (Goal 0007) with no such spacing check today. From ChatGPT deep-research Pass 2, 2026-08-26. Source: https://stuller.scene7.com/is/content/Stuller/DAS/09b4e2e2-e12e-45f8-a2ed-a4f80104aa9f.pdf"
+    }
+  }
+}

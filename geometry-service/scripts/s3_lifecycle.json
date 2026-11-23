@@ -1,0 +1,20 @@
+{
+  "Rules": [
+    {
+      "ID": "glacier-large-files-after-180-days",
+      "Status": "Enabled",
+      "Filter": {
+        "And": {
+          "Prefix": "configs/",
+          "ObjectSizeGreaterThan": 3145728
+        }
+      },
+      "Transitions": [
+        {
+          "Days": 180,
+          "StorageClass": "DEEP_ARCHIVE"
+        }
+      ]
+    }
+  ]
+}

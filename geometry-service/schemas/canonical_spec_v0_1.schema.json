@@ -1,0 +1,369 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/jewelry-gaas/canonical_spec_v0_1.schema.json",
+  "title": "Jewelry GaaS Canonical Job Spec v0.1",
+  "description": "Single source of truth for ring-only Jewelry Geometry-as-a-Service jobs. Units: millimeters for dimensions, degrees for angles, ISO-8601 for datetimes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spec_version", "job", "ring", "metal", "stones", "setting"],
+  "properties": {
+    "spec_version": {
+      "const": "0.1",
+      "description": "Canonical spec version."
+    },
+    "job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["job_id", "archetype", "output_targets"],
+      "properties": {
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Platform-generated job identifier."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Optional ISO-8601 creation timestamp."
+        },
+        "dealer_id": {
+          "type": "string",
+          "description": "Optional dealer/account identifier."
+        },
+        "archetype": {
+          "enum": ["solitaire", "halo", "trilogy"],
+          "description": "Launch archetype."
+        },
+        "output_targets": {
+          "type": "array",
+          "description": "Requested output files for preview and manufacturing handoff.",
+          "items": {
+            "enum": ["GLB", "STL"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "ring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["size_standard", "size", "band_width_mm", "band_thickness_mm"],
+      "properties": {
+        "size_standard": {
+          "enum": ["US", "UK", "EU", "HK", "JP"],
+          "description": "Declared ring size standard."
+        },
+        "size": {
+          "description": "Ring size in the declared standard.",
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "number" }
+          ]
+        },
+        "profile": {
+          "type": "string",
+          "description": "Optional band profile descriptor."
+        },
+        "band_profile": {
+          "enum": ["comfort_fit", "knife_edge", "flat", "rounded"],
+          "description": "Structured band cross-section family for modular designs."
+        },
+        "shoulder_style": {
+          "enum": ["straight", "tapered", "cathedral", "tapered_cathedral"],
+          "description": "Structured shoulder transition between shank and head."
+        },
+        "pave": {
+          "$ref": "#/$defs/pave"
+        },
+        "band_width_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Band width in millimeters."
+        },
+        "band_thickness_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Band thickness in millimeters."
+        }
+      }
+    },
+    "metal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "enum": ["gold", "platinum", "silver", "other"],
+          "description": "Metal family."
+        },
+        "alloy": {
+          "type": "string",
+          "description": "Optional alloy descriptor, such as 14k yellow gold."
+        },
+        "purity": {
+          "enum": ["14k", "18k", "pt950"],
+          "description": "Typed karat or purity code."
+        },
+        "finish": {
+          "enum": ["polished", "matte", "brushed", "other"],
+          "description": "Optional finish."
+        }
+      }
+    },
+    "stones": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/stone"
+      }
+    },
+    "setting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["center_setting"],
+      "properties": {
+        "center_setting": {
+          "enum": ["prong", "bezel", "basket", "other"],
+          "description": "Primary center-stone setting type."
+        },
+        "prong_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Optional number of prongs."
+        },
+        "halo_style": {
+          "enum": ["single", "none"],
+          "description": "Optional halo style marker."
+        },
+        "side_stone_layout": {
+          "enum": ["left_right_pair", "none"],
+          "description": "Optional side-stone layout marker."
+        },
+        "head_family": {
+          "enum": ["classic", "crown", "bezel", "petal"],
+          "description": "Structured internal head architecture family."
+        },
+        "head_geometry": {
+          "enum": ["open_prong", "crown_prong", "continuous_bezel", "petal_prong"],
+          "description": "Supported head geometry represented by the geometry authority."
+        },
+        "gallery_structure": {
+          "enum": ["open_rail", "double_rail", "continuous_wall", "petal_open"],
+          "description": "Explicit gallery support structure."
+        },
+        "side_setting": {
+          "enum": ["none", "prong"],
+          "description": "Setting family for side-role stones."
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "description": "Explicit material assignments for geometry components. Material-only changes do not imply geometry changes.",
+      "items": {
+        "$ref": "#/$defs/component"
+      },
+      "uniqueItems": true
+    },
+    "manufacturing_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile_id": {
+          "type": "string",
+          "description": "Optional calibrated shop profile identifier."
+        },
+        "process": {
+          "enum": ["casting", "other"],
+          "description": "Optional manufacturing process."
+        },
+        "compensation_policy": {
+          "enum": ["calibrated_shop_profile"],
+          "description": "Compensation policy must be calibrated, not a universal constant."
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min_band_width_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "min_band_thickness_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "min_prong_thickness_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "clearance_ruleset_id": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "enum": ["guided_funnel", "sketch_prefill"]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "stone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stone_id", "role", "shape", "dimensions_mm"],
+      "properties": {
+        "stone_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "enum": ["center", "side", "halo", "accent"]
+        },
+        "shape": {
+          "enum": ["round", "oval", "cushion", "pear", "emerald", "radiant", "princess", "other"]
+        },
+        "dimensions_mm": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["length", "width"],
+          "properties": {
+            "length": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "width": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "depth": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "carat": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of identical stones represented by this schedule record."
+        },
+        "placement": {
+          "$ref": "#/$defs/stone_placement"
+        },
+        "cert": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "lab": {
+              "enum": ["GIA", "other"]
+            },
+            "report_number": {
+              "type": "string"
+            }
+          }
+        },
+        "proportions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "girdle": {
+              "type": "string"
+            },
+            "crown_angle_deg": {
+              "type": "number"
+            },
+            "pavilion_angle_deg": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "stone_placement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["region", "pattern", "orientation"],
+      "properties": {
+        "region": {
+          "enum": ["center", "head_sides", "band"]
+        },
+        "pattern": {
+          "enum": ["single", "symmetric_pair", "mirrored_row"]
+        },
+        "orientation": {
+          "enum": ["upright", "points_outward", "radial"]
+        }
+      }
+    },
+    "pave": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coverage", "setting_style", "accent_stone_ids"],
+      "properties": {
+        "coverage": {
+          "enum": ["none", "half", "three_quarter", "full"]
+        },
+        "setting_style": {
+          "enum": ["none", "bead_set", "shared_prong"]
+        },
+        "accent_stone_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component_id", "role", "metal"],
+      "properties": {
+        "component_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "enum": ["band", "head", "prongs", "pave"]
+        },
+        "metal": {
+          "$ref": "#/$defs/component_metal"
+        }
+      }
+    },
+    "component_metal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "alloy", "purity", "finish"],
+      "properties": {
+        "type": {
+          "enum": ["gold", "platinum", "silver", "other"]
+        },
+        "alloy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purity": {
+          "enum": ["14k", "18k", "pt950"]
+        },
+        "finish": {
+          "enum": ["polished", "matte", "brushed", "other"]
+        }
+      }
+    }
+  }
+}

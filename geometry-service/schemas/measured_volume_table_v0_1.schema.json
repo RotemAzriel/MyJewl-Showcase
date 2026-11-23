@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://myjewl.local/schemas/measured_volume_table_v0_1.schema.json",
+  "title": "MyJewl measured quote-volume table v0.1",
+  "description": "Measured ring volumes for promoted preview assets, used as the basis of a metal-weight quote. Every value is a measurement of receipt-backed export bytes. Nothing here certifies manufacturability, and the naive parts sum is recorded as evidence only -- it can never be the quoting basis.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "quote_volume_basis",
+    "basis_rationale",
+    "metrics_version",
+    "measured_on",
+    "generated_by",
+    "authority",
+    "manufacturing_gates",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "myjewl.measured_volume_table.v0_1"
+    },
+    "quote_volume_basis": {
+      "description": "The single declared basis. Pinned by const so a table can never nominate the over-counting parts sum, and so the product cannot silently report whichever number happened to be loaded.",
+      "const": "measured_mesh_union"
+    },
+    "basis_rationale": {
+      "type": "string",
+      "minLength": 40
+    },
+    "metrics_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "measured_on": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "generated_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority": {
+      "const": "measurement_only_not_manufacturing_certification"
+    },
+    "manufacturing_gates": {
+      "const": "pending_not_run_needs_calibration"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "asset_id",
+          "asset_version",
+          "geometry_signature",
+          "source_receipt_sha256",
+          "definition_path",
+          "definition_sha256",
+          "definition_kind",
+          "template_id",
+          "bundle",
+          "metal_part_count",
+          "part_bytes_verified",
+          "union_mm3",
+          "union_engine",
+          "union_watertight",
+          "union_body_count",
+          "parts_sum_mm3",
+          "overcount_mm3",
+          "overcount_fraction",
+          "rhino_nurbs_union_mm3",
+          "rhino_vs_mesh_fraction"
+        ],
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "asset_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "geometry_signature": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "source_receipt_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "definition_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definition_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "definition_kind": {
+            "type": "string",
+            "enum": [
+              "parametric_master",
+              "single_configuration_master"
+            ]
+          },
+          "template_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bundle": {
+            "type": "string",
+            "minLength": 1
+          },
+          "metal_part_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "part_bytes_verified": {
+            "description": "How many metal STLs were confirmed byte-identical to the receipt before measurement.",
+            "type": "integer",
+            "minimum": 1
+          },
+          "union_mm3": {
+            "description": "The quoting basis: mesh boolean union of the metal parts.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "union_engine": {
+            "type": "string",
+            "minLength": 1
+          },
+          "union_watertight": {
+            "const": true
+          },
+          "union_body_count": {
+            "description": "One fused body. A quote for a ring that is not one piece would be describing something the shop cannot cast as one.",
+            "const": 1
+          },
+          "parts_sum_mm3": {
+            "description": "Evidence only. Never the basis -- it double-counts metal at every overlap.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "overcount_mm3": {
+            "type": "number"
+          },
+          "overcount_fraction": {
+            "type": "number"
+          },
+          "rhino_nurbs_union_mm3": {
+            "description": "Rhino's own NURBS boolean, when the definition emits one. A cross-check, never the basis.",
+            "type": [
+              "number",
+              "null"
+            ],
+            "exclusiveMinimum": 0
+          },
+          "rhino_vs_mesh_fraction": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <title>MyJewl — Manual Configurator</title>
+  <meta name="description" content="Configure a validated seven-shape modular ring from typed stone, ring, metal, head, and band choices.">
+  <link rel="stylesheet" href="/static/manual.css">
+  <script type="importmap">
+    {"imports":{"three":"/static/vendor/three-r166/three.module.min.js"}}
+  </script>
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">MY<span>JEWL</span></a>
+    <nav><a href="/review">Design review</a><a href="/studio">Studio</a></nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">Manual configurator · seven-shape modular rings</p>
+      <h1>Your stone. Compatible parts. One validated specification.</h1>
+      <p>Enter a reviewed stone specification, then choose only from MyJewl head and band combinations that support it. Nothing is silently substituted.</p>
+    </section>
+
+    <div class="layout">
+      <form id="config-form" novalidate>
+        <section class="panel">
+          <div class="section-title"><span>01</span><h2>Stone specification</h2></div>
+          <div class="tabs" role="group" aria-label="Stone specification source">
+            <button class="tab active" type="button" data-source="manual">Manual measurements</button>
+            <button class="tab" type="button" data-source="certificate">Reviewed GIA / IGI</button>
+          </div>
+
+          <div id="manual-fields">
+            <div class="grid two">
+              <label>Shape<select id="stone-shape"><option value="round">Round</option><option value="oval">Oval</option><option value="cushion">Cushion</option><option value="pear">Pear</option><option value="emerald">Emerald</option><option value="princess">Princess</option><option value="radiant">Radiant</option></select></label>
+              <label>Carat <small>optional</small><input id="stone-carat" type="number" min="0.1" max="10" step="0.01" value="1.00"></label>
+            </div>
+            <div class="grid three">
+              <label>Length mm<input id="stone-length" type="number" min="0.5" max="20" step="0.01" value="6.50" required></label>
+              <label>Width mm<input id="stone-width" type="number" min="0.5" max="20" step="0.01" value="6.50" required></label>
+              <label>Depth mm<input id="stone-depth" type="number" min="0.2" max="15" step="0.01" value="3.90" required></label>
+            </div>
+          </div>
+
+          <div id="certificate-fields" hidden>
+            <div class="grid two">
+              <label>Laboratory<select id="cert-lab"><option value="gia">GIA</option><option value="igi">IGI</option></select></label>
+              <label>Report number<input id="cert-number" autocomplete="off"></label>
+              <label>Shape<select id="cert-shape"><option value="round">Round</option><option value="oval">Oval</option><option value="cushion">Cushion</option><option value="pear">Pear</option><option value="emerald">Emerald</option><option value="princess">Princess</option><option value="radiant">Radiant</option></select></label>
+              <label>Carat <small>optional</small><input id="cert-carat" type="number" min="0.1" max="10" step="0.01" value="1.00"></label>
+            </div>
+            <label>Measurements as printed<input id="cert-measurements" value="6.50 - 6.55 x 4.00 mm" placeholder="8.01 x 5.98 x 3.92 mm"></label>
+            <label class="check"><input id="cert-reviewed" type="checkbox"> I reviewed the report number, shape, and measurements against the certificate.</label>
+          </div>
+
+          <label>US ring size<input id="ring-size" type="number" min="3" max="13" step="0.25" value="6.5" required></label>
+        </section>
+
+        <section class="panel">
+          <div class="section-title"><span>02</span><h2>Metal overlay</h2></div>
+          <p class="hint">Metal changes appearance and the future quote, never compatibility or geometry identity.</p>
+          <div class="grid three">
+            <label>Colour<select id="metal-family"><option value="yellow">Yellow</option><option value="white">White</option><option value="rose">Rose</option></select></label>
+            <label>Karat / purity<select id="metal-purity"><option value="14k">14k gold</option><option value="18k">18k gold</option><option value="pt950">Platinum 950</option></select></label>
+            <label>Finish<select id="metal-finish"><option value="polished">Polished</option><option value="matte">Matte</option><option value="brushed">Brushed</option></select></label>
+          </div>
+          <button class="primary" id="find-styles" type="button">Find compatible styles</button>
+          <p class="message" id="options-message" role="status"></p>
+        </section>
+
+        <section class="panel" id="styles-panel" hidden>
+          <div class="section-title"><span>03</span><h2>Head and band</h2></div>
+          <h3>Compatible heads</h3>
+          <div class="cards" id="head-options"></div>
+          <h3>Compatible bands</h3>
+          <div class="cards" id="band-options"><p class="hint">Choose a head first.</p></div>
+          <button class="primary" id="create-config" type="submit" disabled>Create validated configuration</button>
+          <p class="message" id="config-message" role="status"></p>
+        </section>
+      </form>
+
+      <aside class="preview panel">
+        <div class="preview-head"><div><p class="eyebrow" id="preview-purpose-label">Operational design aid</p><h2 id="preview-title">Round solitaire</h2></div><span class="pending" id="preview-status-badge">out of preview</span></div>
+        <div class="canvas-wrap">
+          <canvas id="preview-canvas" tabindex="0" aria-label="Procedural operational design aid outside the production preview contract. Use the arrow keys to rotate."></canvas>
+          <div class="preview-delivery" id="preview-delivery" role="status" aria-live="polite" hidden>
+            <strong id="preview-delivery-title">Resolving production preview…</strong>
+            <span id="preview-delivery-detail">Only a verified registered asset can appear here.</span>
+          </div>
+        </div>
+        <dl id="preview-summary">
+          <div><dt>Stone</dt><dd>6.50 × 6.50 × 3.90 mm</dd></div>
+          <div><dt>Head</dt><dd>Choose a compatible style</dd></div>
+          <div><dt>Band</dt><dd>Choose a compatible style</dd></div>
+          <div><dt>Metal</dt><dd>14k yellow gold</dd></div>
+        </dl>
+        <div class="result" id="accepted-result" hidden>
+          <p class="accepted">Canonical spec accepted</p>
+          <code id="geometry-identity"></code>
+          <p id="quote-status"></p>
+          <p class="message" id="preview-decision-message" role="status"></p>
+          <button class="secondary" id="retry-preview" type="button" hidden>Retry preview</button>
+          <button class="primary" id="preview-decision" type="button" hidden></button>
+          <button class="secondary" id="request-geometry" type="button">Request operator-approved geometry</button>
+          <a href="/review">Open design review →</a>
+        </div>
+        <p class="notice">Selection-time geometry is a procedural operational aid outside the production preview contract. Final previews fail closed. Geometry gates remain pending / not_run until calibrated shop review; this page never starts paid compute.</p>
+      </aside>
+    </div>
+  </main>
+  <script type="module" src="/static/manual.js"></script>
+</body>
+</html>

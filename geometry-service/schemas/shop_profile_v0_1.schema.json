@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/myjewl/shop_profile_v0_1.schema.json",
+  "title": "MyJewl Shop Profile v0.1",
+  "description": "A versioned, cited, per-shop manufacturing profile. It supplies calibrated thresholds so checks can RUN with real numbers. It never, by itself, certifies manufacturing: pass/fail requires a calibrated profile AND human jeweler review. Field structure mirrors docs/casting_shop_survey_2026-08-04.md so survey answers transcribe directly.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "profile_id", "profile_version", "status", "shop", "validity",
+    "process", "measurement_basis", "minimums", "certifies_manufacturing",
+    "manufacturing_authority"
+  ],
+  "properties": {
+    "schema": { "const": "myjewl.shop_profile.v0_1" },
+    "profile_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]+$" },
+    "profile_version": { "type": "string", "minLength": 1 },
+    "status": {
+      "description": "'uncalibrated' means no threshold in this profile may be used as a manufacturing number, regardless of individual field status.",
+      "enum": ["uncalibrated", "calibrated"]
+    },
+    "shop": { "$ref": "#/$defs/shop" },
+    "validity": { "$ref": "#/$defs/validity" },
+    "process": { "$ref": "#/$defs/process" },
+    "measurement_basis": {
+      "description": "Survey 3.7. Whether the shop's minimums are quoted before or after finishing. If 'as_finished', every threshold must be raised by the finishing stock allowance before validating as-modeled geometry.",
+      "enum": ["as_modeled", "as_finished", "unknown"]
+    },
+    "minimums": { "$ref": "#/$defs/minimums" },
+    "shrinkage": { "$ref": "#/$defs/shrinkage" },
+    "finishing": { "$ref": "#/$defs/finishing" },
+    "setting": { "$ref": "#/$defs/setting" },
+    "mesh": { "$ref": "#/$defs/mesh" },
+    "commercial": { "$ref": "#/$defs/commercial" },
+    "notes": { "type": "string" },
+    "certifies_manufacturing": {
+      "description": "Structurally false. A profile is calibration input, never a verdict.",
+      "const": false
+    },
+    "manufacturing_authority": { "const": false }
+  },
+  "$defs": {
+    "iso_date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "alloy": {
+      "description": "An alloy token, or '*' for every alloy the shop handles.",
+      "type": "string",
+      "pattern": "^(\\*|[a-z0-9][a-z0-9_]*)$"
+    },
+    "process_route": {
+      "enum": [
+        "resin_print_to_investment",
+        "wax_print_to_investment",
+        "master_to_rubber_mold_to_production_wax",
+        "unknown"
+      ]
+    },
+    "calibrated_value": {
+      "description": "One measured threshold with the provenance that makes it usable. Survey rule: a minimum without an alloy scope and an unsupported-span qualifier is not usable, and anything the shop would not commit to in writing stays uncalibrated.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value", "units", "status", "committed_in_writing", "alloy_scope",
+        "provenance"
+      ],
+      "properties": {
+        "value": { "type": "number", "exclusiveMinimum": 0 },
+        "units": { "enum": ["mm", "mm2", "mm3", "percent", "ratio", "g_per_cm3", "degrees"] },
+        "status": { "enum": ["uncalibrated", "calibrated"] },
+        "committed_in_writing": {
+          "description": "Survey 7.2. A hallway opinion is not a spec. False keeps the value unusable even when status is 'calibrated'.",
+          "type": "boolean"
+        },
+        "alloy_scope": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/alloy" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "process_scope": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/process_route" },
+          "uniqueItems": true
+        },
+        "unsupported_span_mm": {
+          "description": "Survey 3. The span over which this minimum holds; a thin section that is short may be fine while the same section over 4 mm is not. Null means the shop did not qualify it, which the loader treats as a defect in the answer.",
+          "type": ["number", "null"],
+          "exclusiveMinimum": 0
+        },
+        "measurement_basis": { "enum": ["as_modeled", "as_finished", "unknown"] },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "recorded_on"],
+      "properties": {
+        "source": {
+          "description": "Where the number came from: shop name, document title, or 'uncalibrated_placeholder'.",
+          "type": "string",
+          "minLength": 1
+        },
+        "attributed_to": {
+          "description": "Survey role: cad_model_prep, caster, setter, finisher, owner_pm.",
+          "type": "string"
+        },
+        "recorded_on": { "$ref": "#/$defs/iso_date" },
+        "document": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "shop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "anonymized"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "anonymized": { "type": "boolean" },
+        "location": { "type": "string" },
+        "contact": { "type": "string" }
+      }
+    },
+    "validity": {
+      "description": "Survey 7.4. A profile with no expiry is a profile that quietly goes stale.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid_from", "expires_on"],
+      "properties": {
+        "valid_from": { "$ref": "#/$defs/iso_date" },
+        "expires_on": { "$ref": "#/$defs/iso_date" },
+        "revalidation_triggers": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "process": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route"],
+      "properties": {
+        "route": { "$ref": "#/$defs/process_route" },
+        "printer_model": { "type": "string" },
+        "layer_height_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "differs_for_production_volume": { "type": ["boolean", "null"] },
+        "sprues_added_by": { "enum": ["shop", "supplied_file", "unknown"] },
+        "sprue_keep_clear_zones": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "minimums": {
+      "description": "Survey Section 3. Each key maps to a list of scoped values; the loader selects the most specific alloy match. An absent or empty key means the shop did not give a number, and the corresponding rule keeps its uncalibrated MyJewl baseline.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min_prong_diameter_tip_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_prong_diameter_base_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_shank_thickness_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_shank_width_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_knife_edge_band_width_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_comfort_fit_thickness_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_gallery_wall_thickness_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_open_gallery_wire_diameter_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_gap_between_features_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_castable_wall_thickness_mm": { "$ref": "#/$defs/scoped_values" },
+        "min_feature_volume_mm3": { "$ref": "#/$defs/scoped_values" }
+      }
+    },
+    "scoped_values": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/calibrated_value" }
+    },
+    "shrinkage": {
+      "description": "Survey 2.4. If compensation must be baked into the supplied file, the delivered geometry differs from the approved geometry and the receipt must record it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["compensation_applied_by"],
+      "properties": {
+        "compensation_applied_by": { "enum": ["shop", "supplied_file", "unknown"] },
+        "per_alloy": { "$ref": "#/$defs/scoped_values" }
+      }
+    },
+    "finishing": {
+      "description": "Survey Section 4.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "stock_allowance_mm": { "$ref": "#/$defs/scoped_values" },
+        "surface_specific_allowance_mm": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/scoped_values" },
+          "propertyNames": {
+            "enum": ["outer_shank", "inner_shank", "under_gallery", "between_prongs"]
+          }
+        },
+        "method": { "enum": ["tumble", "hand_polish", "magnetic_pin", "mixed", "unknown"] },
+        "changes_ring_size": { "type": ["boolean", "null"] },
+        "ring_size_shift_mm": { "$ref": "#/$defs/scoped_values" }
+      }
+    },
+    "setting": {
+      "description": "Survey Section 5.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cast_with_stones_in_place": { "type": ["boolean", "null"] },
+        "seats_cut_by": { "enum": ["setter", "supplied_file", "unknown"] },
+        "girdle_clearance_mm": { "$ref": "#/$defs/scoped_values" },
+        "culet_clearance_mm": { "$ref": "#/$defs/scoped_values" },
+        "prong_stock_length_mm": { "$ref": "#/$defs/scoped_values" },
+        "pave_holes_modeled_by": { "enum": ["setter", "supplied_file", "unknown"] }
+      }
+    },
+    "mesh": {
+      "description": "Survey Section 1. Governs what we must export, not whether the part is castable.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "preferred_format": { "enum": ["stl", "3dm", "step", "obj", "unknown"] },
+        "max_chord_deviation_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "max_triangle_count": { "type": ["integer", "null"], "exclusiveMinimum": 0 },
+        "single_solid_required": {
+          "description": "Survey 1.5. True means we owe a boolean union and our per-part volume sum over-counts.",
+          "type": ["boolean", "null"]
+        },
+        "intersecting_solids_accepted": { "type": ["boolean", "null"] },
+        "outward_normals_required": {
+          "description": "Survey 1.7. Directly relevant: 12 of 20 master parts currently have inverted winding.",
+          "type": ["boolean", "null"]
+        },
+        "inverted_normals_are_silently_repaired": { "type": ["boolean", "null"] },
+        "watertight_required": { "type": ["boolean", "null"] },
+        "units_assumed": { "enum": ["mm", "inch", "unknown"] }
+      }
+    },
+    "commercial": {
+      "description": "Survey Section 6.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "weight_from_boolean_union": {
+          "description": "Survey 6.1. If the shop unions before computing volume and we sum parts, one of us mis-prices every ring.",
+          "type": ["boolean", "null"]
+        },
+        "densities_g_cm3": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "exclusiveMinimum": 0 },
+          "propertyNames": { "$ref": "#/$defs/alloy" }
+        },
+        "quote_is_automated": { "type": ["boolean", "null"] },
+        "accepts_machine_submitted_files": { "type": ["boolean", "null"] },
+        "minimum_order_quantity": { "type": ["integer", "null"], "minimum": 1 },
+        "turnaround_days_single": { "type": ["integer", "null"], "minimum": 0 },
+        "will_report_failure_causes": { "type": ["boolean", "null"] }
+      }
+    }
+  }
+}

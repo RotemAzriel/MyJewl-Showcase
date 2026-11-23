@@ -1,0 +1,111 @@
+{
+  "schema": "myjewl.alloy_price_sheet.v0_1",
+  "sheet_id": "undeclared-template",
+  "sheet_version": "v0.1.0",
+  "status": "undeclared",
+  "currency": "USD",
+  "declared_by": {
+    "name": "UNDECLARED TEMPLATE - NOT A REAL PRICE SHEET",
+    "role": "undeclared_placeholder"
+  },
+  "validity": {
+    "valid_from": "2026-08-17",
+    "expires_on": "2026-08-18",
+    "revalidation_triggers": [
+      "any change in the spot metal market the operator acts on",
+      "a new refiner or supplier quote",
+      "a change of currency",
+      "a change in what the price covers (spot metal vs fabricated metal)"
+    ]
+  },
+  "prices": {
+    "14k_yellow": {
+      "price_per_gram": 1.0,
+      "status": "undeclared",
+      "as_of": "2026-08-17",
+      "expires_on": "2026-08-18",
+      "price_basis": "unknown",
+      "provenance": {
+        "source": "undeclared_placeholder",
+        "recorded_on": "2026-08-17",
+        "notes": "Structural placeholder so the shape of a real answer is obvious. 1.0 is not a price and is refused three times over: the sheet is undeclared, the entry is undeclared, and the basis is unknown. Replace price_per_gram, as_of, expires_on, price_basis and provenance.source, then set both status fields to 'declared'."
+      }
+    },
+    "14k_white": {
+      "price_per_gram": 1.0,
+      "status": "undeclared",
+      "as_of": "2026-08-17",
+      "expires_on": "2026-08-18",
+      "price_basis": "unknown",
+      "provenance": {
+        "source": "undeclared_placeholder",
+        "recorded_on": "2026-08-17",
+        "notes": "Structural placeholder. Not a price."
+      }
+    },
+    "14k_rose": {
+      "price_per_gram": 1.0,
+      "status": "undeclared",
+      "as_of": "2026-08-17",
+      "expires_on": "2026-08-18",
+      "price_basis": "unknown",
+      "provenance": {
+        "source": "undeclared_placeholder",
+        "recorded_on": "2026-08-17",
+        "notes": "Structural placeholder. Not a price."
+      }
+    },
+    "18k_yellow": {
+      "price_per_gram": 1.0,
+      "status": "undeclared",
+      "as_of": "2026-08-17",
+      "expires_on": "2026-08-18",
+      "price_basis": "unknown",
+      "provenance": {
+        "source": "undeclared_placeholder",
+        "recorded_on": "2026-08-17",
+        "notes": "Structural placeholder. Not a price."
+      }
+    },
+    "18k_white": {
+      "price_per_gram": 1.0,
+      "status": "undeclared",
+      "as_of": "2026-08-17",
+      "expires_on": "2026-08-18",
+      "price_basis": "unknown",
+      "provenance": {
+        "source": "undeclared_placeholder",
+        "recorded_on": "2026-08-17",
+        "notes": "Structural placeholder. Not a price."
+      }
+    },
+    "18k_rose": {
+      "price_per_gram": 1.0,
+      "status": "undeclared",
+      "as_of": "2026-08-17",
+      "expires_on": "2026-08-18",
+      "price_basis": "unknown",
+      "provenance": {
+        "source": "undeclared_placeholder",
+        "recorded_on": "2026-08-17",
+        "notes": "Structural placeholder. Not a price."
+      }
+    },
+    "pt950": {
+      "price_per_gram": 1.0,
+      "status": "undeclared",
+      "as_of": "2026-08-17",
+      "expires_on": "2026-08-18",
+      "price_basis": "unknown",
+      "provenance": {
+        "source": "undeclared_placeholder",
+        "recorded_on": "2026-08-17",
+        "notes": "Structural placeholder. Not a price. Platinum is roughly an order of magnitude per gram away from 14k gold, which is why this schema has no wildcard alloy."
+      }
+    }
+  },
+  "notes": "This is the state MyJewl ships in, on purpose. The repository supplies the SLOT for an alloy price; the operator supplies the number. Every entry here refuses itself, so every quote reports metal_content_cost: null with a reason naming which condition failed. To declare real prices: copy this file, fill it in, and point MYJEWL_ALLOY_PRICE_SHEET at the copy. Do not commit real spot prices into the repository -- they go stale silently, and a stale price looks live.",
+  "authority": "commercial_input_only_not_manufacturing_certification",
+  "certifies_manufacturing": false,
+  "affects_geometry": false
+}
